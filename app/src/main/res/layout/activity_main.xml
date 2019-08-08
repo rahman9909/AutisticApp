@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/game_back"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:paddingLeft="46dp"
+        android:paddingRight="46dp">
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/btn_01"
+            android:fontFamily="@font/big_sale_01"
+            android:text="Family"
+            android:textColor="?attr/colorBackgroundFloating"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/btn_01"
+            android:fontFamily="@font/big_sale_01"
+            android:text="Expression"
+            android:textColor="?attr/colorBackgroundFloating"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/btn_01"
+            android:fontFamily="@font/big_sale_01"
+            android:text="Game"
+            android:textColor="?attr/colorBackgroundFloating"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp">
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/btn_02"
+            android:fontFamily="@font/big_sale_01"
+            android:text="X"
+            android:textColor="?attr/colorBackgroundFloating"
+            android:textSize="26sp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

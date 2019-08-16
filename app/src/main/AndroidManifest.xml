@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActivityExpressionShow"></activity>
+        <activity android:name=".ActivityParents"></activity>
+        <activity android:name=".ActivityExpressionShow" />
         <activity android:name=".ActivityExpression" />
         <activity android:name=".Splash">
             <intent-filter>

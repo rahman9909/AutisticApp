@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">Autistic App</string>
+
+
+
+
+    <string-array name="spiner_entry">
+        <item>Select Entry</item>
+        <item>FATHER</item>
+        <item>MOTHER</item>
+        <item>GRAND_FATHER</item>
+        <item>GRAND_MOTHER</item>
+        <item>BROTHER_1</item>
+        <item>BROTHER_2</item>
+        <item>BROTHER_3</item>
+        <item>SISTER_1</item>
+        <item>SISTER_2</item>
+        <item>SISTER_3</item>
+    </string-array>
 </resources>
+
+
+

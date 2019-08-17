@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/game_back"
+    android:orientation="vertical"
+    tools:context=".ActivityParentsCapture">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="2dp"
+        android:background="#34000000"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/app_font"
+            android:text="Capture  Family"
+            android:textAlignment="center"
+            android:textColor="#FFF"
+            android:textSize="26sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingTop="26dp"
+        android:background="#65000000">
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#95FFFFFF"
+            app:cardCornerRadius="8dp">
+
+            <ImageView
+                android:id="@+id/imgCaptureMain"
+                android:layout_width="240dp"
+                android:layout_height="240dp"
+                android:padding="14dp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/btnCaptureMain"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="SELECT IMAGE" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#95FFFFFF"
+            app:cardCornerRadius="8dp">
+
+            <Spinner
+                android:id="@+id/spinCaptureMain"
+                android:layout_width="240dp"
+                android:layout_height="36dp"
+                android:entries="@array/spiner_entry" />
+
+        </androidx.cardview.widget.CardView>
+
+        <EditText
+            android:id="@+id/inputCaptureMain"
+            android:layout_width="240dp"
+            android:layout_height="36dp"
+            android:background="@drawable/ic_edit_text"
+            android:layout_marginTop="10dp"
+            android:textAlignment="center"
+            android:hint="Enter Name"
+            android:paddingLeft="4dp"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btnCaptureSave"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="STore MEMBER" />
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

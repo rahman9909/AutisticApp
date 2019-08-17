@@ -31,6 +31,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void actionEvent() {
 
+        btnFamily.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentExpression = new Intent(getApplicationContext(), ActivityParents.class);
+                startActivity(intentExpression);
+            }
+        });
+
         btnExpression.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentExpression);
             }
         });
+
+
     }
 
 

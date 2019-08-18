@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -90,8 +91,8 @@ public class ActivityParentsCapture extends AppCompatActivity {
                             showDialog(getApplicationContext(), "Please family member photo.");
                         } else {
                             Bitmap bitmap = ((BitmapDrawable) imgCaptureMain.getDrawable()).getBitmap();
-                            if (savebitmap(bitmap)) {
-
+                            savebitmap(bitmap);
+                            Toast.makeText(getApplicationContext(), spinCaptureMain.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
                                 if (spinCaptureMain.getSelectedItem().toString().equals("FATHER")) {
                                     new SharedPrefDatabase(getApplicationContext()).StoreFather(inputCaptureMain.getText().toString());
                                 } else if (spinCaptureMain.getSelectedItem().toString().equals("MOTHER")) {
@@ -115,7 +116,7 @@ public class ActivityParentsCapture extends AppCompatActivity {
                                 }
 
                                 showDialogSuccess(getApplicationContext(), "Family member saved successfully.");
-                            }
+
                         }
                     }
                 }

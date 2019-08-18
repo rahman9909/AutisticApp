@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -167,7 +168,7 @@ public class ActivityParentsAlbum extends AppCompatActivity {
             String path = getExternalCacheDir().getPath() + "/BROTHER_1.jpg";
             imgAlbumBrother1.setImageURI(Uri.parse(path));
             txtAlbumBrother1.setText(new SharedPrefDatabase(getApplicationContext()).RetriveBrother_1());
-            txtAlbumBrother1.setText("BROTHER");
+            txtAlbumBrother1R.setText("BROTHER");
         } else {
             layoutBrother1.setVisibility(View.GONE);
         }
@@ -177,7 +178,7 @@ public class ActivityParentsAlbum extends AppCompatActivity {
             String path = getExternalCacheDir().getPath() + "/BROTHER_2.jpg";
             imgAlbumBrother2.setImageURI(Uri.parse(path));
             txtAlbumBrother2.setText(new SharedPrefDatabase(getApplicationContext()).RetriveBrother_2());
-            txtAlbumBrother2.setText("BROTHER");
+            txtAlbumBrother2R.setText("BROTHER");
         } else {
             layoutBrother2.setVisibility(View.GONE);
         }
@@ -187,7 +188,7 @@ public class ActivityParentsAlbum extends AppCompatActivity {
             String path = getExternalCacheDir().getPath() + "/BROTHER_3.jpg";
             imgAlbumBrother3.setImageURI(Uri.parse(path));
             txtAlbumBrother3.setText(new SharedPrefDatabase(getApplicationContext()).RetriveBrother_3());
-            txtAlbumBrother3.setText("BROTHER");
+            txtAlbumBrother3R.setText("BROTHER");
         } else {
             layoutBrother3.setVisibility(View.GONE);
         }
@@ -198,7 +199,7 @@ public class ActivityParentsAlbum extends AppCompatActivity {
             String path = getExternalCacheDir().getPath() + "/SISTER_1.jpg";
             imgAlbumSister1.setImageURI(Uri.parse(path));
             txtAlbumSister1.setText(new SharedPrefDatabase(getApplicationContext()).RetriveSister_1());
-            txtAlbumSister1.setText("SISTER");
+            txtAlbumSister1R.setText("SISTER");
         } else {
             layoutSister1.setVisibility(View.GONE);
         }
@@ -208,7 +209,7 @@ public class ActivityParentsAlbum extends AppCompatActivity {
             String path = getExternalCacheDir().getPath() + "/SISTER_2.jpg";
             imgAlbumSister2.setImageURI(Uri.parse(path));
             txtAlbumSister2.setText(new SharedPrefDatabase(getApplicationContext()).RetriveSister_2());
-            txtAlbumSister2.setText("SISTER");
+            txtAlbumSister2R.setText("SISTER");
         } else {
             layoutSister2.setVisibility(View.GONE);
         }
@@ -219,10 +220,24 @@ public class ActivityParentsAlbum extends AppCompatActivity {
             String path = getExternalCacheDir().getPath() + "/SISTER_3.jpg";
             imgAlbumSister3.setImageURI(Uri.parse(path));
             txtAlbumSister3.setText(new SharedPrefDatabase(getApplicationContext()).RetriveSister_3());
-            txtAlbumSister3.setText("SISTER");
+            txtAlbumSister3R.setText("SISTER");
         } else {
             layoutSister3.setVisibility(View.GONE);
         }
 
+
+        actionEvent2();
+
+    }
+
+    private void actionEvent2() {
+        layoutFather.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                Toast.makeText(getApplicationContext(), "Long click works", Toast.LENGTH_LONG).show();
+                return false;
+            }
+        });
     }
 }

@@ -39,7 +39,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center_horizontal"
-            android:background="#65000000">
+            android:background="#15000000">
 
 
 
@@ -52,7 +52,8 @@
                 android:gravity="center_vertical"
                 android:paddingRight="6dp"
                 android:layout_marginBottom="6dp"
-                android:visibility="gone">
+                android:visibility="gone"
+                android:background="#65000000">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
@@ -124,7 +125,8 @@
                 android:gravity="center_vertical"
                 android:paddingRight="6dp"
                 android:layout_marginBottom="6dp"
-                android:visibility="gone">
+                android:visibility="gone"
+                android:background="#65000000">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
@@ -196,7 +198,8 @@
                 android:gravity="center_vertical"
                 android:paddingRight="6dp"
                 android:layout_marginBottom="6dp"
-                android:visibility="gone">
+                android:visibility="gone"
+                android:background="#65000000">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
@@ -268,7 +271,8 @@
                 android:gravity="center_vertical"
                 android:paddingRight="6dp"
                 android:layout_marginBottom="6dp"
-                android:visibility="gone">
+                android:visibility="gone"
+                android:background="#65000000">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
@@ -340,7 +344,8 @@
                 android:gravity="center_vertical"
                 android:paddingRight="6dp"
                 android:layout_marginBottom="6dp"
-                android:visibility="gone">
+                android:visibility="gone"
+                android:background="#65000000">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
@@ -412,7 +417,8 @@
                 android:gravity="center_vertical"
                 android:paddingRight="6dp"
                 android:layout_marginBottom="6dp"
-                android:visibility="gone">
+                android:visibility="gone"
+                android:background="#65000000">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
@@ -484,7 +490,8 @@
                 android:gravity="center_vertical"
                 android:paddingRight="6dp"
                 android:layout_marginBottom="6dp"
-                android:visibility="gone">
+                android:visibility="gone"
+                android:background="#65000000">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
@@ -556,7 +563,8 @@
                 android:gravity="center_vertical"
                 android:paddingRight="6dp"
                 android:layout_marginBottom="6dp"
-                android:visibility="gone">
+                android:visibility="gone"
+                android:background="#65000000">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
@@ -628,7 +636,8 @@
                 android:gravity="center_vertical"
                 android:paddingRight="6dp"
                 android:layout_marginBottom="6dp"
-                android:visibility="gone">
+                android:visibility="gone"
+                android:background="#65000000">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
@@ -700,7 +709,8 @@
                 android:gravity="center_vertical"
                 android:paddingRight="6dp"
                 android:layout_marginBottom="6dp"
-                android:visibility="gone">
+                android:visibility="gone"
+                android:background="#65000000">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"

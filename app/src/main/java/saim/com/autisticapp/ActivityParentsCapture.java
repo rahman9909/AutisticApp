@@ -1,10 +1,5 @@
 package saim.com.autisticapp;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -15,29 +10,25 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.ContextThemeWrapper;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URI;
-import java.nio.channels.FileChannel;
 
 import saim.com.autisticapp.Util.SharedPrefDatabase;
 
@@ -102,25 +93,25 @@ public class ActivityParentsCapture extends AppCompatActivity {
                             if (savebitmap(bitmap)) {
 
                                 if (spinCaptureMain.getSelectedItem().toString().equals("FATHER")) {
-                                    new SharedPrefDatabase(getApplicationContext()).StoreFather(spinCaptureMain.getSelectedItem().toString());
+                                    new SharedPrefDatabase(getApplicationContext()).StoreFather(inputCaptureMain.getText().toString());
                                 } else if (spinCaptureMain.getSelectedItem().toString().equals("MOTHER")) {
-                                    new SharedPrefDatabase(getApplicationContext()).StoreMother(spinCaptureMain.getSelectedItem().toString());
+                                    new SharedPrefDatabase(getApplicationContext()).StoreMother(inputCaptureMain.getText().toString());
                                 } else if (spinCaptureMain.getSelectedItem().toString().equals("GRAND_FATHER")) {
-                                    new SharedPrefDatabase(getApplicationContext()).StoreGFather(spinCaptureMain.getSelectedItem().toString());
+                                    new SharedPrefDatabase(getApplicationContext()).StoreGFather(inputCaptureMain.getText().toString());
                                 } else if (spinCaptureMain.getSelectedItem().toString().equals("GRAND_MOTHER")) {
-                                    new SharedPrefDatabase(getApplicationContext()).StoreGMother(spinCaptureMain.getSelectedItem().toString());
+                                    new SharedPrefDatabase(getApplicationContext()).StoreGMother(inputCaptureMain.getText().toString());
                                 } else if (spinCaptureMain.getSelectedItem().toString().equals("BROTHER_1")) {
-                                    new SharedPrefDatabase(getApplicationContext()).StoreBrother_1(spinCaptureMain.getSelectedItem().toString());
+                                    new SharedPrefDatabase(getApplicationContext()).StoreBrother_1(inputCaptureMain.getText().toString());
                                 } else if (spinCaptureMain.getSelectedItem().toString().equals("BROTHER_2")) {
-                                    new SharedPrefDatabase(getApplicationContext()).StoreBrother_2(spinCaptureMain.getSelectedItem().toString());
+                                    new SharedPrefDatabase(getApplicationContext()).StoreBrother_2(inputCaptureMain.getText().toString());
                                 } else if (spinCaptureMain.getSelectedItem().toString().equals("BROTHER_3")) {
-                                    new SharedPrefDatabase(getApplicationContext()).StoreBrother_3(spinCaptureMain.getSelectedItem().toString());
+                                    new SharedPrefDatabase(getApplicationContext()).StoreBrother_3(inputCaptureMain.getText().toString());
                                 } else if (spinCaptureMain.getSelectedItem().toString().equals("SISTER_1")) {
-                                    new SharedPrefDatabase(getApplicationContext()).StoreSister_1(spinCaptureMain.getSelectedItem().toString());
+                                    new SharedPrefDatabase(getApplicationContext()).StoreSister_1(inputCaptureMain.getText().toString());
                                 } else if (spinCaptureMain.getSelectedItem().toString().equals("SISTER_2")) {
-                                    new SharedPrefDatabase(getApplicationContext()).StoreSister_2(spinCaptureMain.getSelectedItem().toString());
+                                    new SharedPrefDatabase(getApplicationContext()).StoreSister_2(inputCaptureMain.getText().toString());
                                 } else if (spinCaptureMain.getSelectedItem().toString().equals("SISTER_3")) {
-                                    new SharedPrefDatabase(getApplicationContext()).StoreSister_3(spinCaptureMain.getSelectedItem().toString());
+                                    new SharedPrefDatabase(getApplicationContext()).StoreSister_3(inputCaptureMain.getText().toString());
                                 }
 
                                 showDialogSuccess(getApplicationContext(), "Family member saved successfully.");

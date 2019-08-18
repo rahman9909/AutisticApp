@@ -45,12 +45,14 @@
 
             <!--Father-->
             <LinearLayout
+                android:id="@+id/layoutFather"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:paddingRight="6dp"
-                android:layout_marginBottom="6dp">
+                android:layout_marginBottom="6dp"
+                android:visibility="gone">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
@@ -59,6 +61,7 @@
                     app:cardCornerRadius="8dp">
 
                     <ImageView
+                        android:id="@+id/imgAlbumFather"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:padding="6dp"
@@ -76,20 +79,22 @@
                     android:gravity="center_vertical">
 
                     <TextView
+                        android:id="@+id/txtAlbumFather"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="#FFF"
-                        android:text="Md. Mobinur Rahman Saim"/>
+                        android:text="Name of Father" />
 
                     <TextView
+                        android:id="@+id/txtAlbumFatherR"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         android:textColor="#FFF"
-                        android:text="Brother"/>
+                        android:text="Father" />
 
                 </LinearLayout>
 
@@ -100,6 +105,7 @@
                     app:cardCornerRadius="8dp">
 
                     <ImageView
+                        android:id="@+id/imgAlbumFatherSound"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
                         android:padding="6dp"
@@ -108,13 +114,17 @@
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
+
             <!--Mother-->
             <LinearLayout
+                android:id="@+id/layoutMother"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:paddingRight="6dp">
+                android:paddingRight="6dp"
+                android:layout_marginBottom="6dp"
+                android:visibility="gone">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
@@ -123,7 +133,7 @@
                     app:cardCornerRadius="8dp">
 
                     <ImageView
-                        android:id="@+id/imgCaptureMain"
+                        android:id="@+id/imgAlbumMother"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:padding="6dp"
@@ -141,20 +151,22 @@
                     android:gravity="center_vertical">
 
                     <TextView
+                        android:id="@+id/txtAlbumMother"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="#FFF"
-                        android:text="Md. Mobinur Rahman Saim"/>
+                        android:text="Name of mother" />
 
                     <TextView
+                        android:id="@+id/txtAlbumMotherR"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         android:textColor="#FFF"
-                        android:text="Brother"/>
+                        android:text="Mother" />
 
                 </LinearLayout>
 
@@ -165,6 +177,7 @@
                     app:cardCornerRadius="8dp">
 
                     <ImageView
+                        android:id="@+id/imgAlbumMotherSound"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
                         android:padding="6dp"
@@ -173,6 +186,581 @@
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
+
+            <!--Grand Father-->
+            <LinearLayout
+                android:id="@+id/layoutGFather"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingRight="6dp"
+                android:layout_marginBottom="6dp"
+                android:visibility="gone">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#95FFFFFF"
+                    app:cardCornerRadius="8dp">
+
+                    <ImageView
+                        android:id="@+id/imgAlbumGFather"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_angry" />
+
+                </androidx.cardview.widget.CardView>
+
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="6dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/txtAlbumGFather"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFF"
+                        android:text="Name of Grand Father" />
+
+                    <TextView
+                        android:id="@+id/txtAlbumGFatherR"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFF"
+                        android:text="Grand Father" />
+
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#95FFFFFF"
+                    app:cardCornerRadius="8dp">
+
+                    <ImageView
+                        android:id="@+id/imgAlbumGFatherSound"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:padding="6dp"
+                        android:src="@android:drawable/ic_btn_speak_now" />
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+
+            <!--Grand Mother-->
+            <LinearLayout
+                android:id="@+id/layoutGMother"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingRight="6dp"
+                android:layout_marginBottom="6dp"
+                android:visibility="gone">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#95FFFFFF"
+                    app:cardCornerRadius="8dp">
+
+                    <ImageView
+                        android:id="@+id/imgAlbumGMother"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_angry" />
+
+                </androidx.cardview.widget.CardView>
+
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="6dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/txtAlbumGMother"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFF"
+                        android:text="Name of Grand Mother" />
+
+                    <TextView
+                        android:id="@+id/txtAlbumGMotherR"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFF"
+                        android:text="Grand Mother" />
+
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#95FFFFFF"
+                    app:cardCornerRadius="8dp">
+
+                    <ImageView
+                        android:id="@+id/imgAlbumGMotherSound"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:padding="6dp"
+                        android:src="@android:drawable/ic_btn_speak_now" />
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+
+            <!--Brother 1-->
+            <LinearLayout
+                android:id="@+id/layoutBrother1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingRight="6dp"
+                android:layout_marginBottom="6dp"
+                android:visibility="gone">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#95FFFFFF"
+                    app:cardCornerRadius="8dp">
+
+                    <ImageView
+                        android:id="@+id/imgAlbumBrother1"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_angry" />
+
+                </androidx.cardview.widget.CardView>
+
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="6dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/txtAlbumBrother1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFF"
+                        android:text="Name of Brother 1" />
+
+                    <TextView
+                        android:id="@+id/txtAlbumBrother1R"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFF"
+                        android:text="Brother" />
+
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#95FFFFFF"
+                    app:cardCornerRadius="8dp">
+
+                    <ImageView
+                        android:id="@+id/imgAlbumBrother1Sound"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:padding="6dp"
+                        android:src="@android:drawable/ic_btn_speak_now" />
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+
+            <!--Brother 2-->
+            <LinearLayout
+                android:id="@+id/layoutBrother2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingRight="6dp"
+                android:layout_marginBottom="6dp"
+                android:visibility="gone">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#95FFFFFF"
+                    app:cardCornerRadius="8dp">
+
+                    <ImageView
+                        android:id="@+id/imgAlbumBrother2"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_angry" />
+
+                </androidx.cardview.widget.CardView>
+
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="6dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/txtAlbumBrother2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFF"
+                        android:text="Name of Brother 2" />
+
+                    <TextView
+                        android:id="@+id/txtAlbumBrother2R"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFF"
+                        android:text="Brother" />
+
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#95FFFFFF"
+                    app:cardCornerRadius="8dp">
+
+                    <ImageView
+                        android:id="@+id/imgAlbumBrother2Sound"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:padding="6dp"
+                        android:src="@android:drawable/ic_btn_speak_now" />
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+
+            <!--Brother 3-->
+            <LinearLayout
+                android:id="@+id/layoutBrother3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingRight="6dp"
+                android:layout_marginBottom="6dp"
+                android:visibility="gone">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#95FFFFFF"
+                    app:cardCornerRadius="8dp">
+
+                    <ImageView
+                        android:id="@+id/imgAlbumBrother3"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_angry" />
+
+                </androidx.cardview.widget.CardView>
+
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="6dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/txtAlbumBrother3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFF"
+                        android:text="Name of Brother 3" />
+
+                    <TextView
+                        android:id="@+id/txtAlbumBrother3R"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFF"
+                        android:text="Brother" />
+
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#95FFFFFF"
+                    app:cardCornerRadius="8dp">
+
+                    <ImageView
+                        android:id="@+id/imgAlbumBrother3Sound"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:padding="6dp"
+                        android:src="@android:drawable/ic_btn_speak_now" />
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+
+            <!--Sister 1-->
+            <LinearLayout
+                android:id="@+id/layoutSister1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingRight="6dp"
+                android:layout_marginBottom="6dp"
+                android:visibility="gone">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#95FFFFFF"
+                    app:cardCornerRadius="8dp">
+
+                    <ImageView
+                        android:id="@+id/imgAlbumSister1"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_angry" />
+
+                </androidx.cardview.widget.CardView>
+
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="6dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/txtAlbumSister1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFF"
+                        android:text="Name of Sister 1" />
+
+                    <TextView
+                        android:id="@+id/txtAlbumSister1R"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFF"
+                        android:text="Sister" />
+
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#95FFFFFF"
+                    app:cardCornerRadius="8dp">
+
+                    <ImageView
+                        android:id="@+id/imgAlbumSister1Sound"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:padding="6dp"
+                        android:src="@android:drawable/ic_btn_speak_now" />
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+
+            <!--Sister 2-->
+            <LinearLayout
+                android:id="@+id/layoutSister2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingRight="6dp"
+                android:layout_marginBottom="6dp"
+                android:visibility="gone">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#95FFFFFF"
+                    app:cardCornerRadius="8dp">
+
+                    <ImageView
+                        android:id="@+id/imgAlbumSister2"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_angry" />
+
+                </androidx.cardview.widget.CardView>
+
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="6dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/txtAlbumSister2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFF"
+                        android:text="Name of Sister 2" />
+
+                    <TextView
+                        android:id="@+id/txtAlbumSister2R"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFF"
+                        android:text="Sister" />
+
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#95FFFFFF"
+                    app:cardCornerRadius="8dp">
+
+                    <ImageView
+                        android:id="@+id/imgAlbumSister2Sound"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:padding="6dp"
+                        android:src="@android:drawable/ic_btn_speak_now" />
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+
+            <!--Sister 3-->
+            <LinearLayout
+                android:id="@+id/layoutSister3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingRight="6dp"
+                android:layout_marginBottom="6dp"
+                android:visibility="gone">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#95FFFFFF"
+                    app:cardCornerRadius="8dp">
+
+                    <ImageView
+                        android:id="@+id/imgAlbumSister3"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_angry" />
+
+                </androidx.cardview.widget.CardView>
+
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="6dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/txtAlbumSister3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFF"
+                        android:text="Name of Sister 3" />
+
+                    <TextView
+                        android:id="@+id/txtAlbumSister3R"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFF"
+                        android:text="Sister" />
+
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#95FFFFFF"
+                    app:cardCornerRadius="8dp">
+
+                    <ImageView
+                        android:id="@+id/imgAlbumSister3Sound"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:padding="6dp"
+                        android:src="@android:drawable/ic_btn_speak_now" />
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
 
         </LinearLayout>

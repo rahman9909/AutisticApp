@@ -2,6 +2,8 @@ package saim.com.autisticapp;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -9,6 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Locale;
 
 import saim.com.autisticapp.Util.SharedPrefDatabase;
 
@@ -227,6 +231,16 @@ public class ActivityParentsAlbum extends AppCompatActivity {
 
 
         actionEvent2();
+        actionEventSound(imgAlbumFatherSound, txtAlbumFather);
+        actionEventSound(imgAlbumMotherSound, txtAlbumMother);
+        actionEventSound(imgAlbumGFatherSound, txtAlbumGFather);
+        actionEventSound(imgAlbumGMotherSound, txtAlbumGMother);
+        actionEventSound(imgAlbumBrother1Sound, txtAlbumBrother1);
+        actionEventSound(imgAlbumBrother2Sound, txtAlbumBrother2);
+        actionEventSound(imgAlbumBrother3Sound, txtAlbumBrother3);
+        actionEventSound(imgAlbumSister1Sound, txtAlbumSister1);
+        actionEventSound(imgAlbumSister2Sound, txtAlbumSister2);
+        actionEventSound(imgAlbumSister3Sound, txtAlbumSister3);
 
     }
 
@@ -234,10 +248,43 @@ public class ActivityParentsAlbum extends AppCompatActivity {
         layoutFather.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-
                 Toast.makeText(getApplicationContext(), "Long click works", Toast.LENGTH_LONG).show();
                 return false;
             }
         });
     }
+
+
+    private TextToSpeech textToSpeech;
+    private void actionEventSound(ImageView button, final TextView textView) {
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+                    @Override
+                    public void onInit(int status) {
+                        if (status == TextToSpeech.SUCCESS) {
+                            int result = textToSpeech.setLanguage(Locale.US);
+                            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                                Log.e("TTS", "This Language is not supported");
+                            } else {
+                                textToSpeech.speak(textView.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
+                            }
+                        } else {
+                            Log.e("TTS", "Initilization Failed!");
+                        }
+                    }
+                });
+            }
+        });
+
+    }
+
+
+
+
+
+
+
 }

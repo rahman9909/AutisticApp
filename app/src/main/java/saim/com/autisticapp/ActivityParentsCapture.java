@@ -94,25 +94,45 @@ public class ActivityParentsCapture extends AppCompatActivity {
                             savebitmap(bitmap);
                             Toast.makeText(getApplicationContext(), spinCaptureMain.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
                                 if (spinCaptureMain.getSelectedItem().toString().equals("FATHER")) {
+
                                     new SharedPrefDatabase(getApplicationContext()).StoreFather(inputCaptureMain.getText().toString());
+
                                 } else if (spinCaptureMain.getSelectedItem().toString().equals("MOTHER")) {
+
                                     new SharedPrefDatabase(getApplicationContext()).StoreMother(inputCaptureMain.getText().toString());
+
                                 } else if (spinCaptureMain.getSelectedItem().toString().equals("GRAND_FATHER")) {
+
                                     new SharedPrefDatabase(getApplicationContext()).StoreGFather(inputCaptureMain.getText().toString());
+
                                 } else if (spinCaptureMain.getSelectedItem().toString().equals("GRAND_MOTHER")) {
+
                                     new SharedPrefDatabase(getApplicationContext()).StoreGMother(inputCaptureMain.getText().toString());
+
                                 } else if (spinCaptureMain.getSelectedItem().toString().equals("BROTHER_1")) {
+
                                     new SharedPrefDatabase(getApplicationContext()).StoreBrother_1(inputCaptureMain.getText().toString());
+
                                 } else if (spinCaptureMain.getSelectedItem().toString().equals("BROTHER_2")) {
+
                                     new SharedPrefDatabase(getApplicationContext()).StoreBrother_2(inputCaptureMain.getText().toString());
+
                                 } else if (spinCaptureMain.getSelectedItem().toString().equals("BROTHER_3")) {
+
                                     new SharedPrefDatabase(getApplicationContext()).StoreBrother_3(inputCaptureMain.getText().toString());
+
                                 } else if (spinCaptureMain.getSelectedItem().toString().equals("SISTER_1")) {
+
                                     new SharedPrefDatabase(getApplicationContext()).StoreSister_1(inputCaptureMain.getText().toString());
+
                                 } else if (spinCaptureMain.getSelectedItem().toString().equals("SISTER_2")) {
+
                                     new SharedPrefDatabase(getApplicationContext()).StoreSister_2(inputCaptureMain.getText().toString());
+
                                 } else if (spinCaptureMain.getSelectedItem().toString().equals("SISTER_3")) {
+
                                     new SharedPrefDatabase(getApplicationContext()).StoreSister_3(inputCaptureMain.getText().toString());
+
                                 }
 
                                 showDialogSuccess(getApplicationContext(), "Family member saved successfully.");
@@ -128,10 +148,11 @@ public class ActivityParentsCapture extends AppCompatActivity {
 
     public boolean haveStoragePermission() {
         if (Build.VERSION.SDK_INT >= 23) {
-            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
+                    checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                 return true;
             } else {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
                 return false;
             }
         }

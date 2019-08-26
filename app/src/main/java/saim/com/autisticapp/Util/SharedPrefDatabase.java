@@ -86,13 +86,13 @@ public class SharedPrefDatabase {
     }
 
     public String RetriveBrother_1(){
-        String text = sharedPreferences.getString(KEY_FAMILY_BROTHER_2, null);
+        String text = sharedPreferences.getString(KEY_FAMILY_BROTHER_1, null);
         return text;
     }
 
     /*Brother 2*/
     public void StoreBrother_2(String data){
-        editor.putString(KEY_FAMILY_BROTHER_1, data);
+        editor.putString(KEY_FAMILY_BROTHER_2, data);
         editor.commit();
     }
 
@@ -103,7 +103,7 @@ public class SharedPrefDatabase {
 
     /*Brother 3*/
     public void StoreBrother_3(String data){
-        editor.putString(KEY_FAMILY_BROTHER_2, data);
+        editor.putString(KEY_FAMILY_BROTHER_3, data);
         editor.commit();
     }
 

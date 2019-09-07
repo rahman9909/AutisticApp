@@ -2,8 +2,6 @@
     <string name="app_name">Autistic App</string>
 
 
-
-
     <string-array name="spiner_entry">
         <item>Select Entry</item>
         <item>FATHER</item>

@@ -30,7 +30,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import saim.com.autisticapp.Util.DBHelper;
 import saim.com.autisticapp.Util.SharedPrefDatabase;
 
 public class ActivityParentsCapture extends AppCompatActivity {
@@ -39,6 +43,8 @@ public class ActivityParentsCapture extends AppCompatActivity {
     Button btnCaptureMain, btnCaptureSave;
     EditText inputCaptureMain;
     Spinner spinCaptureMain;
+
+    DBHelper mydb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,50 +99,61 @@ public class ActivityParentsCapture extends AppCompatActivity {
                             Bitmap bitmap = ((BitmapDrawable) imgCaptureMain.getDrawable()).getBitmap();
                             savebitmap(bitmap);
                             Toast.makeText(getApplicationContext(), spinCaptureMain.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
-                                if (spinCaptureMain.getSelectedItem().toString().equals("FATHER")) {
+                            if (spinCaptureMain.getSelectedItem().toString().equals("FATHER")) {
 
-                                    new SharedPrefDatabase(getApplicationContext()).StoreFather(inputCaptureMain.getText().toString());
+                                new SharedPrefDatabase(getApplicationContext()).StoreFather(inputCaptureMain.getText().toString());
 
-                                } else if (spinCaptureMain.getSelectedItem().toString().equals("MOTHER")) {
+                            } else if (spinCaptureMain.getSelectedItem().toString().equals("MOTHER")) {
 
-                                    new SharedPrefDatabase(getApplicationContext()).StoreMother(inputCaptureMain.getText().toString());
+                                new SharedPrefDatabase(getApplicationContext()).StoreMother(inputCaptureMain.getText().toString());
 
-                                } else if (spinCaptureMain.getSelectedItem().toString().equals("GRAND_FATHER")) {
+                            } else if (spinCaptureMain.getSelectedItem().toString().equals("GRAND_FATHER")) {
 
-                                    new SharedPrefDatabase(getApplicationContext()).StoreGFather(inputCaptureMain.getText().toString());
+                                new SharedPrefDatabase(getApplicationContext()).StoreGFather(inputCaptureMain.getText().toString());
 
-                                } else if (spinCaptureMain.getSelectedItem().toString().equals("GRAND_MOTHER")) {
+                            } else if (spinCaptureMain.getSelectedItem().toString().equals("GRAND_MOTHER")) {
 
-                                    new SharedPrefDatabase(getApplicationContext()).StoreGMother(inputCaptureMain.getText().toString());
+                                new SharedPrefDatabase(getApplicationContext()).StoreGMother(inputCaptureMain.getText().toString());
 
-                                } else if (spinCaptureMain.getSelectedItem().toString().equals("BROTHER_1")) {
+                            } else if (spinCaptureMain.getSelectedItem().toString().equals("BROTHER_1")) {
 
-                                    new SharedPrefDatabase(getApplicationContext()).StoreBrother_1(inputCaptureMain.getText().toString());
+                                new SharedPrefDatabase(getApplicationContext()).StoreBrother_1(inputCaptureMain.getText().toString());
 
-                                } else if (spinCaptureMain.getSelectedItem().toString().equals("BROTHER_2")) {
+                            } else if (spinCaptureMain.getSelectedItem().toString().equals("BROTHER_2")) {
 
-                                    new SharedPrefDatabase(getApplicationContext()).StoreBrother_2(inputCaptureMain.getText().toString());
+                                new SharedPrefDatabase(getApplicationContext()).StoreBrother_2(inputCaptureMain.getText().toString());
 
-                                } else if (spinCaptureMain.getSelectedItem().toString().equals("BROTHER_3")) {
+                            } else if (spinCaptureMain.getSelectedItem().toString().equals("BROTHER_3")) {
 
-                                    new SharedPrefDatabase(getApplicationContext()).StoreBrother_3(inputCaptureMain.getText().toString());
+                                new SharedPrefDatabase(getApplicationContext()).StoreBrother_3(inputCaptureMain.getText().toString());
 
-                                } else if (spinCaptureMain.getSelectedItem().toString().equals("SISTER_1")) {
+                            } else if (spinCaptureMain.getSelectedItem().toString().equals("SISTER_1")) {
 
-                                    new SharedPrefDatabase(getApplicationContext()).StoreSister_1(inputCaptureMain.getText().toString());
+                                new SharedPrefDatabase(getApplicationContext()).StoreSister_1(inputCaptureMain.getText().toString());
 
-                                } else if (spinCaptureMain.getSelectedItem().toString().equals("SISTER_2")) {
+                            } else if (spinCaptureMain.getSelectedItem().toString().equals("SISTER_2")) {
 
-                                    new SharedPrefDatabase(getApplicationContext()).StoreSister_2(inputCaptureMain.getText().toString());
+                                new SharedPrefDatabase(getApplicationContext()).StoreSister_2(inputCaptureMain.getText().toString());
 
-                                } else if (spinCaptureMain.getSelectedItem().toString().equals("SISTER_3")) {
+                            } else if (spinCaptureMain.getSelectedItem().toString().equals("SISTER_3")) {
 
-                                    new SharedPrefDatabase(getApplicationContext()).StoreSister_3(inputCaptureMain.getText().toString());
+                                new SharedPrefDatabase(getApplicationContext()).StoreSister_3(inputCaptureMain.getText().toString());
 
-                                }
+                            }
 
+                            mydb = new DBHelper(getApplicationContext());
+                            String name = inputCaptureMain.getText().toString();
+                            String relation = spinCaptureMain.getSelectedItem().toString();
+                            DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+                            Date date = new Date();
+                            String fileName = dateFormat.format(date) + "";
+                            savebitmap2(bitmap, fileName);
+                            Toast.makeText(getApplicationContext(), name + "\n" + relation + "\n" + fileName, Toast.LENGTH_LONG).show();
+                            Boolean a = mydb.insertFamilyMember(name, relation, fileName);
+
+                            if (a) {
                                 showDialogSuccess(getApplicationContext(), "Family member saved successfully.");
-
+                            }
                         }
                     }
                 }
@@ -183,6 +200,24 @@ public class ActivityParentsCapture extends AppCompatActivity {
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             bmp.compress(Bitmap.CompressFormat.JPEG, 60, bytes);
             File f = new File(getExternalCacheDir() + File.separator + spinCaptureMain.getSelectedItem().toString() +".jpg");
+            status = f.createNewFile();
+            FileOutputStream fo = new FileOutputStream(f);
+            fo.write(bytes.toByteArray());
+            fo.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return status;
+    }
+
+    public Boolean savebitmap2(Bitmap bmp, String filename) {
+        Boolean status = false;
+
+        try {
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            bmp.compress(Bitmap.CompressFormat.JPEG, 60, bytes);
+            File f = new File(getExternalCacheDir() + File.separator + filename + ".jpg");
             status = f.createNewFile();
             FileOutputStream fo = new FileOutputStream(f);
             fo.write(bytes.toByteArray());

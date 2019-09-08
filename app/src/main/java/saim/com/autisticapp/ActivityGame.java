@@ -1,5 +1,6 @@
 package saim.com.autisticapp;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -26,15 +27,25 @@ public class ActivityGame extends AppCompatActivity {
         layoutGameFamilyAlbum = (LinearLayout) findViewById(R.id.layoutGameFamilyAlbum);
         layoutGameAmarBonduRased = (LinearLayout) findViewById(R.id.layoutGameAmarBonduRased);
 
-        actionEvent(layoutGameFamilyAlbum);
-        actionEvent(layoutGameAmarBonduRased);
+        actionEvent();
     }
 
-    private void actionEvent(LinearLayout layout) {
-        layout.setOnClickListener(new View.OnClickListener() {
+    private void actionEvent() {
+        layoutGameFamilyAlbum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ActivityGameSelect.class);
+                intent.putExtra("GAME_TYPE", 1);
+                startActivity(intent);
+            }
+        });
 
+        layoutGameAmarBonduRased.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ActivityGameSelect.class);
+                intent.putExtra("GAME_TYPE", 2);
+                startActivity(intent);
             }
         });
     }

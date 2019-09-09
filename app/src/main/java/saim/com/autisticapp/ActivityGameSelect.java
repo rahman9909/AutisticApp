@@ -1,6 +1,8 @@
 package saim.com.autisticapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,5 +31,14 @@ public class ActivityGameSelect extends AppCompatActivity {
         layoutGame2 = (LinearLayout) findViewById(R.id.layoutGame2);
         layoutGame3 = (LinearLayout) findViewById(R.id.layoutGame3);
         layoutGame4 = (LinearLayout) findViewById(R.id.layoutGame4);
+
+        layoutGameTrainYourSelf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), GameTrain.class);
+                intent.putExtra("GAME_TYPE", GAME_TYPE);
+                startActivity(intent);
+            }
+        });
     }
 }

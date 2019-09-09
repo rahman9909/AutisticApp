@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:visibility="visible"
+    android:background="#65000000">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="#95FFFFFF"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            app:cardCornerRadius="8dp">
+
+            <ImageView
+                android:id="@+id/listImage"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:padding="0dp"
+                android:src="@drawable/ic_angry" />
+
+        </androidx.cardview.widget.CardView>
+
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="6dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/listTextName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#FFF"
+                android:text="Name of Father" />
+
+            <TextView
+                android:id="@+id/listTextRelation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#FFF"
+                android:text="Father" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#95FFFFFF"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="8dp">
+
+                <ImageView
+                    android:id="@+id/listImgSound"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:padding="6dp"
+                    android:src="@android:drawable/ic_btn_speak_now" />
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

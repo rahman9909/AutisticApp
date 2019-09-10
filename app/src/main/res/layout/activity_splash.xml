@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/game_back"
+    android:orientation="vertical"
+    android:gravity="center"
     tools:context=".Splash">
 
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="KIDS LEARNING APP"
+        android:textSize="40dp"
+        android:gravity="center_vertical"
+        android:fontFamily="@font/big_sale_01"
+        android:textAlignment="center" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -18,18 +29,4 @@
         android:layout_marginTop="16dp"
         android:indeterminate="true" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="253dp"
-        android:fontFamily="@font/big_sale_01"
-        android:lineSpacingExtra="8sp"
-        android:text="TextView"
-        android:textColor="?attr/colorError"
-        android:textSize="36sp"
-        tools:text="HELLO WORLD" />
-
-</RelativeLayout>
+</LinearLayout>

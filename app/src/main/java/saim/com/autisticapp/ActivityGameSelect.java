@@ -7,6 +7,8 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import saim.com.autisticapp.Game.GameMemory;
+
 public class ActivityGameSelect extends AppCompatActivity {
 
     int GAME_TYPE;
@@ -36,6 +38,15 @@ public class ActivityGameSelect extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), GameTrain.class);
+                intent.putExtra("GAME_TYPE", GAME_TYPE);
+                startActivity(intent);
+            }
+        });
+
+        layoutGame1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), GameMemory.class);
                 intent.putExtra("GAME_TYPE", GAME_TYPE);
                 startActivity(intent);
             }

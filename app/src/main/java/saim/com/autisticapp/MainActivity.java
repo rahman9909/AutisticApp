@@ -13,7 +13,7 @@ import androidx.core.app.ActivityCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnFamily, btnExpression, btnGame;
+    Button btnFamily, btnExpression, btnGame, btnExit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         btnFamily = (Button) findViewById(R.id.btnFamily);
         btnExpression = (Button) findViewById(R.id.btnExpression);
         btnGame = (Button) findViewById(R.id.btnGame);
+        btnExit = (Button) findViewById(R.id.btnExit);
 
 
         actionEvent();
@@ -56,6 +57,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intentExpression = new Intent(getApplicationContext(), ActivityGame.class);
                 startActivity(intentExpression);
+            }
+        });
+
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 

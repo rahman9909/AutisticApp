@@ -140,6 +140,7 @@ public class GameFind extends AppCompatActivity {
         new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))
                 .setTitle("Congratulations")
                 .setMessage(message)
+                .setCancelable(false)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         COUNTER++;
@@ -163,6 +164,7 @@ public class GameFind extends AppCompatActivity {
         new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))
                 .setTitle("Sorry")
                 .setMessage(message)
+                .setCancelable(false)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -177,6 +179,7 @@ public class GameFind extends AppCompatActivity {
         new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))
                 .setTitle("Complete")
                 .setMessage(message)
+                .setCancelable(false)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();

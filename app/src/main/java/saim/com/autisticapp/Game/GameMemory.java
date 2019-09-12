@@ -71,17 +71,58 @@ public class GameMemory extends AppCompatActivity {
         SpeackOutButton(qusImgSound, voiceText);
 
 
-        String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
-        qusImage11.setImageURI(Uri.parse(imgPath1));
-        qusImage11.setTag(modelFamilies.get(a).name);
+
+
+        if ( a == 1) {
+            String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
+            qusImage11.setImageURI(Uri.parse(imgPath1));
+            qusImage11.setTag(modelFamilies.get(a).name);
+            qusImage12.setTag("_HELLO_");
+            qusImage13.setTag("_HELLO_");
+            qusImage14.setTag("_HELLO_");
+        } else if ( a == 2) {
+            String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
+            qusImage12.setImageURI(Uri.parse(imgPath1));
+            qusImage12.setTag(modelFamilies.get(a).name);
+            qusImage11.setTag("_HELLO_");
+            qusImage13.setTag("_HELLO_");
+            qusImage14.setTag("_HELLO_");
+        } else if ( a == 3) {
+            String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
+            qusImage13.setImageURI(Uri.parse(imgPath1));
+            qusImage13.setTag(modelFamilies.get(a).name);
+            qusImage12.setTag("_HELLO_");
+            qusImage14.setTag("_HELLO_");
+            qusImage11.setTag("_HELLO_");
+        } else if ( a == 4) {
+            String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
+            qusImage14.setImageURI(Uri.parse(imgPath1));
+            qusImage14.setTag(modelFamilies.get(a).name);
+            qusImage12.setTag("_HELLO_");
+            qusImage13.setTag("_HELLO_");
+            qusImage11.setTag("_HELLO_");
+        } else {
+            String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
+            qusImage12.setImageURI(Uri.parse(imgPath1));
+            qusImage12.setTag(modelFamilies.get(a).name);
+            qusImage13.setTag("_HELLO_");
+            qusImage14.setTag("_HELLO_");
+            qusImage11.setTag("_HELLO_");
+        }
+
 
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+
                 qusImage11.setImageResource(R.drawable.ic_angry);
+                qusImage12.setImageResource(R.drawable.ic_angry);
+                qusImage13.setImageResource(R.drawable.ic_angry);
+                qusImage14.setImageResource(R.drawable.ic_angry);
+
             }
-        }, 1000);
+        }, 2000);
 
 
         qusImage11.setOnClickListener(new View.OnClickListener() {

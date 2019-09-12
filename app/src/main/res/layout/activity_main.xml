@@ -68,26 +68,7 @@
             android:gravity="center">
 
             <Button
-                android:id="@+id/button4"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@drawable/btn_02"
-                android:fontFamily="@font/big_sale_01"
-                android:text="X"
-                android:textColor="?attr/colorBackgroundFloating"
-                android:textSize="26sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center">
-
-            <Button
-                android:id="@+id/button5"
+                android:id="@+id/btnExit"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:background="@drawable/btn_02"

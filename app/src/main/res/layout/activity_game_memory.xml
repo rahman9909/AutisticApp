@@ -83,6 +83,7 @@
                 android:layout_height="180dp"
                 android:scaleType="centerInside"
                 android:padding="6dp"
+                android:tag="_hello_"
                 android:src="@drawable/ic_angry" />
 
         </androidx.cardview.widget.CardView>
@@ -100,6 +101,7 @@
                 android:layout_width="180dp"
                 android:layout_height="180dp"
                 android:padding="6dp"
+                android:tag="_hello_"
                 android:scaleType="centerInside"
                 android:src="@drawable/ic_angry" />
 
@@ -128,6 +130,7 @@
                 android:layout_height="180dp"
                 android:scaleType="centerInside"
                 android:padding="6dp"
+                android:tag="_hello_"
                 android:src="@drawable/ic_angry" />
 
         </androidx.cardview.widget.CardView>
@@ -145,6 +148,7 @@
                 android:layout_width="180dp"
                 android:layout_height="180dp"
                 android:padding="6dp"
+                android:tag="_hello_"
                 android:scaleType="centerInside"
                 android:src="@drawable/ic_angry" />
 

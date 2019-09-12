@@ -37,6 +37,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/txtQuestion11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -80,7 +81,7 @@
                 android:id="@+id/qusImage11"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
-                android:scaleType="fitCenter"
+                android:scaleType="centerInside"
                 android:padding="6dp"
                 android:src="@drawable/ic_angry" />
 
@@ -99,6 +100,7 @@
                 android:layout_width="180dp"
                 android:layout_height="180dp"
                 android:padding="6dp"
+                android:scaleType="centerInside"
                 android:src="@drawable/ic_angry" />
 
         </androidx.cardview.widget.CardView>
@@ -124,7 +126,7 @@
                 android:id="@+id/qusImage13"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
-                android:scaleType="fitCenter"
+                android:scaleType="centerInside"
                 android:padding="6dp"
                 android:src="@drawable/ic_angry" />
 
@@ -143,6 +145,7 @@
                 android:layout_width="180dp"
                 android:layout_height="180dp"
                 android:padding="6dp"
+                android:scaleType="centerInside"
                 android:src="@drawable/ic_angry" />
 
         </androidx.cardview.widget.CardView>

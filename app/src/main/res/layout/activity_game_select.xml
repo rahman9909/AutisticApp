@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/app_font"
-            android:text="Memory Game"
+            android:text="Find Game"
             android:textAlignment="center"
             android:textColor="#FFF"
             android:textSize="26sp" />
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/app_font"
-            android:text="Game option 2"
+            android:text="Memory Game"
             android:textAlignment="center"
             android:textColor="#FFF"
             android:textSize="26sp" />
@@ -102,6 +102,7 @@
         android:background="#84000000"
         android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:visibility="gone"
         android:id="@+id/layoutGame3">
 
         <TextView
@@ -124,6 +125,7 @@
         android:background="#84000000"
         android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:visibility="gone"
         android:id="@+id/layoutGame4">
 
         <TextView

@@ -1,12 +1,19 @@
 package saim.com.autisticapp.Game;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -18,7 +25,7 @@ import saim.com.autisticapp.Util.DBHelper;
 
 public class GameMemory extends AppCompatActivity {
 
-    int GAME_TYPE, COUNTER = 0;
+    int GAME_TYPE, COUNTER = 0, a;
 
     TextView txtQuestion;
     ImageView qusImage11, qusImage12, qusImage13, qusImage14, qusImgSound;
@@ -42,7 +49,7 @@ public class GameMemory extends AppCompatActivity {
         dbHelper = new DBHelper(this);
         modelFamilies = dbHelper.getAllFamilyMembers();
 
-        txtQuestion = (TextView) findViewById(R.id.txtQuestion);
+        txtQuestion = (TextView) findViewById(R.id.txtQuestion11);
         qusImage11 = (ImageView) findViewById(R.id.qusImage11);
         qusImage12 = (ImageView) findViewById(R.id.qusImage12);
         qusImage13 = (ImageView) findViewById(R.id.qusImage13);
@@ -53,10 +60,82 @@ public class GameMemory extends AppCompatActivity {
     }
 
     private void actionEvent() {
-        String voiceText = "Who is  " + modelFamilies.get(COUNTER).name;
+
+        a = getRandomNumber(modelFamilies);
+        Toast.makeText(this, a + "", Toast.LENGTH_LONG).show();
+        Log.d("SAIM_LIST", a + "");
+
+        String voiceText = "Who is  " + modelFamilies.get(a).name;
         txtQuestion.setText(voiceText);
         Speakout(voiceText);
         SpeackOutButton(qusImgSound, voiceText);
+
+
+        String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
+        qusImage11.setImageURI(Uri.parse(imgPath1));
+        qusImage11.setTag(modelFamilies.get(a).name);
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                qusImage11.setImageResource(R.drawable.ic_angry);
+            }
+        }, 1000);
+
+
+        qusImage11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (qusImage11.getTag().toString().equals(modelFamilies.get(a).name)) {
+                    Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
+                    showDialogSuccess(v.getContext(), "Right Answer!");
+                } else {
+                    Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
+                    showDialogFail(v.getContext(), "Wrong Answer");
+                }
+            }
+        });
+
+        qusImage12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (qusImage12.getTag().toString().equals(modelFamilies.get(a).name)) {
+                    Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
+                    showDialogSuccess(v.getContext(), "Right Answer!");
+                } else {
+                    Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
+                    showDialogFail(v.getContext(), "Wrong Answer");
+                }
+            }
+        });
+
+        qusImage13.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (qusImage13.getTag().toString().equals(modelFamilies.get(a).name)) {
+                    Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
+                    showDialogSuccess(v.getContext(), "Right Answer!");
+                } else {
+                    Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
+                    showDialogFail(v.getContext(), "Wrong Answer");
+                }
+            }
+        });
+
+        qusImage13.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (qusImage13.getTag().toString().equals(modelFamilies.get(a).name)) {
+                    Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
+                    showDialogSuccess(v.getContext(), "Right Answer!");
+                } else {
+                    Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
+                    showDialogFail(v.getContext(), "Wrong Answer");
+                }
+            }
+        });
+
     }
 
 
@@ -84,6 +163,69 @@ public class GameMemory extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void showDialogSuccess(final Context context, String message) {
+        new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))
+                .setTitle("Congratulations")
+                .setMessage(message)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        COUNTER++;
+
+                        if (COUNTER >= modelFamilies.size()) {
+                            COUNTER = 0;
+                            dialog.dismiss();
+                            showDialogComplete(context, "You have completed the game");
+                        } else {
+                            dialog.dismiss();
+                            actionEvent();
+                        }
+                    }
+                })
+                .setIcon(android.R.drawable.btn_star_big_on)
+                .show();
+    }
+
+
+    public void showDialogFail(Context context, String message) {
+        new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))
+                .setTitle("Sorry")
+                .setMessage(message)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setIcon(android.R.drawable.ic_notification_clear_all)
+                .show();
+    }
+
+
+    public void showDialogComplete(Context context, String message) {
+        new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))
+                .setTitle("Complete")
+                .setMessage(message)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        finish();
+                    }
+                })
+                .setIcon(android.R.drawable.star_on)
+                .show();
+    }
+
+    public int getRandomNumber(ArrayList<ModelFamily> list) {
+        double randomDouble = Math.random();
+        randomDouble = randomDouble * list.size();
+        int randomInt = (int) randomDouble;
+        /*if (randomInt == i) {
+            getRandomNumber(list, i);
+        } else {
+            return randomInt;
+        }*/
+        return randomInt;
     }
 
 

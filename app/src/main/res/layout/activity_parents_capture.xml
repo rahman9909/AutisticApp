@@ -81,6 +81,7 @@
             android:background="@drawable/ic_edit_text"
             android:layout_marginTop="10dp"
             android:textAlignment="center"
+            android:inputType="textPersonName"
             android:hint="Enter Name"
             android:paddingLeft="4dp"
             android:textSize="14sp" />

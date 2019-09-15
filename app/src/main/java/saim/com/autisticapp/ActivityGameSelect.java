@@ -61,5 +61,14 @@ public class ActivityGameSelect extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        layoutGame3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), GameMemory.class);
+                intent.putExtra("GAME_TYPE", GAME_TYPE);
+                startActivity(intent);
+            }
+        });
     }
 }

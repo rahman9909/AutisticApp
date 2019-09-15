@@ -102,7 +102,7 @@
         android:background="#84000000"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/layoutGame3">
 
         <TextView
@@ -110,7 +110,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/app_font"
-            android:text="Game Option 3"
+            android:text="Roatate Game"
             android:textAlignment="center"
             android:textColor="#FFF"
             android:textSize="26sp" />

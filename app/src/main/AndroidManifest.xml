@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Game2.GameMemory2"></activity>
+        <activity android:name=".Game2.GameEye2"></activity>
+        <activity android:name=".Game2.GameRotate2" />
+        <activity android:name=".Game2.GameMemory2" />
         <activity android:name=".Game2.GameFind2" />
         <activity android:name=".Game2.GameTrain2" />
         <activity android:name=".Game.GameRotate" />

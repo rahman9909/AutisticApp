@@ -11,8 +11,10 @@ import saim.com.autisticapp.Game.GameFind;
 import saim.com.autisticapp.Game.GameMemory;
 import saim.com.autisticapp.Game.GameRotate;
 import saim.com.autisticapp.Game.GameTrain;
+import saim.com.autisticapp.Game2.GameEye2;
 import saim.com.autisticapp.Game2.GameFind2;
 import saim.com.autisticapp.Game2.GameMemory2;
+import saim.com.autisticapp.Game2.GameRotate2;
 import saim.com.autisticapp.Game2.GameTrain2;
 
 public class ActivityGameSelect extends AppCompatActivity {
@@ -39,6 +41,10 @@ public class ActivityGameSelect extends AppCompatActivity {
         layoutGame2 = (LinearLayout) findViewById(R.id.layoutGame2);
         layoutGame3 = (LinearLayout) findViewById(R.id.layoutGame3);
         layoutGame4 = (LinearLayout) findViewById(R.id.layoutGame4);
+
+        if (GAME_TYPE == 2) {
+            layoutGame4.setVisibility(View.VISIBLE);
+        }
 
         layoutGameTrainYourSelf.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,7 +100,22 @@ public class ActivityGameSelect extends AppCompatActivity {
                     intent.putExtra("GAME_TYPE", GAME_TYPE);
                     startActivity(intent);
                 } else {
+                    Intent intent = new Intent(getApplicationContext(), GameRotate2.class);
+                    intent.putExtra("GAME_TYPE", GAME_TYPE);
+                    startActivity(intent);
+                }
+            }
+        });
 
+        layoutGame4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (GAME_TYPE == 1) {
+
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), GameEye2.class);
+                    intent.putExtra("GAME_TYPE", GAME_TYPE);
+                    startActivity(intent);
                 }
             }
         });

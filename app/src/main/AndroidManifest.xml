@@ -15,11 +15,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Game.GameRotate"></activity>
+        <activity android:name=".Game2.GameMemory2"></activity>
+        <activity android:name=".Game2.GameFind2" />
+        <activity android:name=".Game2.GameTrain2" />
+        <activity android:name=".Game.GameRotate" />
         <activity android:name=".Game.GameLetter" />
         <activity android:name=".Game.GameMemory" />
         <activity android:name=".Game.GameFind" />
-        <activity android:name=".GameTrain" />
+        <activity android:name=".Game.GameTrain" />
         <activity android:name=".ActivityParentsAlbum2" />
         <activity android:name=".ActivityGameSelect" />
         <activity android:name=".ActivityGame" />

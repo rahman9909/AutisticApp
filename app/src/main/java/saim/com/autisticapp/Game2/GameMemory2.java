@@ -1,8 +1,7 @@
-package saim.com.autisticapp.Game;
+package saim.com.autisticapp.Game2;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
@@ -21,15 +20,15 @@ import java.util.Locale;
 
 import saim.com.autisticapp.Model.ModelFamily;
 import saim.com.autisticapp.R;
-import saim.com.autisticapp.Util.DBHelper;
+import saim.com.autisticapp.Util.DBHelperRashed;
 
-public class GameMemory extends AppCompatActivity {
+public class GameMemory2 extends AppCompatActivity {
 
     int GAME_TYPE, COUNTER = 0, a;
 
     TextView txtQuestion;
     ImageView qusImage11, qusImage12, qusImage13, qusImage14, qusImgSound;
-    DBHelper dbHelper;
+    DBHelperRashed dbHelper;
 
     ArrayList<ModelFamily> modelFamilies = new ArrayList<>();
     private TextToSpeech textToSpeech;
@@ -38,15 +37,14 @@ public class GameMemory extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTheme(R.style.AppThemeFull);
-        setContentView(R.layout.activity_game_memory);
-
+        setContentView(R.layout.activity_game_memory2);
         init();
     }
 
     private void init() {
 
         GAME_TYPE = getIntent().getExtras().getInt("GAME_TYPE");
-        dbHelper = new DBHelper(this);
+        dbHelper = new DBHelperRashed(this);
         modelFamilies = dbHelper.getAllFamilyMembers();
 
         txtQuestion = (TextView) findViewById(R.id.txtQuestion11);
@@ -71,45 +69,52 @@ public class GameMemory extends AppCompatActivity {
         SpeackOutButton(qusImgSound, voiceText);
 
 
-
-
-        if ( a == 1) {
-            String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
-            qusImage11.setImageURI(Uri.parse(imgPath1));
+        if (a == 1) {
+            //String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
+            //qusImage11.setImageURI(Uri.parse(imgPath1));
+            int path1 = getResources().getIdentifier(modelFamilies.get(a).image, "drawable", getPackageName());
+            qusImage11.setImageResource(path1);
             qusImage11.setTag(modelFamilies.get(a).name);
             qusImage12.setTag("_HELLO_");
             qusImage13.setTag("_HELLO_");
             qusImage14.setTag("_HELLO_");
-        } else if ( a == 2) {
-            String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
-            qusImage12.setImageURI(Uri.parse(imgPath1));
+        } else if (a == 2) {
+            //String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
+            //qusImage12.setImageURI(Uri.parse(imgPath1));
+            int path2 = getResources().getIdentifier(modelFamilies.get(a).image, "drawable", getPackageName());
+            qusImage12.setImageResource(path2);
             qusImage12.setTag(modelFamilies.get(a).name);
             qusImage11.setTag("_HELLO_");
             qusImage13.setTag("_HELLO_");
             qusImage14.setTag("_HELLO_");
-        } else if ( a == 3) {
-            String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
-            qusImage13.setImageURI(Uri.parse(imgPath1));
+        } else if (a == 3) {
+            //String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
+            //qusImage13.setImageURI(Uri.parse(imgPath1));
+            int path3 = getResources().getIdentifier(modelFamilies.get(a).image, "drawable", getPackageName());
+            qusImage13.setImageResource(path3);
             qusImage13.setTag(modelFamilies.get(a).name);
             qusImage12.setTag("_HELLO_");
             qusImage14.setTag("_HELLO_");
             qusImage11.setTag("_HELLO_");
-        } else if ( a == 4) {
-            String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
-            qusImage14.setImageURI(Uri.parse(imgPath1));
+        } else if (a == 4) {
+            //String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
+            //qusImage14.setImageURI(Uri.parse(imgPath1));
+            int path4 = getResources().getIdentifier(modelFamilies.get(a).image, "drawable", getPackageName());
+            qusImage14.setImageResource(path4);
             qusImage14.setTag(modelFamilies.get(a).name);
             qusImage12.setTag("_HELLO_");
             qusImage13.setTag("_HELLO_");
             qusImage11.setTag("_HELLO_");
         } else {
-            String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
-            qusImage12.setImageURI(Uri.parse(imgPath1));
+            //String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
+            //qusImage12.setImageURI(Uri.parse(imgPath1));
+            int path2 = getResources().getIdentifier(modelFamilies.get(a).image, "drawable", getPackageName());
+            qusImage12.setImageResource(path2);
             qusImage12.setTag(modelFamilies.get(a).name);
             qusImage13.setTag("_HELLO_");
             qusImage14.setTag("_HELLO_");
             qusImage11.setTag("_HELLO_");
         }
-
 
 
         new Handler().postDelayed(new Runnable() {
@@ -269,6 +274,5 @@ public class GameMemory extends AppCompatActivity {
         }*/
         return randomInt;
     }
-
 
 }

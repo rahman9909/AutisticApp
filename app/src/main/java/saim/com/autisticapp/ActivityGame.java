@@ -56,10 +56,10 @@ public class ActivityGame extends AppCompatActivity {
         layoutGameAmarBonduRased.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(getApplicationContext(), ActivityGameSelect.class);
-                //intent.putExtra("GAME_TYPE", 2);
-                //startActivity(intent);
-                showDialogComplete2(v.getContext(), "This game is under construction.");
+                Intent intent = new Intent(getApplicationContext(), ActivityGameSelect.class);
+                intent.putExtra("GAME_TYPE", 2);
+                startActivity(intent);
+                //showDialogComplete2(v.getContext(), "This game is under construction.");
             }
         });
     }

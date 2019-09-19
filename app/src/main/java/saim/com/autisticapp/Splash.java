@@ -3,9 +3,10 @@ package saim.com.autisticapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import saim.com.autisticapp.Util.DBHelperRashed;
 
 public class Splash extends AppCompatActivity {
 
@@ -15,6 +16,14 @@ public class Splash extends AppCompatActivity {
         setTheme(R.style.AppThemeFull);
         setContentView(R.layout.activity_splash);
 
+        new DBHelperRashed(this).deleteContact2();
+
+        if (new DBHelperRashed(this).getAllFamilyMembers().size() == 0) {
+            new DBHelperRashed(this).insertFamilyMember("Rased", "ic_game_rased_eye", "ic_game_rased");
+            new DBHelperRashed(this).insertFamilyMember("Ibu", "ic_game_rased_eye", "ic_game_ibu");
+            new DBHelperRashed(this).insertFamilyMember("Fazlu", "ic_game_rased_eye", "ic_game_fazlu");
+            new DBHelperRashed(this).insertFamilyMember("Ashraf", "ic_game_rased_eye", "ic_game_ashraf");
+        }
 
         new Handler().postDelayed(new Runnable() {
             @Override

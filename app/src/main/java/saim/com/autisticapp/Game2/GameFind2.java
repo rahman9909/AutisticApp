@@ -1,10 +1,8 @@
-package saim.com.autisticapp.Game;
+package saim.com.autisticapp.Game2;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
@@ -21,15 +19,15 @@ import java.util.Locale;
 
 import saim.com.autisticapp.Model.ModelFamily;
 import saim.com.autisticapp.R;
-import saim.com.autisticapp.Util.DBHelper;
+import saim.com.autisticapp.Util.DBHelperRashed;
 
-public class GameMemory extends AppCompatActivity {
+public class GameFind2 extends AppCompatActivity {
 
-    int GAME_TYPE, COUNTER = 0, a;
+    int GAME_TYPE, COUNTER = 0;
 
     TextView txtQuestion;
-    ImageView qusImage11, qusImage12, qusImage13, qusImage14, qusImgSound;
-    DBHelper dbHelper;
+    ImageView qusImage1, qusImage2, qusImgSound;
+    DBHelperRashed dbHelper;
 
     ArrayList<ModelFamily> modelFamilies = new ArrayList<>();
     private TextToSpeech textToSpeech;
@@ -37,98 +35,58 @@ public class GameMemory extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(R.style.AppThemeFull);
-        setContentView(R.layout.activity_game_memory);
-
+        setContentView(R.layout.activity_game_find2);
         init();
     }
 
     private void init() {
 
         GAME_TYPE = getIntent().getExtras().getInt("GAME_TYPE");
-        dbHelper = new DBHelper(this);
+        dbHelper = new DBHelperRashed(this);
         modelFamilies = dbHelper.getAllFamilyMembers();
 
-        txtQuestion = (TextView) findViewById(R.id.txtQuestion11);
-        qusImage11 = (ImageView) findViewById(R.id.qusImage11);
-        qusImage12 = (ImageView) findViewById(R.id.qusImage12);
-        qusImage13 = (ImageView) findViewById(R.id.qusImage13);
-        qusImage14 = (ImageView) findViewById(R.id.qusImage14);
+        txtQuestion = (TextView) findViewById(R.id.txtQuestion);
+        qusImage1 = (ImageView) findViewById(R.id.qusImage1);
+        qusImage2 = (ImageView) findViewById(R.id.qusImage2);
         qusImgSound = (ImageView) findViewById(R.id.qusImgSound);
 
         actionEvent();
     }
 
     private void actionEvent() {
-
-        a = getRandomNumber(modelFamilies);
-        Toast.makeText(this, a + "", Toast.LENGTH_LONG).show();
-        Log.d("SAIM_LIST", a + "");
-
-        String voiceText = "Who is  " + modelFamilies.get(a).name;
+        String voiceText = "Who is  " + modelFamilies.get(COUNTER).name;
         txtQuestion.setText(voiceText);
         Speakout(voiceText);
         SpeackOutButton(qusImgSound, voiceText);
 
+        Toast.makeText(this, modelFamilies.size() + "", Toast.LENGTH_LONG).show();
+
+        //String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(COUNTER).image + ".jpg";
+        //qusImage1.setImageURI(Uri.parse(imgPath1));
+        int path1 = getResources().getIdentifier(modelFamilies.get(COUNTER).image, "drawable", getPackageName());
+        qusImage1.setImageResource(path1);
+        qusImage1.setTag(modelFamilies.get(COUNTER).name);
 
 
-
-        if ( a == 1) {
-            String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
-            qusImage11.setImageURI(Uri.parse(imgPath1));
-            qusImage11.setTag(modelFamilies.get(a).name);
-            qusImage12.setTag("_HELLO_");
-            qusImage13.setTag("_HELLO_");
-            qusImage14.setTag("_HELLO_");
-        } else if ( a == 2) {
-            String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
-            qusImage12.setImageURI(Uri.parse(imgPath1));
-            qusImage12.setTag(modelFamilies.get(a).name);
-            qusImage11.setTag("_HELLO_");
-            qusImage13.setTag("_HELLO_");
-            qusImage14.setTag("_HELLO_");
-        } else if ( a == 3) {
-            String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
-            qusImage13.setImageURI(Uri.parse(imgPath1));
-            qusImage13.setTag(modelFamilies.get(a).name);
-            qusImage12.setTag("_HELLO_");
-            qusImage14.setTag("_HELLO_");
-            qusImage11.setTag("_HELLO_");
-        } else if ( a == 4) {
-            String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
-            qusImage14.setImageURI(Uri.parse(imgPath1));
-            qusImage14.setTag(modelFamilies.get(a).name);
-            qusImage12.setTag("_HELLO_");
-            qusImage13.setTag("_HELLO_");
-            qusImage11.setTag("_HELLO_");
+        if (COUNTER + 1 >= modelFamilies.size()) {
+            //String imgPath2 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(0).image + ".jpg";
+            //qusImage2.setImageURI(Uri.parse(imgPath2));
+            int path2 = getResources().getIdentifier(modelFamilies.get(0).image, "drawable", getPackageName());
+            qusImage2.setImageResource(path2);
+            qusImage2.setTag(modelFamilies.get(0).name);
         } else {
-            String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
-            qusImage12.setImageURI(Uri.parse(imgPath1));
-            qusImage12.setTag(modelFamilies.get(a).name);
-            qusImage13.setTag("_HELLO_");
-            qusImage14.setTag("_HELLO_");
-            qusImage11.setTag("_HELLO_");
+            //String imgPath2 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(COUNTER + 1).image + ".jpg";
+            //qusImage2.setImageURI(Uri.parse(imgPath2));
+            int path2 = getResources().getIdentifier(modelFamilies.get(COUNTER + 1).image, "drawable", getPackageName());
+            qusImage2.setImageResource(path2);
+            qusImage2.setTag(modelFamilies.get(COUNTER + 1).name);
         }
 
 
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-                qusImage11.setImageResource(R.drawable.ic_angry);
-                qusImage12.setImageResource(R.drawable.ic_angry);
-                qusImage13.setImageResource(R.drawable.ic_angry);
-                qusImage14.setImageResource(R.drawable.ic_angry);
-
-            }
-        }, 2000);
-
-
-        qusImage11.setOnClickListener(new View.OnClickListener() {
+        qusImage1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (qusImage11.getTag().toString().equals(modelFamilies.get(a).name)) {
+                if (qusImage1.getTag().toString().equals(modelFamilies.get(COUNTER).name)) {
                     Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
                     showDialogSuccess(v.getContext(), "Right Answer!");
                 } else {
@@ -138,10 +96,10 @@ public class GameMemory extends AppCompatActivity {
             }
         });
 
-        qusImage12.setOnClickListener(new View.OnClickListener() {
+        qusImage2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (qusImage12.getTag().toString().equals(modelFamilies.get(a).name)) {
+                if (qusImage2.getTag().toString().equals(modelFamilies.get(COUNTER).name)) {
                     Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
                     showDialogSuccess(v.getContext(), "Right Answer!");
                 } else {
@@ -150,35 +108,7 @@ public class GameMemory extends AppCompatActivity {
                 }
             }
         });
-
-        qusImage13.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (qusImage13.getTag().toString().equals(modelFamilies.get(a).name)) {
-                    Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
-                    showDialogSuccess(v.getContext(), "Right Answer!");
-                } else {
-                    Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
-                    showDialogFail(v.getContext(), "Wrong Answer");
-                }
-            }
-        });
-
-        qusImage13.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (qusImage13.getTag().toString().equals(modelFamilies.get(a).name)) {
-                    Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
-                    showDialogSuccess(v.getContext(), "Right Answer!");
-                } else {
-                    Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
-                    showDialogFail(v.getContext(), "Wrong Answer");
-                }
-            }
-        });
-
     }
-
 
     private void SpeackOutButton(ImageView speakImage, final String s) {
         speakImage.setOnClickListener(new View.OnClickListener() {
@@ -188,6 +118,7 @@ public class GameMemory extends AppCompatActivity {
             }
         });
     }
+
 
     public void Speakout(final String stringVoice) {
         textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
@@ -206,17 +137,18 @@ public class GameMemory extends AppCompatActivity {
         });
     }
 
+
     public void showDialogSuccess(final Context context, String message) {
         new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))
                 .setTitle("Congratulations")
                 .setMessage(message)
+                .setCancelable(false)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        a++;
                         COUNTER++;
 
                         if (COUNTER >= modelFamilies.size()) {
-                            a = 0;
+                            COUNTER = 0;
                             dialog.dismiss();
                             showDialogComplete(context, "You have completed the game");
                         } else {
@@ -234,6 +166,7 @@ public class GameMemory extends AppCompatActivity {
         new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))
                 .setTitle("Sorry")
                 .setMessage(message)
+                .setCancelable(false)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -248,6 +181,7 @@ public class GameMemory extends AppCompatActivity {
         new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))
                 .setTitle("Complete")
                 .setMessage(message)
+                .setCancelable(false)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -257,18 +191,4 @@ public class GameMemory extends AppCompatActivity {
                 .setIcon(android.R.drawable.star_on)
                 .show();
     }
-
-    public int getRandomNumber(ArrayList<ModelFamily> list) {
-        double randomDouble = Math.random();
-        randomDouble = randomDouble * list.size();
-        int randomInt = (int) randomDouble;
-        /*if (randomInt == i) {
-            getRandomNumber(list, i);
-        } else {
-            return randomInt;
-        }*/
-        return randomInt;
-    }
-
-
 }

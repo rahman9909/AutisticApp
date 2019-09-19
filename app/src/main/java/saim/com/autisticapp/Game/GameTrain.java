@@ -1,4 +1,4 @@
-package saim.com.autisticapp;
+package saim.com.autisticapp.Game;
 
 import android.os.Bundle;
 
@@ -10,10 +10,12 @@ import java.util.ArrayList;
 
 import saim.com.autisticapp.Adapter.AdapterTraining;
 import saim.com.autisticapp.Model.ModelFamily;
+import saim.com.autisticapp.R;
 import saim.com.autisticapp.Util.DBHelper;
 
 public class GameTrain extends AppCompatActivity {
 
+    int GAME_TYPE;
     ArrayList<ModelFamily> arrayListFamily = new ArrayList<>();
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManagerRecyclerView;
@@ -32,7 +34,7 @@ public class GameTrain extends AppCompatActivity {
 
 
     public void init() {
-
+        GAME_TYPE = getIntent().getExtras().getInt("GAME_TYPE");
         mydb = new DBHelper(this);
         arrayListFamily = mydb.getAllFamilyMembers();
 

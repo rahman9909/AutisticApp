@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/game_back"
     android:orientation="vertical"
-    tools:context=".Game.GameLetter">
+    tools:context=".Game2.GameMemory2">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/app_font"
-            android:text="LETTER Game"
+            android:text="Memory Game"
             android:textAlignment="center"
             android:textColor="#FFF"
             android:textSize="26sp" />
@@ -37,12 +37,12 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/txtQuestion21"
+            android:id="@+id/txtQuestion11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:text="A for ???"
+            android:text="Where is your "
             android:textColor="#FFF"
             android:textSize="26sp" />
 
@@ -65,6 +65,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:padding="16dp"
         android:gravity="center">
@@ -78,13 +79,13 @@
             app:cardCornerRadius="8dp">
 
             <ImageView
-                android:id="@+id/qusImage21"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
-                android:scaleType="centerInside"
+                android:id="@+id/qusImage11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
                 android:padding="6dp"
                 android:tag="_hello_"
-                android:src="@drawable/ic_abbu" />
+                android:src="@drawable/ic_angry" />
 
         </androidx.cardview.widget.CardView>
 
@@ -97,17 +98,64 @@
             app:cardCornerRadius="8dp">
 
             <ImageView
-                android:id="@+id/qusImage22"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
+                android:id="@+id/qusImage12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:padding="6dp"
                 android:tag="_hello_"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_happy" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_angry" />
 
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:padding="16dp"
+        android:gravity="center">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:cardBackgroundColor="#95FFFFFF"
+            android:layout_marginRight="8dp"
+            app:cardCornerRadius="8dp">
+
+            <ImageView
+                android:id="@+id/qusImage13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:padding="6dp"
+                android:tag="_hello_"
+                android:src="@drawable/ic_angry" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:cardBackgroundColor="#95FFFFFF"
+            android:layout_marginLeft="8dp"
+            app:cardCornerRadius="8dp">
+
+            <ImageView
+                android:id="@+id/qusImage14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:tag="_hello_"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_angry" />
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
 
 </LinearLayout>

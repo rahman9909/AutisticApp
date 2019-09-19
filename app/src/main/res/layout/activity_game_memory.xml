@@ -65,6 +65,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:padding="16dp"
         android:gravity="center">
@@ -79,9 +80,9 @@
 
             <ImageView
                 android:id="@+id/qusImage11"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
-                android:scaleType="centerInside"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
                 android:padding="6dp"
                 android:tag="_hello_"
                 android:src="@drawable/ic_angry" />
@@ -98,11 +99,11 @@
 
             <ImageView
                 android:id="@+id/qusImage12"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:padding="6dp"
                 android:tag="_hello_"
-                android:scaleType="centerInside"
+                android:scaleType="fitCenter"
                 android:src="@drawable/ic_angry" />
 
         </androidx.cardview.widget.CardView>
@@ -113,6 +114,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_weight="1"
         android:padding="16dp"
         android:gravity="center">
 
@@ -126,9 +128,9 @@
 
             <ImageView
                 android:id="@+id/qusImage13"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
-                android:scaleType="centerInside"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
                 android:padding="6dp"
                 android:tag="_hello_"
                 android:src="@drawable/ic_angry" />
@@ -145,11 +147,11 @@
 
             <ImageView
                 android:id="@+id/qusImage14"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:padding="6dp"
                 android:tag="_hello_"
-                android:scaleType="centerInside"
+                android:scaleType="fitCenter"
                 android:src="@drawable/ic_angry" />
 
         </androidx.cardview.widget.CardView>

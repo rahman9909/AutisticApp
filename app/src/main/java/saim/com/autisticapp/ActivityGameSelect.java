@@ -9,6 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import saim.com.autisticapp.Game.GameFind;
 import saim.com.autisticapp.Game.GameMemory;
+import saim.com.autisticapp.Game.GameRotate;
+import saim.com.autisticapp.Game.GameTrain;
+import saim.com.autisticapp.Game2.GameFind2;
+import saim.com.autisticapp.Game2.GameMemory2;
+import saim.com.autisticapp.Game2.GameTrain2;
 
 public class ActivityGameSelect extends AppCompatActivity {
 
@@ -38,36 +43,59 @@ public class ActivityGameSelect extends AppCompatActivity {
         layoutGameTrainYourSelf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), GameTrain.class);
-                intent.putExtra("GAME_TYPE", GAME_TYPE);
-                startActivity(intent);
+                if (GAME_TYPE == 1) {
+                    Intent intent = new Intent(getApplicationContext(), GameTrain.class);
+                    intent.putExtra("GAME_TYPE", GAME_TYPE);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), GameTrain2.class);
+                    intent.putExtra("GAME_TYPE", GAME_TYPE);
+                    startActivity(intent);
+                }
             }
         });
 
         layoutGame1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), GameFind.class);
-                intent.putExtra("GAME_TYPE", GAME_TYPE);
-                startActivity(intent);
+                if (GAME_TYPE == 1) {
+                    Intent intent = new Intent(getApplicationContext(), GameFind.class);
+                    intent.putExtra("GAME_TYPE", GAME_TYPE);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), GameFind2.class);
+                    intent.putExtra("GAME_TYPE", GAME_TYPE);
+                    startActivity(intent);
+                }
+
             }
         });
 
         layoutGame2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), GameMemory.class);
-                intent.putExtra("GAME_TYPE", GAME_TYPE);
-                startActivity(intent);
+                if (GAME_TYPE == 1) {
+                    Intent intent = new Intent(getApplicationContext(), GameMemory.class);
+                    intent.putExtra("GAME_TYPE", GAME_TYPE);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), GameMemory2.class);
+                    intent.putExtra("GAME_TYPE", GAME_TYPE);
+                    startActivity(intent);
+                }
             }
         });
 
         layoutGame3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), GameMemory.class);
-                intent.putExtra("GAME_TYPE", GAME_TYPE);
-                startActivity(intent);
+                if (GAME_TYPE == 1) {
+                    Intent intent = new Intent(getApplicationContext(), GameRotate.class);
+                    intent.putExtra("GAME_TYPE", GAME_TYPE);
+                    startActivity(intent);
+                } else {
+
+                }
             }
         });
     }

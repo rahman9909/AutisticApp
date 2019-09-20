@@ -11,6 +11,8 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import saim.com.autisticapp.Expression.ExpressionSelect;
+
 public class MainActivity extends AppCompatActivity {
 
     Button btnFamily, btnExpression, btnGame, btnExit;
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         btnExpression.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentExpression = new Intent(getApplicationContext(), ActivityExpression.class);
+                Intent intentExpression = new Intent(getApplicationContext(), ExpressionSelect.class);
                 startActivity(intentExpression);
             }
         });

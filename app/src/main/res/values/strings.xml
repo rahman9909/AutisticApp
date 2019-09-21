@@ -12,6 +12,8 @@
         <item>SISTER</item>
         <item>UNCLE</item>
         <item>AUNTIE</item>
+        <item>OBJECT</item>
+        <item>OTHER</item>
     </string-array>
 </resources>
 

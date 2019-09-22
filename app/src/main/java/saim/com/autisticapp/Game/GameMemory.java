@@ -11,7 +11,6 @@ import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -62,8 +61,8 @@ public class GameMemory extends AppCompatActivity {
     private void actionEvent() {
 
         a = getRandomNumber(modelFamilies);
-        Toast.makeText(this, a + "", Toast.LENGTH_LONG).show();
-        Log.d("SAIM_LIST", a + "");
+        //Toast.makeText(this, a + "", Toast.LENGTH_LONG).show();
+        //Log.d("SAIM_LIST", a + "");
 
         String voiceText = "Who is  " + modelFamilies.get(a).name;
         txtQuestion.setText(voiceText);
@@ -223,9 +222,15 @@ public class GameMemory extends AppCompatActivity {
                         a++;
                         COUNTER++;
 
+                        qusImage11.setImageResource(R.drawable.ic_angry);
+                        qusImage12.setImageResource(R.drawable.ic_angry);
+                        qusImage13.setImageResource(R.drawable.ic_angry);
+                        qusImage14.setImageResource(R.drawable.ic_angry);
+
                         if (COUNTER >= modelFamilies.size()) {
                             a = 0;
                             dialog.dismiss();
+                            Speakout("You have completed the game");
                             showDialogComplete(context, "You have completed the game");
                         } else {
                             dialog.dismiss();

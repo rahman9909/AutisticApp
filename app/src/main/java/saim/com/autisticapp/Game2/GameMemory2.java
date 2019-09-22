@@ -10,7 +10,6 @@ import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -60,10 +59,10 @@ public class GameMemory2 extends AppCompatActivity {
     private void actionEvent() {
 
         a = getRandomNumber(modelFamilies);
-        Toast.makeText(this, a + "", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, a + "", Toast.LENGTH_LONG).show();
         Log.d("SAIM_LIST", a + "");
 
-        String voiceText = "Who is  " + modelFamilies.get(a).name;
+        String voiceText = "Where is  " + modelFamilies.get(a).name;
         txtQuestion.setText(voiceText);
         Speakout(voiceText);
         SpeackOutButton(qusImgSound, voiceText);
@@ -134,10 +133,14 @@ public class GameMemory2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (qusImage11.getTag().toString().equals(modelFamilies.get(a).name)) {
-                    Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
+                    Speakout("Write Answer");
+                    int path2 = getResources().getIdentifier(modelFamilies.get(a).image, "drawable", getPackageName());
+                    qusImage11.setImageResource(path2);
                     showDialogSuccess(v.getContext(), "Right Answer!");
                 } else {
-                    Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
+                    Speakout("Wrong Answer");
                     showDialogFail(v.getContext(), "Wrong Answer");
                 }
             }
@@ -147,10 +150,14 @@ public class GameMemory2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (qusImage12.getTag().toString().equals(modelFamilies.get(a).name)) {
-                    Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
+                    Speakout("Write Answer");
+                    int path2 = getResources().getIdentifier(modelFamilies.get(a).image, "drawable", getPackageName());
+                    qusImage12.setImageResource(path2);
                     showDialogSuccess(v.getContext(), "Right Answer!");
                 } else {
-                    Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
+                    Speakout("Wrong Answer");
                     showDialogFail(v.getContext(), "Wrong Answer");
                 }
             }
@@ -160,23 +167,31 @@ public class GameMemory2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (qusImage13.getTag().toString().equals(modelFamilies.get(a).name)) {
-                    Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
+                    Speakout("Write Answer");
+                    int path2 = getResources().getIdentifier(modelFamilies.get(a).image, "drawable", getPackageName());
+                    qusImage13.setImageResource(path2);
                     showDialogSuccess(v.getContext(), "Right Answer!");
                 } else {
-                    Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
+                    Speakout("Wrong Answer");
                     showDialogFail(v.getContext(), "Wrong Answer");
                 }
             }
         });
 
-        qusImage13.setOnClickListener(new View.OnClickListener() {
+        qusImage14.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (qusImage13.getTag().toString().equals(modelFamilies.get(a).name)) {
-                    Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
+                if (qusImage14.getTag().toString().equals(modelFamilies.get(a).name)) {
+                    //Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
+                    Speakout("Write Answer");
+                    int path2 = getResources().getIdentifier(modelFamilies.get(a).image, "drawable", getPackageName());
+                    qusImage14.setImageResource(path2);
                     showDialogSuccess(v.getContext(), "Right Answer!");
                 } else {
-                    Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
+                    Speakout("Wrong Answer");
                     showDialogFail(v.getContext(), "Wrong Answer");
                 }
             }
@@ -215,14 +230,21 @@ public class GameMemory2 extends AppCompatActivity {
         new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))
                 .setTitle("Congratulations")
                 .setMessage(message)
+                .setCancelable(false)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         a++;
                         COUNTER++;
 
+                        qusImage11.setImageResource(R.drawable.ic_angry);
+                        qusImage12.setImageResource(R.drawable.ic_angry);
+                        qusImage13.setImageResource(R.drawable.ic_angry);
+                        qusImage14.setImageResource(R.drawable.ic_angry);
+
                         if (COUNTER >= modelFamilies.size()) {
                             a = 0;
                             dialog.dismiss();
+                            Speakout("You have completed the game");
                             showDialogComplete(context, "You have completed the game");
                         } else {
                             dialog.dismiss();
@@ -239,6 +261,7 @@ public class GameMemory2 extends AppCompatActivity {
         new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))
                 .setTitle("Sorry")
                 .setMessage(message)
+                .setCancelable(false)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -253,6 +276,7 @@ public class GameMemory2 extends AppCompatActivity {
         new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))
                 .setTitle("Complete")
                 .setMessage(message)
+                .setCancelable(false)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();

@@ -129,10 +129,12 @@ public class GameMemory extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (qusImage11.getTag().toString().equals(modelFamilies.get(a).name)) {
-                    Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
+                    Speakout("Right Answer");
+                    String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
+                    qusImage11.setImageURI(Uri.parse(imgPath1));
                     showDialogSuccess(v.getContext(), "Right Answer!");
                 } else {
-                    Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
+                    Speakout("Wrong Answer");
                     showDialogFail(v.getContext(), "Wrong Answer");
                 }
             }
@@ -142,10 +144,12 @@ public class GameMemory extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (qusImage12.getTag().toString().equals(modelFamilies.get(a).name)) {
-                    Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
+                    Speakout("Right Answer");
+                    String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
+                    qusImage12.setImageURI(Uri.parse(imgPath1));
                     showDialogSuccess(v.getContext(), "Right Answer!");
                 } else {
-                    Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
+                    Speakout("Wrong Answer");
                     showDialogFail(v.getContext(), "Wrong Answer");
                 }
             }
@@ -155,23 +159,27 @@ public class GameMemory extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (qusImage13.getTag().toString().equals(modelFamilies.get(a).name)) {
-                    Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
+                    Speakout("Right Answer");
+                    String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
+                    qusImage13.setImageURI(Uri.parse(imgPath1));
                     showDialogSuccess(v.getContext(), "Right Answer!");
                 } else {
-                    Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
+                    Speakout("Wrong Answer");
                     showDialogFail(v.getContext(), "Wrong Answer");
                 }
             }
         });
 
-        qusImage13.setOnClickListener(new View.OnClickListener() {
+        qusImage14.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (qusImage13.getTag().toString().equals(modelFamilies.get(a).name)) {
-                    Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
+                if (qusImage14.getTag().toString().equals(modelFamilies.get(a).name)) {
+                    Speakout("Right Answer");
+                    String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
+                    qusImage14.setImageURI(Uri.parse(imgPath1));
                     showDialogSuccess(v.getContext(), "Right Answer!");
                 } else {
-                    Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
+                    Speakout("Wrong Answer");
                     showDialogFail(v.getContext(), "Wrong Answer");
                 }
             }

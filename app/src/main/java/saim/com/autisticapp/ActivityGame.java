@@ -37,7 +37,7 @@ public class ActivityGame extends AppCompatActivity {
         dbHelper = new DBHelper(this);
 
         if (dbHelper.getAllFamilyMembers().size() < 2) {
-            showDialogComplete(this, "This game need minimum 2 family member");
+            showDialogComplete(this, "This game need minimum 2 family member or Object");
         } else {
             actionEvent();
         }

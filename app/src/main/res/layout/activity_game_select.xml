@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/app_font"
-            android:text="Train Your Self"
+            android:text="Train My Self"
             android:textAlignment="center"
             android:textColor="#FFF"
             android:textSize="26sp" />

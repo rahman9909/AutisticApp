@@ -152,7 +152,7 @@ public class ActivityParentsCapture extends AppCompatActivity {
                             Boolean a = mydb.insertFamilyMember(name, relation, fileName);
 
                             if (a) {
-                                showDialogSuccess(getApplicationContext(), "Family member saved successfully.");
+                                showDialogSuccess(getApplicationContext(), "Saved successfully.");
                             }
                         }
                     }

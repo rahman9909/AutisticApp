@@ -26,8 +26,8 @@ public class ExpressionTrain extends AppCompatActivity {
 
     int GAME_TYPE, COUNTER = 0, a;
 
-    TextView txtQuestion;
-    ImageView imgGameEye0, imgGameEye1, imgGameEye2, imgGameEye3, imgGameEye4,qusImgSound;
+    TextView txtQuestion, txtExpression1, txtExpression2;
+    ImageView imgGameEye0, imgGameEye1, imgGameEye2, qusImgSound;
     DBHelperEmoji dbHelper;
 
     ArrayList<ModelFamily> modelFamilies = new ArrayList<>();
@@ -49,13 +49,13 @@ public class ExpressionTrain extends AppCompatActivity {
         modelFamilies = dbHelper.getAllFamilyMembers();
 
         txtQuestion = (TextView) findViewById(R.id.txtQuestion);
-        qusImgSound = (ImageView) findViewById(R.id.qusImgSound);
+        txtExpression1 = (TextView) findViewById(R.id.txtExpression1);
+        txtExpression2 = (TextView) findViewById(R.id.txtExpression2);
 
         imgGameEye0 = (ImageView) findViewById(R.id.imgGameEye0);
         imgGameEye1 = (ImageView) findViewById(R.id.imgGameEye1);
         imgGameEye2 = (ImageView) findViewById(R.id.imgGameEye2);
-        imgGameEye3 = (ImageView) findViewById(R.id.imgGameEye3);
-        imgGameEye4 = (ImageView) findViewById(R.id.imgGameEye4);
+        qusImgSound = (ImageView) findViewById(R.id.qusImgSound);
 
         actionEvent();
     }
@@ -65,7 +65,7 @@ public class ExpressionTrain extends AppCompatActivity {
         a = getRandomNumber(modelFamilies);
 
 
-        String voiceText = "What kind of expression is this?";// + modelFamilies.get(a).name;
+        String voiceText = "What expression is this?";// + modelFamilies.get(a).name;
         txtQuestion.setText(voiceText);
         Speakout(voiceText);
         SpeackOutButton(qusImgSound, voiceText);
@@ -83,24 +83,27 @@ public class ExpressionTrain extends AppCompatActivity {
             int imgResource1 = getResources().getIdentifier(modelFamilies.get(0).image, "drawable", getPackageName());
             imgGameEye1.setImageResource(imgResource1);
             imgGameEye1.setTag(modelFamilies.get(0).name);
+            txtExpression1.setText(modelFamilies.get(0).name);
         } else {
             int imgResource2 = getResources().getIdentifier(modelFamilies.get(a+1).image, "drawable", getPackageName());
             imgGameEye1.setImageResource(imgResource2);
             imgGameEye1.setTag(modelFamilies.get(a+1).name);
+            txtExpression1.setText(modelFamilies.get(a+1).name);
         }
 
         int imgResource3 = getResources().getIdentifier(modelFamilies.get(a).image, "drawable", getPackageName());
         imgGameEye2.setImageResource(imgResource3);
         imgGameEye2.setTag(modelFamilies.get(a).name);
+        txtExpression2.setText(modelFamilies.get(a).name);
 
         imgGameEye1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (imgGameEye1.getTag().toString().equals(modelFamilies.get(a).name)) {
-                    Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
+                    Speakout("Right Answer!");
                     showDialogSuccess(v.getContext(), "Right Answer!");
                 } else {
-                    Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
+                    Speakout("Wrong Answer!");
                     showDialogFail(v.getContext(), "Wrong Answer");
                 }
             }
@@ -110,10 +113,10 @@ public class ExpressionTrain extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (imgGameEye2.getTag().toString().equals(modelFamilies.get(a).name)) {
-                    Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
+                    Speakout("Right Answer!");
                     showDialogSuccess(v.getContext(), "Right Answer!");
                 } else {
-                    Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
+                    Speakout("Wrong Answer!");
                     showDialogFail(v.getContext(), "Wrong Answer");
                 }
             }

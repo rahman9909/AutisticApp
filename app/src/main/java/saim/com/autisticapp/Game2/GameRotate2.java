@@ -71,7 +71,7 @@ public class GameRotate2 extends AppCompatActivity {
         a = getRandomNumber(modelFamilies);
 
 
-        String voiceText = "Who is  " + modelFamilies.get(a).name;
+        String voiceText = "Fix below image of " + modelFamilies.get(a).name;
         txtQuestion.setText(voiceText);
         Speakout(voiceText);
         SpeackOutButton(qusImgSound, voiceText);

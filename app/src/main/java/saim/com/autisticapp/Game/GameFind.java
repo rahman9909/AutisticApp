@@ -57,7 +57,13 @@ public class GameFind extends AppCompatActivity {
     }
 
     private void actionEvent() {
-        String voiceText = "Who is  " + modelFamilies.get(COUNTER).name;
+        String voiceText = "";
+        if (modelFamilies.get(COUNTER).relation.equals("OBJECT") || modelFamilies.get(COUNTER).relation.equals("OTHER")) {
+            voiceText = "Which is  " + modelFamilies.get(COUNTER).name;
+        } else {
+            voiceText = "Who is  " + modelFamilies.get(COUNTER).name;
+        }
+
         txtQuestion.setText(voiceText);
         Speakout(voiceText);
         SpeackOutButton(qusImgSound, voiceText);

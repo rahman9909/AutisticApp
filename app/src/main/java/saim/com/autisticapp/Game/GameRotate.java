@@ -70,7 +70,7 @@ public class GameRotate extends AppCompatActivity {
         a = getRandomNumber(modelFamilies);
 
 
-        String voiceText = "Who is  " + modelFamilies.get(a).name;
+        String voiceText = "Fix below image of " + modelFamilies.get(a).name;
         txtQuestion.setText(voiceText);
         Speakout(voiceText);
         SpeackOutButton(qusImgSound, voiceText);
@@ -103,11 +103,11 @@ public class GameRotate extends AppCompatActivity {
             public void onClick(View v) {
                 //imgGameRoateimg.getRotation()+"";
                 if (imgGameRoateimg.getRotation() == 0 || (imgGameRoateimg.getRotation() % 360) == 0) {
-                    Toast.makeText(v.getContext(), "Write Answer " + imgGameRoateimg.getRotation(), Toast.LENGTH_LONG).show();
-                    showDialogSuccess(v.getContext(), "Right Answer!");
+                    Speakout("You have done it.");
+                    showDialogSuccess(v.getContext(), "You have done it.");
                 } else {
-                    Toast.makeText(v.getContext(), "Wrong Answer " + imgGameRoateimg.getRotation(), Toast.LENGTH_LONG).show();
-                    showDialogFail(v.getContext(), "Wrong Answer");
+                    Speakout("Sorry fix it properly.");
+                    showDialogFail(v.getContext(), "Sorry fix it properly.");
                 }
             }
         });

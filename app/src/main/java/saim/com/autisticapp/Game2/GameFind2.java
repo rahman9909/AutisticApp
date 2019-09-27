@@ -35,6 +35,7 @@ public class GameFind2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.AppThemeFull);
         setContentView(R.layout.activity_game_find2);
         init();
     }

@@ -16,7 +16,7 @@ import saim.com.autisticapp.Model.ModelFamily;
 public class DBHelperEmoji extends SQLiteOpenHelper {
 
 
-    public static final String DATABASE_NAME = "DBEmoji.db";
+    public static final String DATABASE_NAME = "DBEmoji .db";
     public static final String TABLE_NAME = "family";
     public static final String COLUMN_ID = "ID";
     public static final String COLUMN_NAME = "NAME";

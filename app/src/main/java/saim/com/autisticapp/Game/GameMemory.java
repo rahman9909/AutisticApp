@@ -64,7 +64,7 @@ public class GameMemory extends AppCompatActivity {
         //Toast.makeText(this, a + "", Toast.LENGTH_LONG).show();
         //Log.d("SAIM_LIST", a + "");
 
-        String voiceText = "Who is  " + modelFamilies.get(a).name;
+        String voiceText = "Where is  " + modelFamilies.get(a).name;
         txtQuestion.setText(voiceText);
         Speakout(voiceText);
         SpeackOutButton(qusImgSound, voiceText);

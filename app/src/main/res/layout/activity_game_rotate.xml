@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/app_font"
-            android:text="Fix Game"
+            android:text="Rotate Game"
             android:textAlignment="center"
             android:textColor="#FFF"
             android:textSize="26sp" />

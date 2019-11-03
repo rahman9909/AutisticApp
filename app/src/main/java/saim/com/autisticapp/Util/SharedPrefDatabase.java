@@ -22,6 +22,7 @@ public class SharedPrefDatabase {
     public static final String KEY_FAMILY_SISTER_2 = "SISTER_2";
     public static final String KEY_FAMILY_SISTER_3 = "SISTER_3";
 
+    public static final String KEY_LANGUAGE = "LANGUAGE";
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -143,6 +144,18 @@ public class SharedPrefDatabase {
 
     public String RetriveSister_3(){
         String text = sharedPreferences.getString(KEY_FAMILY_SISTER_3, null);
+        return text;
+    }
+
+
+    /*Language*/
+    public void StoreLanguage(String data) {
+        editor.putString(KEY_LANGUAGE, data);
+        editor.commit();
+    }
+
+    public String RetriveLanguage() {
+        String text = sharedPreferences.getString(KEY_LANGUAGE, "EN");
         return text;
     }
 

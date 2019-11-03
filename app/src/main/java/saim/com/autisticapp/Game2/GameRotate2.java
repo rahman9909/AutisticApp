@@ -1,11 +1,7 @@
 package saim.com.autisticapp.Game2;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.DialogInterface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
@@ -16,19 +12,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
 import java.util.Locale;
 
 import saim.com.autisticapp.Model.ModelFamily;
 import saim.com.autisticapp.R;
-import saim.com.autisticapp.Util.DBHelper;
 import saim.com.autisticapp.Util.DBHelperRashed;
+import saim.com.autisticapp.Util.SharedPrefDatabase;
 
 public class GameRotate2 extends AppCompatActivity {
 
     int GAME_TYPE, COUNTER = 0, a;
 
-    TextView txtQuestion;
+    TextView txtQuestion, txtTitle;
     ImageView imgGameRoateimg, qusImgSound;
     ImageButton imgRotateLeft, imgRotateOk, imgRotateRight;
     DBHelperRashed dbHelper;
@@ -62,6 +61,13 @@ public class GameRotate2 extends AppCompatActivity {
         imgRotateOk = (ImageButton) findViewById(R.id.imgRotateOk);
         imgRotateRight = (ImageButton) findViewById(R.id.imgRotateRight);
 
+        txtTitle = findViewById(R.id.txtTitle);
+
+        if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+            txtTitle.setText(R.string.games_bn_5);
+        } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+            txtTitle.setText(R.string.games_en_5);
+        }
 
         actionEvent();
     }

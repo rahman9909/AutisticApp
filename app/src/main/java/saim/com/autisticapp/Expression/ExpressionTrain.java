@@ -1,8 +1,5 @@
 package saim.com.autisticapp.Expression;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -12,7 +9,9 @@ import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -20,13 +19,13 @@ import java.util.Locale;
 import saim.com.autisticapp.Model.ModelFamily;
 import saim.com.autisticapp.R;
 import saim.com.autisticapp.Util.DBHelperEmoji;
-import saim.com.autisticapp.Util.DBHelperRashed;
+import saim.com.autisticapp.Util.SharedPrefDatabase;
 
 public class ExpressionTrain extends AppCompatActivity {
 
     int GAME_TYPE, COUNTER = 0, a;
 
-    TextView txtQuestion, txtExpression1, txtExpression2;
+    TextView txtTitle, txtQuestion, txtExpression1, txtExpression2;
     ImageView imgGameEye0, imgGameEye1, imgGameEye2, qusImgSound;
     DBHelperEmoji dbHelper;
 
@@ -48,6 +47,7 @@ public class ExpressionTrain extends AppCompatActivity {
         dbHelper = new DBHelperEmoji(this);
         modelFamilies = dbHelper.getAllFamilyMembers();
 
+        txtTitle = (TextView) findViewById(R.id.txtTitle);
         txtQuestion = (TextView) findViewById(R.id.txtQuestion);
         txtExpression1 = (TextView) findViewById(R.id.txtExpression1);
         txtExpression2 = (TextView) findViewById(R.id.txtExpression2);
@@ -57,6 +57,13 @@ public class ExpressionTrain extends AppCompatActivity {
         imgGameEye2 = (ImageView) findViewById(R.id.imgGameEye2);
         qusImgSound = (ImageView) findViewById(R.id.qusImgSound);
 
+
+        if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+            txtTitle.setText(R.string.train_expression_bn_1);
+        } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+            txtTitle.setText(R.string.train_expression_en_1);
+        }
+
         actionEvent();
     }
 
@@ -65,7 +72,14 @@ public class ExpressionTrain extends AppCompatActivity {
         a = getRandomNumber(modelFamilies);
 
 
-        String voiceText = "What expression is this?";// + modelFamilies.get(a).name;
+        //String voiceText = "What expression is this?";
+        String voiceText = "";
+        if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+            voiceText = getResources().getString(R.string.train_expression_bn_2);
+        } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+            voiceText = getResources().getString(R.string.train_expression_en_2);
+        }
+
         txtQuestion.setText(voiceText);
         Speakout(voiceText);
         SpeackOutButton(qusImgSound, voiceText);

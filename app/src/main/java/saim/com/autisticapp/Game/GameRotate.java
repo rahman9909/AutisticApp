@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,12 +21,13 @@ import java.util.Locale;
 import saim.com.autisticapp.Model.ModelFamily;
 import saim.com.autisticapp.R;
 import saim.com.autisticapp.Util.DBHelper;
+import saim.com.autisticapp.Util.SharedPrefDatabase;
 
 public class GameRotate extends AppCompatActivity {
 
     int GAME_TYPE, COUNTER = 0, a;
 
-    TextView txtQuestion;
+    TextView txtQuestion, txtTitle;
     ImageView imgGameRoateimg, qusImgSound;
     ImageButton imgRotateLeft, imgRotateOk, imgRotateRight;
     DBHelper dbHelper;
@@ -61,6 +61,13 @@ public class GameRotate extends AppCompatActivity {
         imgRotateOk = (ImageButton) findViewById(R.id.imgRotateOk);
         imgRotateRight = (ImageButton) findViewById(R.id.imgRotateRight);
 
+        txtTitle = findViewById(R.id.txtTitle);
+
+        if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+            txtTitle.setText(R.string.games_bn_5);
+        } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+            txtTitle.setText(R.string.games_en_5);
+        }
 
         actionEvent();
     }

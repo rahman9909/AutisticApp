@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Autistic App</string>
+    <string name="app_name">AutiFaceSay</string>
 
 
     <string-array name="spiner_entry">
@@ -15,6 +15,80 @@
         <item>OBJECT</item>
         <item>OTHER</item>
     </string-array>
+
+
+    <string name="home_button_en_1">Parents</string>
+    <string name="home_button_en_2">Expression</string>
+    <string name="home_button_en_3">Game</string>
+
+    <string name="parents_mode_en_1">Parents Mode</string>
+    <string name="parents_mode_en_2">Capture</string>
+    <string name="parents_mode_en_3">Album</string>
+
+    <string name="capture_en_1">Capture</string>
+    <string name="capture_en_2">Select Image</string>
+    <string name="capture_en_3">Save</string>
+
+    <string name="album_en_1">Album</string>
+
+    <string name="expression_en_1">Expression</string>
+    <string name="expression_en_2">Show Expression</string>
+    <string name="expression_en_3">Train Expression</string>
+
+    <string name="show_expression_en_1">Show Expression</string>
+
+    <string name="train_expression_en_1">Train Expression</string>
+    <string name="train_expression_en_2">What expression is this?</string>
+
+
+    <string name="game_en_1">Game</string>
+    <string name="game_en_2">Family / Object\nAlbum</string>
+    <string name="game_en_3">My Friend Rashed</string>
+
+    <string name="games_en_1">Select Game</string>
+    <string name="games_en_2">Train my self</string>
+    <string name="games_en_3">Find Game</string>
+    <string name="games_en_4">Memory game</string>
+    <string name="games_en_5">Roatate Game</string>
+    <string name="games_en_6">Eye Match</string>
+
+    <!--BANGLA VERSION-->
+
+    <string name="home_button_bn_1">মাতাপিতা</string>
+    <string name="home_button_bn_2">অভিব্যক্তি</string>
+    <string name="home_button_bn_3">খেলা</string>
+
+    <string name="parents_mode_bd_1">পিতামাতার কার্যপদ্ধতি</string>
+    <string name="parents_mode_bd_2">নিয়ন্ত্রণে আনা</string>
+    <string name="parents_mode_bd_3">অ্যালবাম</string>
+
+    <string name="capture_bn_1">নিয়ন্ত্রণ কার্যপদ্ধতি</string>
+    <string name="capture_bn_2">চিত্র নির্বাচন করুন</string>
+    <string name="capture_bn_3">সংরক্ষণ করুন</string>
+
+    <string name="album_bn_1">অ্যালবাম</string>
+
+    <string name="expression_bn_1">অভিব্যক্তি</string>
+    <string name="expression_bn_2">অভিব্যক্তি প্রদর্শন</string>
+    <string name="expression_bn_3">অভিব্যক্তি প্রশিক্ষণ</string>
+
+    <string name="show_expression_bn_1">অভিব্যক্তি প্রদর্শন</string>
+
+    <string name="train_expression_bn_1">অভিব্যক্তি প্রশিক্ষণ</string>
+    <string name="train_expression_bn_2">এইটি কোন মুখের ভাব ?</string>
+
+
+    <string name="game_bn_1">খেলা</string>
+    <string name="game_bn_2">পারিবারিক / অবজেক্ট\nঅ্যালবাম</string>
+    <string name="game_bn_3">আমার বন্ধু রাশেদ</string>
+
+    <string name="games_bn_1">খেলা নির্বাচন করুন</string>
+    <string name="games_bn_2">আমার স্ব প্রশিক্ষণ</string>
+    <string name="games_bn_3">খোঁজার খেলা</string>
+    <string name="games_bn_4">মনে রাখার খেলা</string>
+    <string name="games_bn_5">আঁকা বাঁকা খেলা</string>
+    <string name="games_bn_6">চোখের মিল</string>
+
 </resources>
 
 

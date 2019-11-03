@@ -20,12 +20,13 @@ import java.util.Locale;
 import saim.com.autisticapp.Model.ModelFamily;
 import saim.com.autisticapp.R;
 import saim.com.autisticapp.Util.DBHelper;
+import saim.com.autisticapp.Util.SharedPrefDatabase;
 
 public class GameFind extends AppCompatActivity {
 
     int GAME_TYPE, COUNTER = 0;
 
-    TextView txtQuestion;
+    TextView txtTitle, txtQuestion;
     ImageView qusImage1, qusImage2, qusImgSound;
     DBHelper dbHelper;
 
@@ -53,6 +54,15 @@ public class GameFind extends AppCompatActivity {
         qusImage2 = (ImageView) findViewById(R.id.qusImage2);
         qusImgSound = (ImageView) findViewById(R.id.qusImgSound);
 
+        txtTitle = findViewById(R.id.txtTitle);
+
+        if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+            txtTitle.setText(R.string.games_bn_3);
+        } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+            txtTitle.setText(R.string.games_en_3);
+        }
+
+
         actionEvent();
     }
 
@@ -61,7 +71,7 @@ public class GameFind extends AppCompatActivity {
         if (modelFamilies.get(COUNTER).relation.equals("OBJECT") || modelFamilies.get(COUNTER).relation.equals("OTHER")) {
             voiceText = "Which is  " + modelFamilies.get(COUNTER).name;
         } else {
-            voiceText = "Who is  " + modelFamilies.get(COUNTER).name;
+            voiceText = "Find  " + modelFamilies.get(COUNTER).name;
         }
 
         txtQuestion.setText(voiceText);

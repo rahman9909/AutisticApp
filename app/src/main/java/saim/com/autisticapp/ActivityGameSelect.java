@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,11 +17,13 @@ import saim.com.autisticapp.Game2.GameFind2;
 import saim.com.autisticapp.Game2.GameMemory2;
 import saim.com.autisticapp.Game2.GameRotate2;
 import saim.com.autisticapp.Game2.GameTrain2;
+import saim.com.autisticapp.Util.SharedPrefDatabase;
 
 public class ActivityGameSelect extends AppCompatActivity {
 
     int GAME_TYPE;
 
+    TextView txtTitle, txtGameOption1, txtGameOption2, txtGameOption3, txtGameOption4, txtGameOption5;
     LinearLayout layoutGameTrainYourSelf, layoutGame1, layoutGame2, layoutGame3, layoutGame4;
 
     @Override
@@ -41,6 +44,29 @@ public class ActivityGameSelect extends AppCompatActivity {
         layoutGame2 = (LinearLayout) findViewById(R.id.layoutGame2);
         layoutGame3 = (LinearLayout) findViewById(R.id.layoutGame3);
         layoutGame4 = (LinearLayout) findViewById(R.id.layoutGame4);
+
+        txtTitle = (TextView) findViewById(R.id.txtTitle);
+        txtGameOption1 = (TextView) findViewById(R.id.txtGameOption1);
+        txtGameOption2 = (TextView) findViewById(R.id.txtGameOption2);
+        txtGameOption3 = (TextView) findViewById(R.id.txtGameOption3);
+        txtGameOption4 = (TextView) findViewById(R.id.txtGameOption4);
+        txtGameOption5 = (TextView) findViewById(R.id.txtGameOption5);
+
+        if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+            txtTitle.setText(R.string.games_bn_1);
+            txtGameOption1.setText(R.string.games_bn_2);
+            txtGameOption2.setText(R.string.games_bn_3);
+            txtGameOption3.setText(R.string.games_bn_4);
+            txtGameOption4.setText(R.string.games_bn_5);
+            txtGameOption5.setText(R.string.games_bn_6);
+        } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+            txtTitle.setText(R.string.games_en_1);
+            txtGameOption1.setText(R.string.games_en_2);
+            txtGameOption2.setText(R.string.games_en_3);
+            txtGameOption3.setText(R.string.games_en_4);
+            txtGameOption4.setText(R.string.games_en_5);
+            txtGameOption5.setText(R.string.games_en_6);
+        }
 
         if (GAME_TYPE == 2) {
             layoutGame4.setVisibility(View.VISIBLE);

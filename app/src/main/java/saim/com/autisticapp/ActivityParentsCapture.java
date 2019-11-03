@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -39,6 +40,7 @@ import saim.com.autisticapp.Util.SharedPrefDatabase;
 
 public class ActivityParentsCapture extends AppCompatActivity {
 
+    TextView txtTitle;
     ImageView imgCaptureMain;
     Button btnCaptureMain, btnCaptureSave;
     EditText inputCaptureMain;
@@ -63,11 +65,24 @@ public class ActivityParentsCapture extends AppCompatActivity {
     private void init() {
         haveStoragePermission();
 
+        txtTitle = (TextView) findViewById(R.id.txtTitle);
         imgCaptureMain = (ImageView) findViewById(R.id.imgCaptureMain);
         btnCaptureMain = (Button) findViewById(R.id.btnCaptureMain);
         btnCaptureSave = (Button) findViewById(R.id.btnCaptureSave);
         inputCaptureMain = (EditText) findViewById(R.id.inputCaptureMain);
         spinCaptureMain = (Spinner) findViewById(R.id.spinCaptureMain);
+
+
+        if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+            txtTitle.setText(R.string.capture_bn_1);
+            btnCaptureMain.setText(R.string.capture_bn_2);
+            btnCaptureSave.setText(R.string.capture_bn_3);
+        } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+            txtTitle.setText(R.string.capture_en_1);
+            btnCaptureMain.setText(R.string.capture_en_2);
+            btnCaptureSave.setText(R.string.capture_en_3);
+        }
+
 
         actionEvent();
     }

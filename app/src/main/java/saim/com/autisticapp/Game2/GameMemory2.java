@@ -20,12 +20,13 @@ import java.util.Locale;
 import saim.com.autisticapp.Model.ModelFamily;
 import saim.com.autisticapp.R;
 import saim.com.autisticapp.Util.DBHelperRashed;
+import saim.com.autisticapp.Util.SharedPrefDatabase;
 
 public class GameMemory2 extends AppCompatActivity {
 
     int GAME_TYPE, COUNTER = 0, a;
 
-    TextView txtQuestion;
+    TextView txtQuestion, txtTitle;
     ImageView qusImage11, qusImage12, qusImage13, qusImage14, qusImgSound;
     DBHelperRashed dbHelper;
 
@@ -52,6 +53,14 @@ public class GameMemory2 extends AppCompatActivity {
         qusImage13 = (ImageView) findViewById(R.id.qusImage13);
         qusImage14 = (ImageView) findViewById(R.id.qusImage14);
         qusImgSound = (ImageView) findViewById(R.id.qusImgSound);
+
+        txtTitle = findViewById(R.id.txtTitle);
+
+        if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+            txtTitle.setText(R.string.games_bn_4);
+        } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+            txtTitle.setText(R.string.games_en_4);
+        }
 
         actionEvent();
     }

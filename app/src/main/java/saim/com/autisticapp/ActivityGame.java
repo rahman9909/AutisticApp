@@ -8,14 +8,17 @@ import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import saim.com.autisticapp.Util.DBHelper;
+import saim.com.autisticapp.Util.SharedPrefDatabase;
 
 public class ActivityGame extends AppCompatActivity {
 
+    TextView txtTitle, txtGameOption1, txtGameOption2;
     LinearLayout layoutGameFamilyAlbum, layoutGameAmarBonduRased;
     DBHelper dbHelper;
 
@@ -31,8 +34,23 @@ public class ActivityGame extends AppCompatActivity {
     }
 
     private void init() {
+
+        txtTitle = (TextView) findViewById(R.id.txtTitle);
+        txtGameOption1 = (TextView) findViewById(R.id.txtGameOption1);
+        txtGameOption2 = (TextView) findViewById(R.id.txtGameOption2);
+
         layoutGameFamilyAlbum = (LinearLayout) findViewById(R.id.layoutGameFamilyAlbum);
         layoutGameAmarBonduRased = (LinearLayout) findViewById(R.id.layoutGameAmarBonduRased);
+
+        if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+            txtTitle.setText(R.string.game_bn_1);
+            txtGameOption1.setText(R.string.game_bn_2);
+            txtGameOption2.setText(R.string.game_bn_3);
+        } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+            txtTitle.setText(R.string.game_en_1);
+            txtGameOption1.setText(R.string.game_en_2);
+            txtGameOption2.setText(R.string.game_en_3);
+        }
 
         dbHelper = new DBHelper(this);
 

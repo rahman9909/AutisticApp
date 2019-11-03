@@ -20,12 +20,13 @@ import java.util.Locale;
 import saim.com.autisticapp.Model.ModelFamily;
 import saim.com.autisticapp.R;
 import saim.com.autisticapp.Util.DBHelperRashed;
+import saim.com.autisticapp.Util.SharedPrefDatabase;
 
 public class GameFind2 extends AppCompatActivity {
 
     int GAME_TYPE, COUNTER = 0;
 
-    TextView txtQuestion;
+    TextView txtQuestion, txtTitle;
     ImageView qusImage1, qusImage2, qusImgSound;
     DBHelperRashed dbHelper;
 
@@ -50,6 +51,14 @@ public class GameFind2 extends AppCompatActivity {
         qusImage1 = (ImageView) findViewById(R.id.qusImage1);
         qusImage2 = (ImageView) findViewById(R.id.qusImage2);
         qusImgSound = (ImageView) findViewById(R.id.qusImgSound);
+
+        txtTitle = findViewById(R.id.txtTitle);
+
+        if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+            txtTitle.setText(R.string.games_bn_3);
+        } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+            txtTitle.setText(R.string.games_en_3);
+        }
 
         actionEvent();
     }

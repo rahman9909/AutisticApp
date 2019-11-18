@@ -22,6 +22,7 @@ public class DBHelperRashed extends SQLiteOpenHelper {
     public static final String COLUMN_NAME = "NAME";
     public static final String COLUMN_RELATION = "RELATION";
     public static final String COLUMN_IMAGE = "IMAGE";
+    public static final String COLUMN_SOUND = "SOUND";
     private HashMap hp;
 
     public DBHelperRashed(Context context) {
@@ -31,7 +32,7 @@ public class DBHelperRashed extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(
-                "create table family " + "(ID integer primary key, NAME text, RELATION text, IMAGE text)"
+                "create table family " + "(ID integer primary key, NAME text, RELATION text, IMAGE text, SOUND text)"
         );
     }
 
@@ -48,6 +49,18 @@ public class DBHelperRashed extends SQLiteOpenHelper {
         contentValues.put("NAME", name);
         contentValues.put("RELATION", relation);
         contentValues.put("IMAGE", image);
+        db.insert("family", null, contentValues);
+        return true;
+    }
+
+    public boolean insertFamilyMember(String name, String relation, String image, String sound) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        Log.d("SAIM_DATABASE", name + " " + relation + " " + image);
+        contentValues.put("NAME", name);
+        contentValues.put("RELATION", relation);
+        contentValues.put("IMAGE", image);
+        contentValues.put("SOUND", sound);
         db.insert("family", null, contentValues);
         return true;
     }
@@ -97,6 +110,34 @@ public class DBHelperRashed extends SQLiteOpenHelper {
 
 
             array_list.add(new ModelFamily(id, name, relation, image));
+            res.moveToNext();
+        }
+        return array_list;
+    }
+
+    public ArrayList<ModelFamily> getAllFamilyMembersNew() {
+
+        ArrayList<ModelFamily> array_list = new ArrayList<ModelFamily>();
+
+        //hp = new HashMap();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("select * from family", null);
+        res.moveToFirst();
+
+        while (res.isAfterLast() == false) {
+            /*String id       = res.getColumnIndex(COLUMN_ID) + "";
+            String name     = res.getColumnIndex(COLUMN_NAME) + "";
+            String relation = res.getColumnIndex(COLUMN_RELATION) + "";
+            String image    = res.getColumnIndex(COLUMN_IMAGE) + "";*/
+
+            String id = res.getInt(0) + "";
+            String name = res.getString(1) + "";
+            String relation = res.getString(2) + "";
+            String image = res.getString(3) + "";
+            String sound = res.getString(4) + "";
+
+
+            array_list.add(new ModelFamily(id, name, relation, image, sound));
             res.moveToNext();
         }
         return array_list;

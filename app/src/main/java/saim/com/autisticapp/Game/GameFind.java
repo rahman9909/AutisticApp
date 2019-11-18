@@ -2,9 +2,11 @@ package saim.com.autisticapp.Game;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
@@ -14,6 +16,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -47,7 +51,7 @@ public class GameFind extends AppCompatActivity {
 
         GAME_TYPE = getIntent().getExtras().getInt("GAME_TYPE");
         dbHelper = new DBHelper(this);
-        modelFamilies = dbHelper.getAllFamilyMembers();
+        modelFamilies = dbHelper.getAllFamilyMembersNew();
 
         txtQuestion = (TextView) findViewById(R.id.txtQuestion);
         qusImage1 = (ImageView) findViewById(R.id.qusImage1);
@@ -75,8 +79,8 @@ public class GameFind extends AppCompatActivity {
         }
 
         txtQuestion.setText(voiceText);
-        Speakout(voiceText);
-        SpeackOutButton(qusImgSound, voiceText);
+        Speakout(voiceText, getExternalCacheDir() + File.separator + modelFamilies.get(COUNTER).getSound());
+        SpeackOutButton(qusImgSound, voiceText, getExternalCacheDir() + File.separator + modelFamilies.get(COUNTER).getSound());
 
         //Toast.makeText(this, modelFamilies.size() + "", Toast.LENGTH_LONG).show();
 
@@ -127,31 +131,64 @@ public class GameFind extends AppCompatActivity {
         });
     }
 
-    private void SpeackOutButton(ImageView speakImage, final String s) {
+    private void SpeackOutButton(ImageView speakImage, final String s, final String ss) {
         speakImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Speakout(s);
+                Speakout(s, ss);
             }
         });
     }
 
 
-    public void Speakout(final String stringVoice) {
+    public void Speakout(final String stringVoice, final String fileName) {
         textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
                 if (status == TextToSpeech.SUCCESS) {
                     int result = textToSpeech.setLanguage(Locale.US);
                     if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                    } else {
-                        textToSpeech.speak(stringVoice, TextToSpeech.QUEUE_FLUSH, null);
                     }
+                    textToSpeech.setOnUtteranceProgressListener(new UtteranceProgressListener() {
+                        @Override
+                        public void onStart(String utteranceId) {
+
+                        }
+
+                        @Override
+                        public void onDone(String utteranceId) {
+                            MediaPlayer mediaPlayer = new MediaPlayer();
+                            try {
+                                mediaPlayer.setDataSource(fileName);
+                                mediaPlayer.prepare();
+                                mediaPlayer.start();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                                @Override
+                                public void onCompletion(MediaPlayer mp) {
+                                    mp.stop();
+                                    mp.release();
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onError(String utteranceId) {
+
+                        }
+                    });
                 } else {
                     Log.e("TTS", "Initilization Failed!");
                 }
             }
         });
+        textToSpeech.speak(stringVoice, TextToSpeech.QUEUE_FLUSH, null);
+
+
+
     }
 
 

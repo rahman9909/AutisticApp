@@ -1,10 +1,15 @@
 package saim.com.autisticapp;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import saim.com.autisticapp.Util.DBHelperEmoji;
 import saim.com.autisticapp.Util.DBHelperRashed;
@@ -17,6 +22,10 @@ public class Splash extends AppCompatActivity {
         setTheme(R.style.AppThemeFull);
         setContentView(R.layout.activity_splash);
 
+        haveStoragePermission();
+    }
+
+    public void DataProcess() {
         new DBHelperRashed(this).deleteContact2();
         new DBHelperEmoji(this).deleteContact2();
 
@@ -46,4 +55,30 @@ public class Splash extends AppCompatActivity {
             }
         }, 2500);
     }
+
+
+    public void haveStoragePermission() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED &&
+                    checkSelfPermission(android.Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED &&
+                    checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+                DataProcess();
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{
+                        Manifest.permission.READ_PHONE_STATE,
+                        Manifest.permission.CALL_PHONE,
+                        Manifest.permission.RECORD_AUDIO,}, 1);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED && grantResults[2] == PackageManager.PERMISSION_GRANTED) {
+            DataProcess();
+        } else {
+            haveStoragePermission();
+        }
+    }
+
 }

@@ -1,15 +1,19 @@
 package saim.com.autisticapp;
 
 import android.Manifest;
+import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.Button;
@@ -42,7 +46,7 @@ public class ActivityParentsCapture extends AppCompatActivity {
 
     TextView txtTitle;
     ImageView imgCaptureMain;
-    Button btnCaptureMain, btnCaptureSave;
+    Button btnCaptureMain, btnCaptureSave, btnCaptureVoice;
     EditText inputCaptureMain;
     Spinner spinCaptureMain;
 
@@ -68,6 +72,7 @@ public class ActivityParentsCapture extends AppCompatActivity {
         txtTitle = (TextView) findViewById(R.id.txtTitle);
         imgCaptureMain = (ImageView) findViewById(R.id.imgCaptureMain);
         btnCaptureMain = (Button) findViewById(R.id.btnCaptureMain);
+        btnCaptureVoice = (Button) findViewById(R.id.btnCaptureVoice);
         btnCaptureSave = (Button) findViewById(R.id.btnCaptureSave);
         inputCaptureMain = (EditText) findViewById(R.id.inputCaptureMain);
         spinCaptureMain = (Spinner) findViewById(R.id.spinCaptureMain);
@@ -98,6 +103,18 @@ public class ActivityParentsCapture extends AppCompatActivity {
             }
         });
 
+
+        btnCaptureVoice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+                Date date = new Date();
+                String fileName = dateFormat.format(date) + ".mp3";
+                recordAudio(fileName);
+            }
+        });
+
+
         btnCaptureSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,6 +128,7 @@ public class ActivityParentsCapture extends AppCompatActivity {
                         if ( imgCaptureMain.getDrawable() == null ) {
                             showDialog(getApplicationContext(), "Please family member photo.");
                         } else {
+                            /*
                             Bitmap bitmap = ((BitmapDrawable) imgCaptureMain.getDrawable()).getBitmap();
                             savebitmap(bitmap);
                             Toast.makeText(getApplicationContext(), spinCaptureMain.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
@@ -154,21 +172,28 @@ public class ActivityParentsCapture extends AppCompatActivity {
 
                                 new SharedPrefDatabase(getApplicationContext()).StoreSister_3(inputCaptureMain.getText().toString());
 
+                            }*/
+
+                            if (btnCaptureVoice.getText().toString().isEmpty()) {
+                                showDialog(getApplicationContext(), "Please enter voice.");
+                            } else {
+                                Bitmap bitmap = ((BitmapDrawable) imgCaptureMain.getDrawable()).getBitmap();
+                                mydb = new DBHelper(getApplicationContext());
+                                String name = inputCaptureMain.getText().toString();
+                                String relation = spinCaptureMain.getSelectedItem().toString();
+                                DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+                                Date date = new Date();
+                                String fileName = dateFormat.format(date) + "";
+                                savebitmap2(bitmap, fileName);
+                                Toast.makeText(getApplicationContext(), name + "\n" + relation + "\n" + fileName + '\n' + btnCaptureVoice.getTag().toString(), Toast.LENGTH_LONG).show();
+                                Boolean a = mydb.insertFamilyMember(name, relation, fileName, btnCaptureVoice.getTag().toString());
+
+                                if (a) {
+                                    showDialogSuccess(getApplicationContext(), "Saved successfully.");
+                                }
+
                             }
 
-                            mydb = new DBHelper(getApplicationContext());
-                            String name = inputCaptureMain.getText().toString();
-                            String relation = spinCaptureMain.getSelectedItem().toString();
-                            DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-                            Date date = new Date();
-                            String fileName = dateFormat.format(date) + "";
-                            savebitmap2(bitmap, fileName);
-                            Toast.makeText(getApplicationContext(), name + "\n" + relation + "\n" + fileName, Toast.LENGTH_LONG).show();
-                            Boolean a = mydb.insertFamilyMember(name, relation, fileName);
-
-                            if (a) {
-                                showDialogSuccess(getApplicationContext(), "Saved successfully.");
-                            }
                         }
                     }
                 }
@@ -243,6 +268,50 @@ public class ActivityParentsCapture extends AppCompatActivity {
 
         return status;
     }
+
+
+    public void recordAudio(final String fileName) {
+        final MediaRecorder recorder = new MediaRecorder();
+        ContentValues values = new ContentValues(3);
+        values.put(MediaStore.MediaColumns.TITLE, fileName);
+        recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        recorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
+        recorder.setOutputFile(getExternalCacheDir() + File.separator + fileName);
+        try {
+            recorder.prepare();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        final ProgressDialog mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setTitle("Recording Voice");
+        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        mProgressDialog.setButton("Stop recording", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                mProgressDialog.dismiss();
+                recorder.stop();
+                recorder.release();
+
+                btnCaptureVoice.setText("Voice Recorded");
+                btnCaptureVoice.setTag(fileName);
+            }
+        });
+
+        mProgressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            public void onCancel(DialogInterface p1) {
+                recorder.stop();
+                recorder.release();
+
+                btnCaptureVoice.setText("Voice Recorded");
+                btnCaptureVoice.setTag(fileName);
+            }
+        });
+        recorder.start();
+        mProgressDialog.show();
+    }
+
+
 
     public void showDialog(Context context, String message) {
         new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))

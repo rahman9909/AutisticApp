@@ -45,7 +45,7 @@ public class GameMemory2 extends AppCompatActivity {
 
         GAME_TYPE = getIntent().getExtras().getInt("GAME_TYPE");
         dbHelper = new DBHelperRashed(this);
-        modelFamilies = dbHelper.getAllFamilyMembers();
+        modelFamilies = dbHelper.getAllFamilyMembersNew();
 
         txtQuestion = (TextView) findViewById(R.id.txtQuestion11);
         qusImage11 = (ImageView) findViewById(R.id.qusImage11);

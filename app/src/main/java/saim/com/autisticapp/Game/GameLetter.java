@@ -46,7 +46,7 @@ public class GameLetter extends AppCompatActivity {
 
         GAME_TYPE = getIntent().getExtras().getInt("GAME_TYPE");
         dbHelper = new DBHelper(this);
-        modelFamilies = dbHelper.getAllFamilyMembers();
+        modelFamilies = dbHelper.getAllFamilyMembersNew();
 
         txtQuestion21 = (TextView) findViewById(R.id.txtQuestion21);
         qusImage21 = (ImageView) findViewById(R.id.qusImage21);

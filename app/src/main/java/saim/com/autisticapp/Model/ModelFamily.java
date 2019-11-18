@@ -1,13 +1,21 @@
 package saim.com.autisticapp.Model;
 
 public class ModelFamily {
-    public String id, name, relation, image;
+    public String id, name, relation, image, sound;
 
     public ModelFamily(String id, String name, String relation, String image) {
         this.id = id;
         this.name = name;
         this.relation = relation;
         this.image = image;
+    }
+
+    public ModelFamily(String id, String name, String relation, String image, String sound) {
+        this.id = id;
+        this.name = name;
+        this.relation = relation;
+        this.image = image;
+        this.sound = sound;
     }
 
     public String getId() {
@@ -43,4 +51,11 @@ public class ModelFamily {
     }
 
 
+    public String getSound() {
+        return sound;
+    }
+
+    public void setSound(String sound) {
+        this.sound = sound;
+    }
 }

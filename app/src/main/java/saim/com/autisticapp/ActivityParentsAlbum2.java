@@ -46,7 +46,7 @@ public class ActivityParentsAlbum2 extends AppCompatActivity {
         }
 
         mydb = new DBHelper(this);
-        arrayListFamily = mydb.getAllFamilyMembers();
+        arrayListFamily = mydb.getAllFamilyMembersNew();
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);

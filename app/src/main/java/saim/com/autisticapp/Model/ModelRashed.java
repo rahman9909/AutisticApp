@@ -1,7 +1,7 @@
 package saim.com.autisticapp.Model;
 
 public class ModelRashed {
-    public String id, name, relation, image, image_eye;
+    public String id, name, relation, image, image_eye, sound;
 
     public ModelRashed(String id, String name, String relation, String image, String image_eye) {
         this.id = id;
@@ -9,6 +9,15 @@ public class ModelRashed {
         this.relation = relation;
         this.image = image;
         this.image_eye = image_eye;
+    }
+
+    public ModelRashed(String id, String name, String relation, String image, String image_eye, String sound) {
+        this.id = id;
+        this.name = name;
+        this.relation = relation;
+        this.image = image;
+        this.image_eye = image_eye;
+        this.sound = sound;
     }
 
     public String getId() {
@@ -49,5 +58,13 @@ public class ModelRashed {
 
     public void setImage_eye(String image_eye) {
         this.image_eye = image_eye;
+    }
+
+    public String getSound() {
+        return sound;
+    }
+
+    public void setSound(String sound) {
+        this.sound = sound;
     }
 }

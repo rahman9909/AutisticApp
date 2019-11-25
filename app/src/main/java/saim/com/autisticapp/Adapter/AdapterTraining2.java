@@ -1,6 +1,8 @@
 package saim.com.autisticapp.Adapter;
 
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
+import android.media.MediaPlayer;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,10 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -76,12 +80,21 @@ public class AdapterTraining2 extends RecyclerView.Adapter<AdapterTraining2.Trai
             listTextRelation = (TextView) itemView.findViewById(R.id.listTextRelation);
             listImgSound = (ImageView) itemView.findViewById(R.id.listImgSound);
 
-            actionEventSound(listImgSound, listTextName);
+            //actionEventSound(listImgSound, listTextName);
+
 
             listImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //Toast.makeText(v.getContext(), adapterList.get(getAdapterPosition()).getImage() + " " + v.getContext().getPackageName(), Toast.LENGTH_SHORT).show();
+                    actionEventSoundNew(v.getContext(), adapterList.get(getAdapterPosition()).getSound()+"");
+                    //Toast.makeText(v.getContext(), adapterList.get(getAdapterPosition()).getSound(), Toast.LENGTH_SHORT).show();
+                }
+            });
+            listImgSound.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    actionEventSoundNew(v.getContext(), adapterList.get(getAdapterPosition()).getSound()+"");
+                    //Toast.makeText(v.getContext(), adapterList.get(getAdapterPosition()).getSound(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -111,6 +124,32 @@ public class AdapterTraining2 extends RecyclerView.Adapter<AdapterTraining2.Trai
                         }
                     }
                 });
+
+            }
+        });
+
+    }
+
+    private void actionEventSoundNew(Context context,  final String Sound_s ) {
+
+        MediaPlayer mediaPlayer = new MediaPlayer();
+        try {
+
+            AssetFileDescriptor descriptor = context.getAssets().openFd(Sound_s);
+            mediaPlayer.setDataSource(descriptor.getFileDescriptor(), descriptor.getStartOffset(), descriptor.getLength());
+            descriptor.close();
+
+            mediaPlayer.prepare();
+            mediaPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.stop();
+                mp.release();
             }
         });
 

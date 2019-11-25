@@ -30,10 +30,10 @@ public class Splash extends AppCompatActivity {
         new DBHelperEmoji(this).deleteContact2();
 
         if (new DBHelperRashed(this).getAllFamilyMembers().size() == 0) {
-            new DBHelperRashed(this).insertFamilyMember("Rased", "ic_game_rased_eye", "ic_game_rased");
-            new DBHelperRashed(this).insertFamilyMember("Ibu", "ic_game_ibu_eye", "ic_game_ibu");
-            new DBHelperRashed(this).insertFamilyMember("Fazlu", "ic_game_fazlu_eye", "ic_game_fazlu");
-            new DBHelperRashed(this).insertFamilyMember("Ashraf", "ic_game_ashraf_eye", "ic_game_ashraf");
+            new DBHelperRashed(this).insertFamilyMember("Rased", "ic_game_rased_eye", "ic_game_rased", "a_rased.mpeg");
+            new DBHelperRashed(this).insertFamilyMember("Ibu", "ic_game_ibu_eye", "ic_game_ibu", "a_ibu.mpeg");
+            new DBHelperRashed(this).insertFamilyMember("Fazlu", "ic_game_fazlu_eye", "ic_game_fazlu", "a_fazlu.mpeg");
+            new DBHelperRashed(this).insertFamilyMember("Ashraf", "ic_game_ashraf_eye", "ic_game_ashraf", "a_asraf.mpeg");
         }
 
         if (new DBHelperEmoji(this).getAllFamilyMembers().size() == 0) {

@@ -3,7 +3,6 @@ package saim.com.autisticapp.Adapter;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,7 +78,6 @@ public class AdapterFamily extends RecyclerView.Adapter<AdapterFamily.FamilyView
             listImgSound = (ImageView) itemView.findViewById(R.id.listImgSound);
             listImgDelete = (ImageView) itemView.findViewById(R.id.listImgDelete);
 
-            //actionEventSound(listImgSound, listTextName, getAdapterPosition());
 
             listImgDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -98,7 +96,7 @@ public class AdapterFamily extends RecyclerView.Adapter<AdapterFamily.FamilyView
                 public void onClick(View v) {
                     MediaPlayer mediaPlayer = new MediaPlayer();
                     try {
-                        Log.d("SAIM_LOG", v.getContext().getExternalCacheDir() + File.separator + adapterList.get(getAdapterPosition()).getSound());
+                        Log.d("SAIM_LOG_FAMILY", v.getContext().getExternalCacheDir() + File.separator + adapterList.get(getAdapterPosition()).getSound());
                         mediaPlayer.setDataSource(v.getContext().getExternalCacheDir() + File.separator + adapterList.get(getAdapterPosition()).getSound());
                         mediaPlayer.prepare();
                         mediaPlayer.start();
@@ -118,53 +116,8 @@ public class AdapterFamily extends RecyclerView.Adapter<AdapterFamily.FamilyView
 
         }
 
-        /*@Override
-        public void onClick(View v) {
-            Toast.makeText(v.getContext(), adapterList.get(getAdapterPosition()).name, Toast.LENGTH_SHORT).show();
-        }*/
     }
 
 
-    private TextToSpeech textToSpeech;
 
-    private void actionEventSound(final ImageView button, final TextView textView, final int voicePosition) {
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                /*textToSpeech = new TextToSpeech(button.getContext(), new TextToSpeech.OnInitListener() {
-                    @Override
-                    public void onInit(int status) {
-                        if (status == TextToSpeech.SUCCESS) {
-                            int result = textToSpeech.setLanguage(Locale.US);
-                            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                            } else {
-                                textToSpeech.speak(textView.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
-                            }
-                        } else {
-                            Log.e("TTS", "Initilization Failed!");
-                        }
-                    }
-                });*/
-
-                MediaPlayer mediaPlayer = new MediaPlayer();
-                try {
-                    mediaPlayer.setDataSource(button.getContext().getExternalCacheDir() + File.separator + adapterList.get(voicePosition).getSound());
-                    mediaPlayer.prepare();
-                    mediaPlayer.start();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mp) {
-                        mp.stop();
-                        mp.release();
-                    }
-                });
-            }
-        });
-
-    }
 }

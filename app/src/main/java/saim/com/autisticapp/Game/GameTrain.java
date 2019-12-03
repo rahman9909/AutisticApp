@@ -50,7 +50,7 @@ public class GameTrain extends AppCompatActivity {
             txtTitle.setText(R.string.games_en_2);
         }
 
-        arrayListFamily = mydb.getAllFamilyMembers();
+        arrayListFamily = mydb.getAllFamilyMembersNew();
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         layoutManagerRecyclerView = new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManagerRecyclerView);

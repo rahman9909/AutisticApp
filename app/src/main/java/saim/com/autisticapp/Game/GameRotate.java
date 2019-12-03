@@ -2,6 +2,8 @@ package saim.com.autisticapp.Game;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.AssetFileDescriptor;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -76,14 +79,9 @@ public class GameRotate extends AppCompatActivity {
 
         a = getRandomNumber(modelFamilies);
 
-
         String voiceText = "Fix below image of " + modelFamilies.get(a).name;
         txtQuestion.setText(voiceText);
-        Speakout(voiceText);
-        SpeackOutButton(qusImgSound, voiceText);
-
-        //int imgResource = getResources().getIdentifier("ic_ammu", "drawable", getPackageName());
-        //imgGameRoateimg.setImageResource(imgResource);
+        PlaySound();
 
         String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
         imgGameRoateimg.setImageURI(Uri.parse(imgPath1));
@@ -110,12 +108,19 @@ public class GameRotate extends AppCompatActivity {
             public void onClick(View v) {
                 //imgGameRoateimg.getRotation()+"";
                 if (imgGameRoateimg.getRotation() == 0 || (imgGameRoateimg.getRotation() % 360) == 0) {
-                    Speakout("You have done it.");
+                    //Speakout("You have done it.");
                     showDialogSuccess(v.getContext(), "You have done it.");
                 } else {
-                    Speakout("Sorry fix it properly.");
+                    //Speakout("Sorry fix it properly.");
                     showDialogFail(v.getContext(), "Sorry fix it properly.");
                 }
+            }
+        });
+
+        qusImgSound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PlaySound();
             }
         });
 
@@ -144,6 +149,37 @@ public class GameRotate extends AppCompatActivity {
                 } else {
                     Log.e("TTS", "Initilization Failed!");
                 }
+            }
+        });
+    }
+
+
+    public void PlaySound() {
+        MediaPlayer mediaPlayer = new MediaPlayer();
+        try {
+
+            AssetFileDescriptor descriptor = getAssets().openFd("a_fix_en.mpeg");
+
+            if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+                descriptor = getAssets().openFd("a_fix_bn.mpeg");
+            } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+                descriptor = getAssets().openFd("a_fix_en.mpeg");
+            }
+
+            mediaPlayer.setDataSource(descriptor.getFileDescriptor(), descriptor.getStartOffset(), descriptor.getLength());
+            descriptor.close();
+
+            mediaPlayer.prepare();
+            mediaPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.stop();
+                mp.release();
             }
         });
     }

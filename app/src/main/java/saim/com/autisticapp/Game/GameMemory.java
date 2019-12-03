@@ -2,6 +2,8 @@ package saim.com.autisticapp.Game;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.AssetFileDescriptor;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +17,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -68,17 +72,11 @@ public class GameMemory extends AppCompatActivity {
     }
 
     private void actionEvent() {
-
         a = getRandomNumber(modelFamilies);
-        //Toast.makeText(this, a + "", Toast.LENGTH_LONG).show();
-        //Log.d("SAIM_LIST", a + "");
 
         String voiceText = "Where is  " + modelFamilies.get(a).name;
         txtQuestion.setText(voiceText);
-        Speakout(voiceText);
-        SpeackOutButton(qusImgSound, voiceText);
-
-
+        PlaySound();
 
 
         if ( a == 1) {
@@ -137,12 +135,12 @@ public class GameMemory extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (qusImage11.getTag().toString().equals(modelFamilies.get(a).name)) {
-                    Speakout("Right Answer");
+                    //Speakout("Right Answer");
                     String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
                     qusImage11.setImageURI(Uri.parse(imgPath1));
                     showDialogSuccess(v.getContext(), "Right Answer!");
                 } else {
-                    Speakout("Wrong Answer");
+                    //Speakout("Wrong Answer");
                     showDialogFail(v.getContext(), "Wrong Answer");
                 }
             }
@@ -152,12 +150,12 @@ public class GameMemory extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (qusImage12.getTag().toString().equals(modelFamilies.get(a).name)) {
-                    Speakout("Right Answer");
+                    //Speakout("Right Answer");
                     String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
                     qusImage12.setImageURI(Uri.parse(imgPath1));
                     showDialogSuccess(v.getContext(), "Right Answer!");
                 } else {
-                    Speakout("Wrong Answer");
+                    //Speakout("Wrong Answer");
                     showDialogFail(v.getContext(), "Wrong Answer");
                 }
             }
@@ -167,7 +165,7 @@ public class GameMemory extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (qusImage13.getTag().toString().equals(modelFamilies.get(a).name)) {
-                    Speakout("Right Answer");
+                    //Speakout("Right Answer");
                     String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
                     qusImage13.setImageURI(Uri.parse(imgPath1));
                     showDialogSuccess(v.getContext(), "Right Answer!");
@@ -182,12 +180,12 @@ public class GameMemory extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (qusImage14.getTag().toString().equals(modelFamilies.get(a).name)) {
-                    Speakout("Right Answer");
+                    //Speakout("Right Answer");
                     String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
                     qusImage14.setImageURI(Uri.parse(imgPath1));
                     showDialogSuccess(v.getContext(), "Right Answer!");
                 } else {
-                    Speakout("Wrong Answer");
+                    //Speakout("Wrong Answer");
                     showDialogFail(v.getContext(), "Wrong Answer");
                 }
             }
@@ -222,6 +220,57 @@ public class GameMemory extends AppCompatActivity {
         });
     }
 
+    public void PlaySound() {
+
+
+        MediaPlayer mediaPlayerNew = new MediaPlayer();
+        try {
+            Log.d("SAIM_LOG_FAMILY", getExternalCacheDir() + File.separator + modelFamilies.get(a).getSound());
+            mediaPlayerNew.setDataSource(getExternalCacheDir() + File.separator + modelFamilies.get(a).getSound());
+            mediaPlayerNew.prepare();
+            mediaPlayerNew.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mediaPlayerNew.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.stop();
+                mp.release();
+
+                MediaPlayer mediaPlayer = new MediaPlayer();
+                try {
+
+                    AssetFileDescriptor descriptor = getAssets().openFd("a_where_is_en.mpeg");
+
+                    if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+                        descriptor = getAssets().openFd("a_where_is_bn.mpeg");
+                    } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+                        descriptor = getAssets().openFd("a_where_is_en.mpeg");
+                    }
+
+                    mediaPlayer.setDataSource(descriptor.getFileDescriptor(), descriptor.getStartOffset(), descriptor.getLength());
+                    descriptor.close();
+
+                    mediaPlayer.prepare();
+                    mediaPlayer.start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        mp.stop();
+                        mp.release();
+                    }
+                });
+            }
+        });
+
+    }
+
     public void showDialogSuccess(final Context context, String message) {
         new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))
                 .setTitle("Congratulations")
@@ -239,7 +288,7 @@ public class GameMemory extends AppCompatActivity {
                         if (COUNTER >= modelFamilies.size()) {
                             a = 0;
                             dialog.dismiss();
-                            Speakout("You have completed the game");
+                            //Speakout("You have completed the game");
                             showDialogComplete(context, "You have completed the game");
                         } else {
                             dialog.dismiss();

@@ -2,6 +2,8 @@ package saim.com.autisticapp.Game2;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.AssetFileDescriptor;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -75,18 +78,11 @@ public class GameRotate2 extends AppCompatActivity {
     private void actionEvent() {
 
         a = getRandomNumber(modelFamilies);
-
-
         String voiceText = "Fix below image of " + modelFamilies.get(a).name;
         txtQuestion.setText(voiceText);
-        Speakout(voiceText);
-        SpeackOutButton(qusImgSound, voiceText);
 
-        //int imgResource = getResources().getIdentifier("ic_ammu", "drawable", getPackageName());
-        //imgGameRoateimg.setImageResource(imgResource);
+        PlaySound();
 
-        //String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";
-        //imgGameRoateimg.setImageURI(Uri.parse(imgPath1));
         int imgResource = getResources().getIdentifier(modelFamilies.get(a).image, "drawable", getPackageName());
         imgGameRoateimg.setImageResource(imgResource);
         imgGameRoateimg.setRotation(135);
@@ -110,12 +106,10 @@ public class GameRotate2 extends AppCompatActivity {
         imgRotateOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //imgGameRoateimg.getRotation()+"";
                 if (imgGameRoateimg.getRotation() == 0 || (imgGameRoateimg.getRotation() % 360) == 0) {
-                    Toast.makeText(v.getContext(), "Write Answer " + imgGameRoateimg.getRotation(), Toast.LENGTH_LONG).show();
                     showDialogSuccess(v.getContext(), "Right Answer!");
                 } else {
-                    Toast.makeText(v.getContext(), "Wrong Answer " + imgGameRoateimg.getRotation(), Toast.LENGTH_LONG).show();
+
                     showDialogFail(v.getContext(), "Wrong Answer");
                 }
             }
@@ -149,6 +143,43 @@ public class GameRotate2 extends AppCompatActivity {
             }
         });
     }
+
+
+    public void PlaySound() {
+
+
+        MediaPlayer mediaPlayer = new MediaPlayer();
+        try {
+
+            AssetFileDescriptor descriptor = getAssets().openFd("a_who_is_en.mpeg");
+
+            if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+                descriptor = getAssets().openFd("a_fix_bn.mpeg");
+            } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+                descriptor = getAssets().openFd("a_dix_en.mpeg");
+            }
+
+            mediaPlayer.setDataSource(descriptor.getFileDescriptor(), descriptor.getStartOffset(), descriptor.getLength());
+            descriptor.close();
+
+            mediaPlayer.prepare();
+            mediaPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.stop();
+                mp.release();
+            }
+        });
+
+
+
+    }
+
 
     public void showDialogSuccess(final Context context, String message) {
         new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))

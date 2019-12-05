@@ -223,43 +223,43 @@ public class GameMemory extends AppCompatActivity {
     public void PlaySound() {
 
 
-        MediaPlayer mediaPlayerNew = new MediaPlayer();
+        MediaPlayer mediaPlayer = new MediaPlayer();
         try {
-            Log.d("SAIM_LOG_FAMILY", getExternalCacheDir() + File.separator + modelFamilies.get(a).getSound());
-            mediaPlayerNew.setDataSource(getExternalCacheDir() + File.separator + modelFamilies.get(a).getSound());
-            mediaPlayerNew.prepare();
-            mediaPlayerNew.start();
+
+            AssetFileDescriptor descriptor = getAssets().openFd("a_where_is_en.mpeg");
+
+            if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+                descriptor = getAssets().openFd("a_where_is_bn.mpeg");
+            } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+                descriptor = getAssets().openFd("a_where_is_en.mpeg");
+            }
+
+            mediaPlayer.setDataSource(descriptor.getFileDescriptor(), descriptor.getStartOffset(), descriptor.getLength());
+            descriptor.close();
+
+            mediaPlayer.prepare();
+            mediaPlayer.start();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        mediaPlayerNew.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 mp.stop();
                 mp.release();
 
-                MediaPlayer mediaPlayer = new MediaPlayer();
+                MediaPlayer mediaPlayerNew = new MediaPlayer();
                 try {
-
-                    AssetFileDescriptor descriptor = getAssets().openFd("a_where_is_en.mpeg");
-
-                    if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
-                        descriptor = getAssets().openFd("a_where_is_bn.mpeg");
-                    } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
-                        descriptor = getAssets().openFd("a_where_is_en.mpeg");
-                    }
-
-                    mediaPlayer.setDataSource(descriptor.getFileDescriptor(), descriptor.getStartOffset(), descriptor.getLength());
-                    descriptor.close();
-
-                    mediaPlayer.prepare();
-                    mediaPlayer.start();
+                    Log.d("SAIM_LOG_FAMILY", getExternalCacheDir() + File.separator + modelFamilies.get(a).getSound());
+                    mediaPlayerNew.setDataSource(getExternalCacheDir() + File.separator + modelFamilies.get(a).getSound());
+                    mediaPlayerNew.prepare();
+                    mediaPlayerNew.start();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
-                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                mediaPlayerNew.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mp) {
                         mp.stop();
@@ -268,6 +268,8 @@ public class GameMemory extends AppCompatActivity {
                 });
             }
         });
+
+
 
     }
 

@@ -2,6 +2,7 @@ package saim.com.autisticapp.Game;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -71,18 +72,8 @@ public class GameFind extends AppCompatActivity {
     }
 
     private void actionEvent() {
-        String voiceText = "";
-        if (modelFamilies.get(COUNTER).relation.equals("OBJECT") || modelFamilies.get(COUNTER).relation.equals("OTHER")) {
-            voiceText = "Which is  " + modelFamilies.get(COUNTER).name;
-        } else {
-            voiceText = "Find  " + modelFamilies.get(COUNTER).name;
-        }
-
-        txtQuestion.setText(voiceText);
-        Speakout(voiceText, getExternalCacheDir() + File.separator + modelFamilies.get(COUNTER).getSound());
-        SpeackOutButton(qusImgSound, voiceText, getExternalCacheDir() + File.separator + modelFamilies.get(COUNTER).getSound());
-
-        //Toast.makeText(this, modelFamilies.size() + "", Toast.LENGTH_LONG).show();
+        txtQuestion.setText(modelFamilies.get(COUNTER).name);
+        PlaySound();
 
         String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(COUNTER).image + ".jpg";
         qusImage1.setImageURI(Uri.parse(imgPath1));
@@ -191,6 +182,60 @@ public class GameFind extends AppCompatActivity {
 
     }
 
+
+
+    public void PlaySound() {
+
+
+        MediaPlayer mediaPlayer = new MediaPlayer();
+        try {
+
+            AssetFileDescriptor descriptor = getAssets().openFd("a_who_is_en.mpeg");
+
+            if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+                descriptor = getAssets().openFd("a_who_is_bd.mpeg");
+            } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+                descriptor = getAssets().openFd("a_who_is_en.mpeg");
+            }
+
+            mediaPlayer.setDataSource(descriptor.getFileDescriptor(), descriptor.getStartOffset(), descriptor.getLength());
+            descriptor.close();
+
+            mediaPlayer.prepare();
+            mediaPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.stop();
+                mp.release();
+
+                MediaPlayer mediaPlayerNew = new MediaPlayer();
+                try {
+                    Log.d("SAIM_LOG_FAMILY", getExternalCacheDir() + File.separator + modelFamilies.get(COUNTER).getSound());
+                    mediaPlayerNew.setDataSource(getExternalCacheDir() + File.separator + modelFamilies.get(COUNTER).getSound());
+                    mediaPlayerNew.prepare();
+                    mediaPlayerNew.start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                mediaPlayerNew.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        mp.stop();
+                        mp.release();
+                    }
+                });
+            }
+        });
+
+
+
+    }
 
     public void showDialogSuccess(final Context context, String message) {
         new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))

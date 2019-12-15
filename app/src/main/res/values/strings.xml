@@ -16,6 +16,20 @@
         <item>OTHER</item>
     </string-array>
 
+    <string-array name="spiner_entry_bn">
+        <item>নির্বাচন করুন</item>
+        <item>FATHER</item>
+        <item>MOTHER</item>
+        <item>GRAND_FATHER</item>
+        <item>GRAND_MOTHER</item>
+        <item>BROTHER</item>
+        <item>SISTER</item>
+        <item>UNCLE</item>
+        <item>AUNTIE</item>
+        <item>OBJECT</item>
+        <item>OTHER</item>
+    </string-array>
+
 
     <string name="home_button_en_1">Parents</string>
     <string name="home_button_en_2">Expression</string>
@@ -28,6 +42,7 @@
     <string name="capture_en_1">Capture</string>
     <string name="capture_en_2">Select Image</string>
     <string name="capture_en_3">Save</string>
+    <string name="capture_en_4">Set Voice</string>
 
     <string name="album_en_1">Album</string>
 
@@ -65,6 +80,7 @@
     <string name="capture_bn_1">নিয়ন্ত্রণ কার্যপদ্ধতি</string>
     <string name="capture_bn_2">চিত্র নির্বাচন করুন</string>
     <string name="capture_bn_3">সংরক্ষণ করুন</string>
+    <string name="capture_bn_4">কথা নির্বাচন করুন</string>
 
     <string name="album_bn_1">অ্যালবাম</string>
 

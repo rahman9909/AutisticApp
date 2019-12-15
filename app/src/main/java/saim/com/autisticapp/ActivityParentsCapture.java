@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.ContextThemeWrapper;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -82,10 +83,21 @@ public class ActivityParentsCapture extends AppCompatActivity {
             txtTitle.setText(R.string.capture_bn_1);
             btnCaptureMain.setText(R.string.capture_bn_2);
             btnCaptureSave.setText(R.string.capture_bn_3);
+            btnCaptureVoice.setText(R.string.capture_bn_4);
+
+            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.spiner_entry_bn));
+            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinCaptureMain.setAdapter(spinnerArrayAdapter);
+
         } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
             txtTitle.setText(R.string.capture_en_1);
             btnCaptureMain.setText(R.string.capture_en_2);
             btnCaptureSave.setText(R.string.capture_en_3);
+            btnCaptureVoice.setText(R.string.capture_en_4);
+
+            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.spiner_entry));
+            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinCaptureMain.setAdapter(spinnerArrayAdapter);
         }
 
 

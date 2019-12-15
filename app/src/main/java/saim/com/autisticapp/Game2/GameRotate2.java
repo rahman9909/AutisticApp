@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -78,8 +77,11 @@ public class GameRotate2 extends AppCompatActivity {
     private void actionEvent() {
 
         a = getRandomNumber(modelFamilies);
-        String voiceText = "Fix below image of " + modelFamilies.get(a).name;
-        txtQuestion.setText(voiceText);
+        if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+            txtQuestion.setText(R.string.games_fix_bn);
+        } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+            txtQuestion.setText(R.string.games_fix_en);
+        }
 
         PlaySound();
 

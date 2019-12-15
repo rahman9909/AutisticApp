@@ -73,13 +73,16 @@ public class GameEye2 extends AppCompatActivity {
         a = getRandomNumber(modelFamilies);
 
 
-        String voiceText = "Whose eye is this?";// + modelFamilies.get(a).name;
-        txtQuestion.setText(voiceText);
+        String voiceText = "Whose eye is this?";
+        
+        if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+            txtQuestion.setText(R.string.games_eye_bn);
+        } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+            txtQuestion.setText(R.string.games_eye_en);
+        }
+
         Speakout(voiceText);
         SpeackOutButton(qusImgSound, voiceText);
-
-        //int imgResource = getResources().getIdentifier("ic_ammu", "drawable", getPackageName());
-        //imgGameRoateimg.setImageResource(imgResource);
 
         int imgResource = getResources().getIdentifier(modelFamilies.get(a).relation, "drawable", getPackageName());
         imgGameEye0.setImageResource(imgResource);

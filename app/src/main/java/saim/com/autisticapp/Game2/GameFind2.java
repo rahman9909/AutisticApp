@@ -16,7 +16,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -68,14 +67,15 @@ public class GameFind2 extends AppCompatActivity {
     }
 
     private void actionEvent() {
-        String voiceText = "Who is  " + modelFamilies.get(COUNTER).name;
-        txtQuestion.setText(voiceText);
-        PlaySound();
-        //Speakout(voiceText);
-        //SpeackOutButton(qusImgSound, voiceText);
 
-        //String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(COUNTER).image + ".jpg";
-        //qusImage1.setImageURI(Uri.parse(imgPath1));
+        if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+            txtQuestion.setText(modelFamilies.get(COUNTER).name + " " + R.string.games_find_bn);
+        } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+            txtQuestion.setText(R.string.games_find_en + " " + modelFamilies.get(COUNTER).name);
+        }
+
+        PlaySound();
+
         int path1 = getResources().getIdentifier(modelFamilies.get(COUNTER).image, "drawable", getPackageName());
         qusImage1.setImageResource(path1);
         qusImage1.setTag(modelFamilies.get(COUNTER).name);

@@ -72,7 +72,12 @@ public class GameFind extends AppCompatActivity {
     }
 
     private void actionEvent() {
-        txtQuestion.setText(modelFamilies.get(COUNTER).name);
+        //txtQuestion.setText(modelFamilies.get(COUNTER).name);
+        if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+            txtQuestion.setText(modelFamilies.get(COUNTER).name + " " + R.string.games_find_bn);
+        } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+            txtQuestion.setText(R.string.games_find_en + " " + modelFamilies.get(COUNTER).name);
+        }
         PlaySound();
 
         String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(COUNTER).image + ".jpg";

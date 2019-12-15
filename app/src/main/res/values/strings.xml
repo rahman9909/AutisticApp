@@ -105,6 +105,21 @@
     <string name="games_bn_5">আঁকা বাঁকা খেলা</string>
     <string name="games_bn_6">চোখের মিল</string>
 
+
+    <string name="games_fix_en">Fix below image.</string>
+    <string name="games_fix_bn">নীচের চিত্রটি ঠিক করুন</string>
+
+    <string name="games_memory_en">Where is </string>
+    <string name="games_memory_bn">কোথায়</string>
+
+    <string name="games_find_en">Who is </string>
+    <string name="games_find_bn">কোনটি</string>
+
+    <string name="games_eye_en">Whose eye is this?</string>
+    <string name="games_eye_bn">এটি কার চোখ?</string>
+
+    নীচের চিত্রটি ঠিক করুন
+
 </resources>
 
 

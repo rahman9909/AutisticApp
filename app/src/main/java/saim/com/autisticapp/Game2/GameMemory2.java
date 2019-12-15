@@ -72,8 +72,11 @@ public class GameMemory2 extends AppCompatActivity {
 
         a = getRandomNumber(modelFamilies);
 
-        String voiceText = "Where is  " + modelFamilies.get(a).name;
-        txtQuestion.setText(voiceText);
+        if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+            txtQuestion.setText(modelFamilies.get(a).name + " " + R.string.games_memory_bn);
+        } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+            txtQuestion.setText(R.string.games_memory_en + " " + modelFamilies.get(a).name);
+        }
 
         PlaySound();
 

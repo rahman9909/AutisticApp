@@ -79,8 +79,12 @@ public class GameRotate extends AppCompatActivity {
 
         a = getRandomNumber(modelFamilies);
 
-        String voiceText = "Fix below image of " + modelFamilies.get(a).name;
-        txtQuestion.setText(voiceText);
+        //String voiceText = "Fix below image of " + modelFamilies.get(a).name;
+        if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+            txtQuestion.setText(R.string.games_fix_bn);
+        } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+            txtQuestion.setText(R.string.games_fix_en);
+        }
         PlaySound();
 
         String imgPath1 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(a).image + ".jpg";

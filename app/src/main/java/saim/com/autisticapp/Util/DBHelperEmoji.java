@@ -22,6 +22,7 @@ public class DBHelperEmoji extends SQLiteOpenHelper {
     public static final String COLUMN_NAME = "NAME";
     public static final String COLUMN_RELATION = "RELATION";
     public static final String COLUMN_IMAGE = "IMAGE";
+    public static final String COLUMN_BANGLA = "BANGLA";
     private HashMap hp;
 
     public DBHelperEmoji(Context context) {
@@ -31,7 +32,7 @@ public class DBHelperEmoji extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(
-                "create table family " + "(ID integer primary key, NAME text, RELATION text, IMAGE text)"
+                "create table family " + "(ID integer primary key, NAME text, RELATION text, IMAGE text, BANGLA text)"
         );
     }
 
@@ -41,13 +42,14 @@ public class DBHelperEmoji extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertFamilyMember(String name, String relation, String image) {
+    public boolean insertFamilyMember(String name, String relation, String image, String bangla) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         Log.d("SAIM_DATABASE", name + " " + relation + " " + image);
         contentValues.put("NAME", name);
         contentValues.put("RELATION", relation);
         contentValues.put("IMAGE", image);
+        contentValues.put("BANGLA", bangla);
         db.insert("family", null, contentValues);
         return true;
     }
@@ -94,9 +96,10 @@ public class DBHelperEmoji extends SQLiteOpenHelper {
             String name = res.getString(1) + "";
             String relation = res.getString(2) + "";
             String image = res.getString(3) + "";
+            String bangla = res.getString(4) + "";
 
 
-            array_list.add(new ModelFamily(id, name, relation, image));
+            array_list.add(new ModelFamily(id, name, relation, image, bangla));
             res.moveToNext();
         }
         return array_list;

@@ -37,13 +37,13 @@ public class Splash extends AppCompatActivity {
         }
 
         if (new DBHelperEmoji(this).getAllFamilyMembers().size() == 0) {
-            new DBHelperEmoji(this).insertFamilyMember("Nutral", "ic_nutral_emoji", "ic_nutral");
-            new DBHelperEmoji(this).insertFamilyMember("Happy", "ic_happy_emoji", "ic_happy");
-            new DBHelperEmoji(this).insertFamilyMember("Sad", "ic_sad_emoji", "ic_sad");
-            new DBHelperEmoji(this).insertFamilyMember("Surprised", "ic_surprised_emoji", "ic_surprised");
-            new DBHelperEmoji(this).insertFamilyMember("Angry", "ic_angry_emoji", "ic_angry");
-            new DBHelperEmoji(this).insertFamilyMember("Disgusted", "ic_distuested_emoji", "ic_distuested");
-            new DBHelperEmoji(this).insertFamilyMember("Fear", "ic_fear_emoji", "ic_fear");
+            new DBHelperEmoji(this).insertFamilyMember("Neutral", "ic_nutral_emoji", "ic_nutral", "সাধারণ");
+            new DBHelperEmoji(this).insertFamilyMember("Happy", "ic_happy_emoji", "ic_happy", "সুখী");
+            new DBHelperEmoji(this).insertFamilyMember("Sad", "ic_sad_emoji", "ic_sad", "দু:খিত");
+            new DBHelperEmoji(this).insertFamilyMember("Surprised", "ic_surprised_emoji", "ic_surprised", "অবাক");
+            new DBHelperEmoji(this).insertFamilyMember("Angry", "ic_angry_emoji", "ic_angry", "রাগান্বিত");
+            new DBHelperEmoji(this).insertFamilyMember("Disgusted", "ic_distuested_emoji", "ic_distuested", "বিরক্ত");
+            new DBHelperEmoji(this).insertFamilyMember("Fear", "ic_fear_emoji", "ic_fear", "ভয়");
         }
 
         new Handler().postDelayed(new Runnable() {

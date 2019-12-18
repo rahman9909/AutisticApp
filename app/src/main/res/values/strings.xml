@@ -118,7 +118,13 @@
     <string name="games_eye_en">Whose eye is this?</string>
     <string name="games_eye_bn">এটি কার চোখ?</string>
 
-    নীচের চিত্রটি ঠিক করুন
+    <string name="expres_neutral">সাধারণ</string>
+    <string name="expres_happy">সুখী</string>
+    <string name="expres_sad">দু:খিত</string>
+    <string name="expres_surprised">অবাক</string>
+    <string name="expres_angry">রাগান্বিত</string>
+    <string name="expres_disgusted">বিরক্ত</string>
+    <string name="expres_fear">ভয়</string>
 
 </resources>
 

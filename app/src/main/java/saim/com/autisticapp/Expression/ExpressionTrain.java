@@ -97,18 +97,67 @@ public class ExpressionTrain extends AppCompatActivity {
             int imgResource1 = getResources().getIdentifier(modelFamilies.get(0).image, "drawable", getPackageName());
             imgGameEye1.setImageResource(imgResource1);
             imgGameEye1.setTag(modelFamilies.get(0).name);
-            txtExpression1.setText(modelFamilies.get(0).name);
+
+            //txtExpression1.setText(modelFamilies.get(0).name);
+            if (modelFamilies.get(0).name.equals("Neutral")) {
+                txtExpression1.setText(R.string.expres_neutral);
+            } else if (modelFamilies.get(0).name.equals("Happy")) {
+                txtExpression1.setText(R.string.expres_happy);
+            } else if (modelFamilies.get(0).name.equals("Sad")) {
+                txtExpression1.setText(R.string.expres_sad);
+            } else if (modelFamilies.get(0).name.equals("Surprised")) {
+                txtExpression1.setText(R.string.expres_surprised);
+            } else if (modelFamilies.get(0).name.equals("Angry")) {
+                txtExpression1.setText(R.string.expres_angry);
+            } else if (modelFamilies.get(0).name.equals("Disgusted")) {
+                txtExpression1.setText(R.string.expres_disgusted);
+            } else if (modelFamilies.get(0).name.equals("Fear")) {
+                txtExpression1.setText(R.string.expres_fear);
+            }
+
         } else {
             int imgResource2 = getResources().getIdentifier(modelFamilies.get(a+1).image, "drawable", getPackageName());
             imgGameEye1.setImageResource(imgResource2);
             imgGameEye1.setTag(modelFamilies.get(a+1).name);
-            txtExpression1.setText(modelFamilies.get(a+1).name);
+
+            //txtExpression1.setText(modelFamilies.get(a+1).name);
+            if (modelFamilies.get(a + 1).name.equals("Neutral")) {
+                txtExpression1.setText(R.string.expres_neutral);
+            } else if (modelFamilies.get(a + 1).name.equals("Happy")) {
+                txtExpression1.setText(R.string.expres_happy);
+            } else if (modelFamilies.get(a + 1).name.equals("Sad")) {
+                txtExpression1.setText(R.string.expres_sad);
+            } else if (modelFamilies.get(a + 1).name.equals("Surprised")) {
+                txtExpression1.setText(R.string.expres_surprised);
+            } else if (modelFamilies.get(a + 1).name.equals("Angry")) {
+                txtExpression1.setText(R.string.expres_angry);
+            } else if (modelFamilies.get(a + 1).name.equals("Disgusted")) {
+                txtExpression1.setText(R.string.expres_disgusted);
+            } else if (modelFamilies.get(a + 1).name.equals("Fear")) {
+                txtExpression1.setText(R.string.expres_fear);
+            }
         }
 
         int imgResource3 = getResources().getIdentifier(modelFamilies.get(a).image, "drawable", getPackageName());
         imgGameEye2.setImageResource(imgResource3);
         imgGameEye2.setTag(modelFamilies.get(a).name);
-        txtExpression2.setText(modelFamilies.get(a).name);
+
+        //txtExpression2.setText(modelFamilies.get(a).name);
+        if (modelFamilies.get(a).name.equals("Neutral")) {
+            txtExpression2.setText(R.string.expres_neutral);
+        } else if (modelFamilies.get(a).name.equals("Happy")) {
+            txtExpression2.setText(R.string.expres_happy);
+        } else if (modelFamilies.get(a).name.equals("Sad")) {
+            txtExpression2.setText(R.string.expres_sad);
+        } else if (modelFamilies.get(a).name.equals("Surprised")) {
+            txtExpression2.setText(R.string.expres_surprised);
+        } else if (modelFamilies.get(a).name.equals("Angry")) {
+            txtExpression2.setText(R.string.expres_angry);
+        } else if (modelFamilies.get(a).name.equals("Disgusted")) {
+            txtExpression2.setText(R.string.expres_disgusted);
+        } else if (modelFamilies.get(a).name.equals("Fear")) {
+            txtExpression2.setText(R.string.expres_fear);
+        }
 
         imgGameEye1.setOnClickListener(new View.OnClickListener() {
             @Override

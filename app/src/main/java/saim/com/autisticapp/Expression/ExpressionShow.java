@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import saim.com.autisticapp.Adapter.AdapterTraining2;
+import saim.com.autisticapp.Adapter.AdapterTraining3;
 import saim.com.autisticapp.Model.ModelFamily;
 import saim.com.autisticapp.R;
 import saim.com.autisticapp.Util.DBHelperEmoji;
@@ -54,7 +54,7 @@ public class ExpressionShow extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
 
-        recyclerViewAdapterFamily = new AdapterTraining2(arrayListFamily);
+        recyclerViewAdapterFamily = new AdapterTraining3(arrayListFamily);
         recyclerView.setAdapter(recyclerViewAdapterFamily);
 
     }

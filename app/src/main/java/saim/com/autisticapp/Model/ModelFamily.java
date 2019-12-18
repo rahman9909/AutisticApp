@@ -1,7 +1,7 @@
 package saim.com.autisticapp.Model;
 
 public class ModelFamily {
-    public String id, name, relation, image, sound;
+    public String id, name, relation, image, sound, bangla;
 
     public ModelFamily(String id, String name, String relation, String image) {
         this.id = id;
@@ -16,6 +16,15 @@ public class ModelFamily {
         this.relation = relation;
         this.image = image;
         this.sound = sound;
+    }
+
+    public ModelFamily(String id, String name, String relation, String image, String sound, String bangla) {
+        this.id = id;
+        this.name = name;
+        this.relation = relation;
+        this.image = image;
+        this.sound = sound;
+        this.bangla = bangla;
     }
 
     public String getId() {
@@ -57,5 +66,13 @@ public class ModelFamily {
 
     public void setSound(String sound) {
         this.sound = sound;
+    }
+
+    public String getBangla() {
+        return bangla;
+    }
+
+    public void setBangla(String bangla) {
+        this.bangla = bangla;
     }
 }

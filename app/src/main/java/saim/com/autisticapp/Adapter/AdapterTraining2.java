@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +20,7 @@ import java.util.Locale;
 
 import saim.com.autisticapp.Model.ModelFamily;
 import saim.com.autisticapp.R;
+import saim.com.autisticapp.Util.SharedPrefDatabase;
 
 public class AdapterTraining2 extends RecyclerView.Adapter<AdapterTraining2.TrainingViewHolder> {
 
@@ -49,9 +49,32 @@ public class AdapterTraining2 extends RecyclerView.Adapter<AdapterTraining2.Trai
     @Override
     public void onBindViewHolder(@NonNull TrainingViewHolder holder, int position) {
 
-        holder.listTextName.setText(adapterList.get(position).name);
-        holder.listTextName.setHint(adapterList.get(position).id);
-        holder.listTextRelation.setText("");
+
+        if (new SharedPrefDatabase(holder.listImage.getContext()).RetriveLanguage().equals("BN")) {
+
+            if (adapterList.get(position).name.equals("Neutral")) {
+                holder.listTextName.setText(R.string.expres_neutral);
+            } else if (adapterList.get(position).name.equals("Happy")) {
+                holder.listTextName.setText(R.string.expres_happy);
+            } else if (adapterList.get(position).name.equals("Sad")) {
+                holder.listTextName.setText(R.string.expres_sad);
+            } else if (adapterList.get(position).name.equals("Surprised")) {
+                holder.listTextName.setText(R.string.expres_surprised);
+            } else if (adapterList.get(position).name.equals("Angry")) {
+                holder.listTextName.setText(R.string.expres_angry);
+            } else if (adapterList.get(position).name.equals("Disgusted")) {
+                holder.listTextName.setText(R.string.expres_disgusted);
+            } else if (adapterList.get(position).name.equals("Fear")) {
+                holder.listTextName.setText(R.string.expres_fear);
+            }
+            holder.listTextName.setHint(adapterList.get(position).id);
+            holder.listTextRelation.setText("");
+        } else if (new SharedPrefDatabase(holder.listImage.getContext()).RetriveLanguage().equals("EN")) {
+            holder.listTextName.setText(adapterList.get(position).name);
+            holder.listTextName.setHint(adapterList.get(position).id);
+            holder.listTextRelation.setText("");
+        }
+
 
         //String path = mContext.getExternalCacheDir().getPath() + adapterList.get(position).image;
         int path2 = holder.listImage.getContext().getResources().getIdentifier(adapterList.get(position).image, "drawable", holder.listImage.getContext().getPackageName());

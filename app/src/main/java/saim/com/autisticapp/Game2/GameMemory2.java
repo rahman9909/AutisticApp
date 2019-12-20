@@ -73,9 +73,9 @@ public class GameMemory2 extends AppCompatActivity {
         a = getRandomNumber(modelFamilies);
 
         if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
-            txtQuestion.setText(modelFamilies.get(a).name + " " + R.string.games_memory_bn);
+            txtQuestion.setText(modelFamilies.get(a).name + " " + getResources().getString(R.string.games_memory_bn));
         } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
-            txtQuestion.setText(R.string.games_memory_en + " " + modelFamilies.get(a).name);
+            txtQuestion.setText(getResources().getString(R.string.games_memory_en) + " " + modelFamilies.get(a).name);
         }
 
         PlaySound();
@@ -145,15 +145,12 @@ public class GameMemory2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (qusImage11.getTag().toString().equals(modelFamilies.get(a).name)) {
-                    //Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
-                    Speakout("Write Answer");
                     int path2 = getResources().getIdentifier(modelFamilies.get(a).image, "drawable", getPackageName());
                     qusImage11.setImageResource(path2);
-                    showDialogSuccess(v.getContext(), "Right Answer!");
+                    playRightAnswerSound();
+
                 } else {
-                    //Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
-                    Speakout("Wrong Answer");
-                    showDialogFail(v.getContext(), "Wrong Answer");
+                    playWrongAnswerSound();
                 }
             }
         });
@@ -162,15 +159,11 @@ public class GameMemory2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (qusImage12.getTag().toString().equals(modelFamilies.get(a).name)) {
-                    //Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
-                    Speakout("Write Answer");
                     int path2 = getResources().getIdentifier(modelFamilies.get(a).image, "drawable", getPackageName());
                     qusImage12.setImageResource(path2);
-                    showDialogSuccess(v.getContext(), "Right Answer!");
+                    playRightAnswerSound();
                 } else {
-                    //Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
-                    Speakout("Wrong Answer");
-                    showDialogFail(v.getContext(), "Wrong Answer");
+                    playWrongAnswerSound();
                 }
             }
         });
@@ -179,15 +172,11 @@ public class GameMemory2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (qusImage13.getTag().toString().equals(modelFamilies.get(a).name)) {
-                    //Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
-                    Speakout("Write Answer");
                     int path2 = getResources().getIdentifier(modelFamilies.get(a).image, "drawable", getPackageName());
                     qusImage13.setImageResource(path2);
-                    showDialogSuccess(v.getContext(), "Right Answer!");
+                    playRightAnswerSound();
                 } else {
-                    //Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
-                    Speakout("Wrong Answer");
-                    showDialogFail(v.getContext(), "Wrong Answer");
+                    playWrongAnswerSound();
                 }
             }
         });
@@ -196,15 +185,11 @@ public class GameMemory2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (qusImage14.getTag().toString().equals(modelFamilies.get(a).name)) {
-                    //Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
-                    Speakout("Write Answer");
                     int path2 = getResources().getIdentifier(modelFamilies.get(a).image, "drawable", getPackageName());
                     qusImage14.setImageResource(path2);
-                    showDialogSuccess(v.getContext(), "Right Answer!");
+                    playRightAnswerSound();
                 } else {
-                    //Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
-                    Speakout("Wrong Answer");
-                    showDialogFail(v.getContext(), "Wrong Answer");
+                    playWrongAnswerSound();
                 }
             }
         });
@@ -212,35 +197,26 @@ public class GameMemory2 extends AppCompatActivity {
     }
 
 
-    private void SpeackOutButton(ImageView speakImage, final String s) {
-        speakImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Speakout(s);
-            }
-        });
+    public void playRightAnswerSound() {
+        if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+            actionEventSound(getApplicationContext(), "right_ans_bn.mp3");
+            showDialogSuccess(getApplicationContext(), getResources().getString(R.string.ans_comments_bn),getResources().getString(R.string.ans_right_bn));
+        } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+            actionEventSound(getApplicationContext(), "right_ans_en.mp3");
+            showDialogSuccess(getApplicationContext(), getResources().getString(R.string.ans_comments_en),getResources().getString(R.string.ans_right_en));
+        }
     }
-
-    public void Speakout(final String stringVoice) {
-        textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if (status == TextToSpeech.SUCCESS) {
-                    int result = textToSpeech.setLanguage(Locale.US);
-                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                    } else {
-                        textToSpeech.speak(stringVoice, TextToSpeech.QUEUE_FLUSH, null);
-                    }
-                } else {
-                    Log.e("TTS", "Initilization Failed!");
-                }
-            }
-        });
+    public void playWrongAnswerSound() {
+        if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+            actionEventSound(getApplicationContext(), "wrong_ans_bn.mp3");
+            showDialogSuccess(getApplicationContext(), getResources().getString(R.string.ans_comments_bn),getResources().getString(R.string.ans_wrong_bn));
+        } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+            actionEventSound(getApplicationContext(), "wrong_ans_en.mp3");
+            showDialogSuccess(getApplicationContext(), getResources().getString(R.string.ans_comments_en),getResources().getString(R.string.ans_wrong_en));
+        }
     }
 
     public void PlaySound() {
-
-
         MediaPlayer mediaPlayer = new MediaPlayer();
         try {
 
@@ -294,10 +270,34 @@ public class GameMemory2 extends AppCompatActivity {
 
     }
 
+    private void actionEventSound(Context context,  final String Sound_s ) {
 
-    public void showDialogSuccess(final Context context, String message) {
+        MediaPlayer mediaPlayer = new MediaPlayer();
+        try {
+            AssetFileDescriptor descriptor = context.getAssets().openFd(Sound_s);
+            mediaPlayer.setDataSource(descriptor.getFileDescriptor(), descriptor.getStartOffset(), descriptor.getLength());
+            descriptor.close();
+
+            mediaPlayer.prepare();
+            mediaPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.stop();
+                mp.release();
+            }
+        });
+
+    }
+
+
+    public void showDialogSuccess(final Context context, final String title, String message) {
         new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))
-                .setTitle("Congratulations")
+                .setTitle(title)
                 .setMessage(message)
                 .setCancelable(false)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -313,8 +313,11 @@ public class GameMemory2 extends AppCompatActivity {
                         if (COUNTER >= modelFamilies.size()) {
                             a = 0;
                             dialog.dismiss();
-                            Speakout("You have completed the game");
-                            showDialogComplete(context, "You have completed the game");
+                            if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+                                showDialogComplete(context, title, getResources().getString(R.string.game_complete_bn));
+                            } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+                                showDialogComplete(context, title, getResources().getString(R.string.game_complete_en));
+                            }
                         } else {
                             dialog.dismiss();
                             actionEvent();
@@ -326,9 +329,9 @@ public class GameMemory2 extends AppCompatActivity {
     }
 
 
-    public void showDialogFail(Context context, String message) {
+    public void showDialogFail(Context context, String title, String message) {
         new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))
-                .setTitle("Sorry")
+                .setTitle(title)
                 .setMessage(message)
                 .setCancelable(false)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -341,9 +344,9 @@ public class GameMemory2 extends AppCompatActivity {
     }
 
 
-    public void showDialogComplete(Context context, String message) {
+    public void showDialogComplete(Context context, String title, String message) {
         new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))
-                .setTitle("Complete")
+                .setTitle(title)
                 .setMessage(message)
                 .setCancelable(false)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {

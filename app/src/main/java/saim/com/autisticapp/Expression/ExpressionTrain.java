@@ -2,6 +2,8 @@ package saim.com.autisticapp.Expression;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.AssetFileDescriptor;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -64,28 +67,35 @@ public class ExpressionTrain extends AppCompatActivity {
             txtTitle.setText(R.string.train_expression_en_1);
         }
 
+        qusImgSound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+                    actionEventSound(getApplicationContext(), "qus_expression_bn.mpeg");
+
+                } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+                    actionEventSound(getApplicationContext(), "qus_expression_en.mpeg");
+                }
+            }
+        });
+
         actionEvent();
     }
 
     private void actionEvent() {
 
         a = getRandomNumber(modelFamilies);
-
-
-        //String voiceText = "What expression is this?";
         String voiceText = "";
         if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
             voiceText = getResources().getString(R.string.train_expression_bn_2);
+            actionEventSound(getApplicationContext(), "qus_expression_bn.mpeg");
+
         } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
             voiceText = getResources().getString(R.string.train_expression_en_2);
+            actionEventSound(getApplicationContext(), "qus_expression_en.mpeg");
         }
 
         txtQuestion.setText(voiceText);
-        Speakout(voiceText);
-        SpeackOutButton(qusImgSound, voiceText);
-
-        //int imgResource = getResources().getIdentifier("ic_ammu", "drawable", getPackageName());
-        //imgGameRoateimg.setImageResource(imgResource);
 
         int imgResource = getResources().getIdentifier(modelFamilies.get(a).relation, "drawable", getPackageName());
         imgGameEye0.setImageResource(imgResource);
@@ -98,21 +108,25 @@ public class ExpressionTrain extends AppCompatActivity {
             imgGameEye1.setImageResource(imgResource1);
             imgGameEye1.setTag(modelFamilies.get(0).name);
 
-            //txtExpression1.setText(modelFamilies.get(0).name);
-            if (modelFamilies.get(0).name.equals("Neutral")) {
-                txtExpression1.setText(R.string.expres_neutral);
-            } else if (modelFamilies.get(0).name.equals("Happy")) {
-                txtExpression1.setText(R.string.expres_happy);
-            } else if (modelFamilies.get(0).name.equals("Sad")) {
-                txtExpression1.setText(R.string.expres_sad);
-            } else if (modelFamilies.get(0).name.equals("Surprised")) {
-                txtExpression1.setText(R.string.expres_surprised);
-            } else if (modelFamilies.get(0).name.equals("Angry")) {
-                txtExpression1.setText(R.string.expres_angry);
-            } else if (modelFamilies.get(0).name.equals("Disgusted")) {
-                txtExpression1.setText(R.string.expres_disgusted);
-            } else if (modelFamilies.get(0).name.equals("Fear")) {
-                txtExpression1.setText(R.string.expres_fear);
+
+            if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+                if (modelFamilies.get(0).name.equals("Neutral")) {
+                    txtExpression1.setText(R.string.expres_neutral);
+                } else if (modelFamilies.get(0).name.equals("Happy")) {
+                    txtExpression1.setText(R.string.expres_happy);
+                } else if (modelFamilies.get(0).name.equals("Sad")) {
+                    txtExpression1.setText(R.string.expres_sad);
+                } else if (modelFamilies.get(0).name.equals("Surprised")) {
+                    txtExpression1.setText(R.string.expres_surprised);
+                } else if (modelFamilies.get(0).name.equals("Angry")) {
+                    txtExpression1.setText(R.string.expres_angry);
+                } else if (modelFamilies.get(0).name.equals("Disgusted")) {
+                    txtExpression1.setText(R.string.expres_disgusted);
+                } else if (modelFamilies.get(0).name.equals("Fear")) {
+                    txtExpression1.setText(R.string.expres_fear);
+                }
+            } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+                txtExpression1.setText(modelFamilies.get(0).name);
             }
 
         } else {
@@ -121,20 +135,24 @@ public class ExpressionTrain extends AppCompatActivity {
             imgGameEye1.setTag(modelFamilies.get(a+1).name);
 
             //txtExpression1.setText(modelFamilies.get(a+1).name);
-            if (modelFamilies.get(a + 1).name.equals("Neutral")) {
-                txtExpression1.setText(R.string.expres_neutral);
-            } else if (modelFamilies.get(a + 1).name.equals("Happy")) {
-                txtExpression1.setText(R.string.expres_happy);
-            } else if (modelFamilies.get(a + 1).name.equals("Sad")) {
-                txtExpression1.setText(R.string.expres_sad);
-            } else if (modelFamilies.get(a + 1).name.equals("Surprised")) {
-                txtExpression1.setText(R.string.expres_surprised);
-            } else if (modelFamilies.get(a + 1).name.equals("Angry")) {
-                txtExpression1.setText(R.string.expres_angry);
-            } else if (modelFamilies.get(a + 1).name.equals("Disgusted")) {
-                txtExpression1.setText(R.string.expres_disgusted);
-            } else if (modelFamilies.get(a + 1).name.equals("Fear")) {
-                txtExpression1.setText(R.string.expres_fear);
+            if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+                if (modelFamilies.get(a + 1).name.equals("Neutral")) {
+                    txtExpression1.setText(R.string.expres_neutral);
+                } else if (modelFamilies.get(a + 1).name.equals("Happy")) {
+                    txtExpression1.setText(R.string.expres_happy);
+                } else if (modelFamilies.get(a + 1).name.equals("Sad")) {
+                    txtExpression1.setText(R.string.expres_sad);
+                } else if (modelFamilies.get(a + 1).name.equals("Surprised")) {
+                    txtExpression1.setText(R.string.expres_surprised);
+                } else if (modelFamilies.get(a + 1).name.equals("Angry")) {
+                    txtExpression1.setText(R.string.expres_angry);
+                } else if (modelFamilies.get(a + 1).name.equals("Disgusted")) {
+                    txtExpression1.setText(R.string.expres_disgusted);
+                } else if (modelFamilies.get(a + 1).name.equals("Fear")) {
+                    txtExpression1.setText(R.string.expres_fear);
+                }
+            } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+                txtExpression1.setText(modelFamilies.get(a + 1).name);
             }
         }
 
@@ -142,32 +160,45 @@ public class ExpressionTrain extends AppCompatActivity {
         imgGameEye2.setImageResource(imgResource3);
         imgGameEye2.setTag(modelFamilies.get(a).name);
 
-        //txtExpression2.setText(modelFamilies.get(a).name);
-        if (modelFamilies.get(a).name.equals("Neutral")) {
-            txtExpression2.setText(R.string.expres_neutral);
-        } else if (modelFamilies.get(a).name.equals("Happy")) {
-            txtExpression2.setText(R.string.expres_happy);
-        } else if (modelFamilies.get(a).name.equals("Sad")) {
-            txtExpression2.setText(R.string.expres_sad);
-        } else if (modelFamilies.get(a).name.equals("Surprised")) {
-            txtExpression2.setText(R.string.expres_surprised);
-        } else if (modelFamilies.get(a).name.equals("Angry")) {
-            txtExpression2.setText(R.string.expres_angry);
-        } else if (modelFamilies.get(a).name.equals("Disgusted")) {
-            txtExpression2.setText(R.string.expres_disgusted);
-        } else if (modelFamilies.get(a).name.equals("Fear")) {
-            txtExpression2.setText(R.string.expres_fear);
+        if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+            if (modelFamilies.get(a).name.equals("Neutral")) {
+                txtExpression2.setText(R.string.expres_neutral);
+            } else if (modelFamilies.get(a).name.equals("Happy")) {
+                txtExpression2.setText(R.string.expres_happy);
+            } else if (modelFamilies.get(a).name.equals("Sad")) {
+                txtExpression2.setText(R.string.expres_sad);
+            } else if (modelFamilies.get(a).name.equals("Surprised")) {
+                txtExpression2.setText(R.string.expres_surprised);
+            } else if (modelFamilies.get(a).name.equals("Angry")) {
+                txtExpression2.setText(R.string.expres_angry);
+            } else if (modelFamilies.get(a).name.equals("Disgusted")) {
+                txtExpression2.setText(R.string.expres_disgusted);
+            } else if (modelFamilies.get(a).name.equals("Fear")) {
+                txtExpression2.setText(R.string.expres_fear);
+            }
+        } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+            txtExpression2.setText(modelFamilies.get(a).name);
         }
 
         imgGameEye1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (imgGameEye1.getTag().toString().equals(modelFamilies.get(a).name)) {
-                    Speakout("Right Answer!");
-                    showDialogSuccess(v.getContext(), "Right Answer!");
+                    if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+                        actionEventSound(getApplicationContext(), "right_ans_bn.mp3");
+                        showDialogSuccess(v.getContext(), getResources().getString(R.string.ans_comments_bn),getResources().getString(R.string.ans_right_bn));
+                    } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+                        actionEventSound(getApplicationContext(), "right_ans_en.mp3");
+                        showDialogSuccess(v.getContext(), getResources().getString(R.string.ans_comments_en),getResources().getString(R.string.ans_right_en));
+                    }
                 } else {
-                    Speakout("Wrong Answer!");
-                    showDialogFail(v.getContext(), "Wrong Answer");
+                    if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+                        actionEventSound(getApplicationContext(), "wrong_ans_bn.mp3");
+                        showDialogSuccess(v.getContext(), getResources().getString(R.string.ans_comments_bn),getResources().getString(R.string.ans_wrong_bn));
+                    } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+                        actionEventSound(getApplicationContext(), "wrong_ans_en.mp3");
+                        showDialogSuccess(v.getContext(), getResources().getString(R.string.ans_comments_en),getResources().getString(R.string.ans_wrong_en));
+                    }
                 }
             }
         });
@@ -176,11 +207,21 @@ public class ExpressionTrain extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (imgGameEye2.getTag().toString().equals(modelFamilies.get(a).name)) {
-                    Speakout("Right Answer!");
-                    showDialogSuccess(v.getContext(), "Right Answer!");
+                    if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+                        actionEventSound(getApplicationContext(), "right_ans_bn.mp3");
+                        showDialogSuccess(v.getContext(), getResources().getString(R.string.ans_comments_bn),getResources().getString(R.string.ans_right_bn));
+                    } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+                        actionEventSound(getApplicationContext(), "right_ans_en.mp3");
+                        showDialogSuccess(v.getContext(), getResources().getString(R.string.ans_comments_en),getResources().getString(R.string.ans_right_en));
+                    }
                 } else {
-                    Speakout("Wrong Answer!");
-                    showDialogFail(v.getContext(), "Wrong Answer");
+                    if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+                        actionEventSound(getApplicationContext(), "wrong_ans_bn.mp3");
+                        showDialogSuccess(v.getContext(), getResources().getString(R.string.ans_comments_bn),getResources().getString(R.string.ans_wrong_bn));
+                    } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+                        actionEventSound(getApplicationContext(), "wrong_ans_en.mp3");
+                        showDialogSuccess(v.getContext(), getResources().getString(R.string.ans_comments_en),getResources().getString(R.string.ans_wrong_en));
+                    }
                 }
             }
         });
@@ -214,9 +255,34 @@ public class ExpressionTrain extends AppCompatActivity {
         });
     }
 
-    public void showDialogSuccess(final Context context, String message) {
+
+    private void actionEventSound(Context context,  final String Sound_s ) {
+
+        MediaPlayer mediaPlayer = new MediaPlayer();
+        try {
+            AssetFileDescriptor descriptor = context.getAssets().openFd(Sound_s);
+            mediaPlayer.setDataSource(descriptor.getFileDescriptor(), descriptor.getStartOffset(), descriptor.getLength());
+            descriptor.close();
+
+            mediaPlayer.prepare();
+            mediaPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.stop();
+                mp.release();
+            }
+        });
+
+    }
+
+    public void showDialogSuccess(final Context context, final String title, String message) {
         new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))
-                .setTitle("Congratulations")
+                .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -227,7 +293,12 @@ public class ExpressionTrain extends AppCompatActivity {
                         if (COUNTER >= modelFamilies.size()) {
                             COUNTER = 0;
                             dialog.dismiss();
-                            showDialogComplete(context, "You have completed the game");
+
+                            if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+                                showDialogComplete(context, title, getResources().getString(R.string.game_complete_bn));
+                            } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+                                showDialogComplete(context, title, getResources().getString(R.string.game_complete_en));
+                            }
                         } else {
                             dialog.dismiss();
                             actionEvent();
@@ -239,9 +310,9 @@ public class ExpressionTrain extends AppCompatActivity {
     }
 
 
-    public void showDialogFail(Context context, String message) {
+    public void showDialogFail(Context context, String title, String message) {
         new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))
-                .setTitle("Sorry")
+                .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -253,9 +324,9 @@ public class ExpressionTrain extends AppCompatActivity {
     }
 
 
-    public void showDialogComplete(Context context, String message) {
+    public void showDialogComplete(Context context, String title, String message) {
         new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))
-                .setTitle("Complete")
+                .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -278,6 +349,8 @@ public class ExpressionTrain extends AppCompatActivity {
         }*/
         return randomInt;
     }
+
+
 
 
 

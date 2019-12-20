@@ -52,21 +52,7 @@ public class AdapterTraining2 extends RecyclerView.Adapter<AdapterTraining2.Trai
 
         if (new SharedPrefDatabase(holder.listImage.getContext()).RetriveLanguage().equals("BN")) {
 
-            if (adapterList.get(position).name.equals("Neutral")) {
-                holder.listTextName.setText(R.string.expres_neutral);
-            } else if (adapterList.get(position).name.equals("Happy")) {
-                holder.listTextName.setText(R.string.expres_happy);
-            } else if (adapterList.get(position).name.equals("Sad")) {
-                holder.listTextName.setText(R.string.expres_sad);
-            } else if (adapterList.get(position).name.equals("Surprised")) {
-                holder.listTextName.setText(R.string.expres_surprised);
-            } else if (adapterList.get(position).name.equals("Angry")) {
-                holder.listTextName.setText(R.string.expres_angry);
-            } else if (adapterList.get(position).name.equals("Disgusted")) {
-                holder.listTextName.setText(R.string.expres_disgusted);
-            } else if (adapterList.get(position).name.equals("Fear")) {
-                holder.listTextName.setText(R.string.expres_fear);
-            }
+            holder.listTextName.setText(adapterList.get(position).name);
             holder.listTextName.setHint(adapterList.get(position).id);
             holder.listTextRelation.setText("");
         } else if (new SharedPrefDatabase(holder.listImage.getContext()).RetriveLanguage().equals("EN")) {

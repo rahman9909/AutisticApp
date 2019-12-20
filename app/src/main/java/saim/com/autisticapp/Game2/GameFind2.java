@@ -69,9 +69,11 @@ public class GameFind2 extends AppCompatActivity {
     private void actionEvent() {
 
         if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
-            txtQuestion.setText(modelFamilies.get(COUNTER).name + " " + R.string.games_find_bn);
+            String questionText = modelFamilies.get(COUNTER).name + " " + getResources().getString(R.string.games_find_bn);
+            txtQuestion.setText(questionText);
         } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
-            txtQuestion.setText(R.string.games_find_en + " " + modelFamilies.get(COUNTER).name);
+            String questionText = getResources().getString(R.string.games_find_en) + " " + modelFamilies.get(COUNTER).name;
+            txtQuestion.setText(questionText);
         }
 
         PlaySound();
@@ -82,14 +84,10 @@ public class GameFind2 extends AppCompatActivity {
 
 
         if (COUNTER + 1 >= modelFamilies.size()) {
-            //String imgPath2 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(0).image + ".jpg";
-            //qusImage2.setImageURI(Uri.parse(imgPath2));
             int path2 = getResources().getIdentifier(modelFamilies.get(0).image, "drawable", getPackageName());
             qusImage2.setImageResource(path2);
             qusImage2.setTag(modelFamilies.get(0).name);
         } else {
-            //String imgPath2 = getExternalCacheDir().getPath() + "/" + modelFamilies.get(COUNTER + 1).image + ".jpg";
-            //qusImage2.setImageURI(Uri.parse(imgPath2));
             int path2 = getResources().getIdentifier(modelFamilies.get(COUNTER + 1).image, "drawable", getPackageName());
             qusImage2.setImageResource(path2);
             qusImage2.setTag(modelFamilies.get(COUNTER + 1).name);
@@ -100,10 +98,8 @@ public class GameFind2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (qusImage1.getTag().toString().equals(modelFamilies.get(COUNTER).name)) {
-                    Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
                     showDialogSuccess(v.getContext(), "Right Answer!");
                 } else {
-                    Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
                     showDialogFail(v.getContext(), "Wrong Answer");
                 }
             }
@@ -113,10 +109,8 @@ public class GameFind2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (qusImage2.getTag().toString().equals(modelFamilies.get(COUNTER).name)) {
-                    Toast.makeText(v.getContext(), "Write Answer", Toast.LENGTH_LONG).show();
                     showDialogSuccess(v.getContext(), "Right Answer!");
                 } else {
-                    Toast.makeText(v.getContext(), "Wrong Answer", Toast.LENGTH_LONG).show();
                     showDialogFail(v.getContext(), "Wrong Answer");
                 }
             }

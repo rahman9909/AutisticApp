@@ -126,6 +126,18 @@
     <string name="expres_disgusted">বিরক্ত</string>
     <string name="expres_fear">ভয়</string>
 
+
+    <string name="ans_comments_en">Comments</string>
+    <string name="ans_comments_bn">মন্তব্য</string>
+    <string name="ans_right_en">Right answer.</string>
+    <string name="ans_right_bn">উত্তরটি সঠিক হয়েছে</string>
+    <string name="ans_wrong_en">wrong answer.</string>
+    <string name="ans_wrong_bn">উত্তরটি ভুল হয়েছে</string>
+
+
+    <string name="game_complete_en">You have completed the game.</string>
+    <string name="game_complete_bn">আপনি খেলাটি শেষ করেছেন</string>
+
 </resources>
 
 

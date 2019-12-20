@@ -71,6 +71,14 @@ public class GameRotate2 extends AppCompatActivity {
             txtTitle.setText(R.string.games_en_5);
         }
 
+
+        qusImgSound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PlaySound();
+            }
+        });
+
         actionEvent();
     }
 
@@ -109,10 +117,9 @@ public class GameRotate2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (imgGameRoateimg.getRotation() == 0 || (imgGameRoateimg.getRotation() % 360) == 0) {
-                    showDialogSuccess(v.getContext(), "Right Answer!");
+                    playRightAnswerSound();
                 } else {
-
-                    showDialogFail(v.getContext(), "Wrong Answer");
+                    playWrongAnswerSound();
                 }
             }
         });
@@ -120,36 +127,27 @@ public class GameRotate2 extends AppCompatActivity {
     }
 
 
-    private void SpeackOutButton(ImageView speakImage, final String s) {
-        speakImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Speakout(s);
-            }
-        });
+    public void playRightAnswerSound() {
+        if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+            actionEventSound(getApplicationContext(), "right_ans_bn.mp3");
+            showDialogSuccess(getApplicationContext(), getResources().getString(R.string.ans_comments_bn),getResources().getString(R.string.ans_right_bn));
+        } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+            actionEventSound(getApplicationContext(), "right_ans_en.mp3");
+            showDialogSuccess(getApplicationContext(), getResources().getString(R.string.ans_comments_en),getResources().getString(R.string.ans_right_en));
+        }
     }
-
-    public void Speakout(final String stringVoice) {
-        textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if (status == TextToSpeech.SUCCESS) {
-                    int result = textToSpeech.setLanguage(Locale.US);
-                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                    } else {
-                        textToSpeech.speak(stringVoice, TextToSpeech.QUEUE_FLUSH, null);
-                    }
-                } else {
-                    Log.e("TTS", "Initilization Failed!");
-                }
-            }
-        });
+    public void playWrongAnswerSound() {
+        if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+            actionEventSound(getApplicationContext(), "wrong_ans_bn.mp3");
+            showDialogSuccess(getApplicationContext(), getResources().getString(R.string.ans_comments_bn),getResources().getString(R.string.ans_wrong_bn));
+        } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+            actionEventSound(getApplicationContext(), "wrong_ans_en.mp3");
+            showDialogSuccess(getApplicationContext(), getResources().getString(R.string.ans_comments_en),getResources().getString(R.string.ans_wrong_en));
+        }
     }
 
 
     public void PlaySound() {
-
-
         MediaPlayer mediaPlayer = new MediaPlayer();
         try {
 
@@ -158,7 +156,7 @@ public class GameRotate2 extends AppCompatActivity {
             if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
                 descriptor = getAssets().openFd("a_fix_bn.mpeg");
             } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
-                descriptor = getAssets().openFd("a_dix_en.mpeg");
+                descriptor = getAssets().openFd("a_fix_en.mpeg");
             }
 
             mediaPlayer.setDataSource(descriptor.getFileDescriptor(), descriptor.getStartOffset(), descriptor.getLength());
@@ -177,15 +175,36 @@ public class GameRotate2 extends AppCompatActivity {
                 mp.release();
             }
         });
+    }
 
+    private void actionEventSound(Context context,  final String Sound_s ) {
 
+        MediaPlayer mediaPlayer = new MediaPlayer();
+        try {
+            AssetFileDescriptor descriptor = context.getAssets().openFd(Sound_s);
+            mediaPlayer.setDataSource(descriptor.getFileDescriptor(), descriptor.getStartOffset(), descriptor.getLength());
+            descriptor.close();
+
+            mediaPlayer.prepare();
+            mediaPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.stop();
+                mp.release();
+            }
+        });
 
     }
 
 
-    public void showDialogSuccess(final Context context, String message) {
+    public void showDialogSuccess(final Context context, final String title, String message) {
         new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))
-                .setTitle("Congratulations")
+                .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -196,7 +215,11 @@ public class GameRotate2 extends AppCompatActivity {
                         if (COUNTER >= modelFamilies.size()) {
                             COUNTER = 0;
                             dialog.dismiss();
-                            showDialogComplete(context, "You have completed the game");
+                            if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
+                                showDialogComplete(context, title, getResources().getString(R.string.game_complete_bn));
+                            } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
+                                showDialogComplete(context, title, getResources().getString(R.string.game_complete_en));
+                            }
                         } else {
                             dialog.dismiss();
                             actionEvent();
@@ -208,9 +231,9 @@ public class GameRotate2 extends AppCompatActivity {
     }
 
 
-    public void showDialogFail(Context context, String message) {
+    public void showDialogFail(Context context, String title,  String message) {
         new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))
-                .setTitle("Sorry")
+                .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -222,9 +245,9 @@ public class GameRotate2 extends AppCompatActivity {
     }
 
 
-    public void showDialogComplete(Context context, String message) {
+    public void showDialogComplete(Context context, String title,  String message) {
         new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))
-                .setTitle("Complete")
+                .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {

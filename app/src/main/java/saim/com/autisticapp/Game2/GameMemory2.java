@@ -65,6 +65,13 @@ public class GameMemory2 extends AppCompatActivity {
             txtTitle.setText(R.string.games_en_4);
         }
 
+        qusImgSound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PlaySound();
+            }
+        });
+
         actionEvent();
     }
 

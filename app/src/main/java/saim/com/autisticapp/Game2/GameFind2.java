@@ -11,7 +11,6 @@ import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -175,7 +174,7 @@ public class GameFind2 extends AppCompatActivity {
 
                 MediaPlayer mediaPlayerNew = new MediaPlayer();
                 try {
-                    AssetFileDescriptor descriptor = getAssets().openFd("a_who_is_en.mpeg");
+                    AssetFileDescriptor descriptor = getAssets().openFd("a_who_is_en_2.mpeg");
                     descriptor = getAssets().openFd(modelFamilies.get(COUNTER).getSound());
                     mediaPlayerNew.setDataSource(descriptor.getFileDescriptor(), descriptor.getStartOffset(), descriptor.getLength());
                     descriptor.close();

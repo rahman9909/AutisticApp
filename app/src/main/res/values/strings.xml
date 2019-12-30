@@ -112,7 +112,7 @@
     <string name="games_memory_en">Where is </string>
     <string name="games_memory_bn">কোথায়</string>
 
-    <string name="games_find_en">Who is </string>
+    <string name="games_find_en">Find </string>
     <string name="games_find_bn">কোনটি</string>
 
     <string name="games_eye_en">Whose eye is this?</string>
@@ -131,7 +131,7 @@
     <string name="ans_comments_bn">মন্তব্য</string>
     <string name="ans_right_en">Right answer.</string>
     <string name="ans_right_bn">উত্তরটি সঠিক হয়েছে</string>
-    <string name="ans_wrong_en">wrong answer.</string>
+    <string name="ans_wrong_en">Wrong answer.</string>
     <string name="ans_wrong_bn">উত্তরটি ভুল হয়েছে</string>
 
 

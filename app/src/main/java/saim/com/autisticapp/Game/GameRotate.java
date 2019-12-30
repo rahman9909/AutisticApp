@@ -146,10 +146,10 @@ public class GameRotate extends AppCompatActivity {
     public void playWrongAnswerSound() {
         if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
             actionEventSound(getApplicationContext(), "wrong_ans_bn.mp3");
-            showDialogSuccess(getApplicationContext(), getResources().getString(R.string.ans_comments_bn),getResources().getString(R.string.ans_wrong_bn));
+            showDialogFail(getApplicationContext(), getResources().getString(R.string.ans_comments_bn),getResources().getString(R.string.ans_wrong_bn));
         } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
             actionEventSound(getApplicationContext(), "wrong_ans_en.mp3");
-            showDialogSuccess(getApplicationContext(), getResources().getString(R.string.ans_comments_en),getResources().getString(R.string.ans_wrong_en));
+            showDialogFail(getApplicationContext(), getResources().getString(R.string.ans_comments_en),getResources().getString(R.string.ans_wrong_en));
         }
     }
 

@@ -7,7 +7,6 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
-import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
@@ -20,7 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Locale;
 
 import saim.com.autisticapp.Model.ModelFamily;
 import saim.com.autisticapp.R;
@@ -141,10 +139,10 @@ public class GameFind extends AppCompatActivity {
     public void playWrongAnswerSound() {
         if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
             actionEventSound(getApplicationContext(), "wrong_ans_bn.mp3");
-            showDialogSuccess(getApplicationContext(), getResources().getString(R.string.ans_comments_bn),getResources().getString(R.string.ans_wrong_bn));
+            showDialogFail(getApplicationContext(), getResources().getString(R.string.ans_comments_bn),getResources().getString(R.string.ans_wrong_bn));
         } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
             actionEventSound(getApplicationContext(), "wrong_ans_en.mp3");
-            showDialogSuccess(getApplicationContext(), getResources().getString(R.string.ans_comments_en),getResources().getString(R.string.ans_wrong_en));
+            showDialogFail(getApplicationContext(), getResources().getString(R.string.ans_comments_en),getResources().getString(R.string.ans_wrong_en));
         }
     }
 

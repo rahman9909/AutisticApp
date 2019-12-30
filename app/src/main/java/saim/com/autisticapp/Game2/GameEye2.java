@@ -149,10 +149,10 @@ public class GameEye2 extends AppCompatActivity {
     public void playWrongAnswerSound() {
         if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("BN")) {
             actionEventSound(getApplicationContext(), "wrong_ans_bn.mp3");
-            showDialogSuccess(getApplicationContext(), getResources().getString(R.string.ans_comments_bn),getResources().getString(R.string.ans_wrong_bn));
+            showDialogFail(getApplicationContext(), getResources().getString(R.string.ans_comments_bn),getResources().getString(R.string.ans_wrong_bn));
         } else if (new SharedPrefDatabase(getApplicationContext()).RetriveLanguage().equals("EN")) {
             actionEventSound(getApplicationContext(), "wrong_ans_en.mp3");
-            showDialogSuccess(getApplicationContext(), getResources().getString(R.string.ans_comments_en),getResources().getString(R.string.ans_wrong_en));
+            showDialogFail(getApplicationContext(), getResources().getString(R.string.ans_comments_en),getResources().getString(R.string.ans_wrong_en));
         }
     }
 
@@ -213,7 +213,7 @@ public class GameEye2 extends AppCompatActivity {
 
     public void showDialogSuccess(final Context context, final String title, String message) {
         new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.Theme_AppCompat))
-                .setTitle("Congratulations")
+                .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {

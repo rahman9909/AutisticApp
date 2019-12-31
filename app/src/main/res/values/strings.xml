@@ -18,16 +18,16 @@
 
     <string-array name="spiner_entry_bn">
         <item>নির্বাচন করুন</item>
-        <item>FATHER</item>
-        <item>MOTHER</item>
-        <item>GRAND_FATHER</item>
-        <item>GRAND_MOTHER</item>
-        <item>BROTHER</item>
-        <item>SISTER</item>
-        <item>UNCLE</item>
-        <item>AUNTIE</item>
-        <item>OBJECT</item>
-        <item>OTHER</item>
+        <item>বাবা</item>
+        <item>মা</item>
+        <item>দাদা</item>
+        <item>দাদী</item>
+        <item>ভাই</item>
+        <item>বোন</item>
+        <item>চাচা</item>
+        <item>চাচী</item>
+        <item>বস্তু</item>
+        <item>অন্যান্য</item>
     </string-array>
 
 
@@ -64,7 +64,7 @@
     <string name="games_en_2">Train my self</string>
     <string name="games_en_3">Find Game</string>
     <string name="games_en_4">Memory game</string>
-    <string name="games_en_5">Roatate Game</string>
+    <string name="games_en_5">Rotate Game</string>
     <string name="games_en_6">Eye Match</string>
 
     <!--BANGLA VERSION-->

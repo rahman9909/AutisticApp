@@ -69,6 +69,8 @@ public class Splash extends AppCompatActivity {
                         Manifest.permission.CALL_PHONE,
                         Manifest.permission.RECORD_AUDIO,}, 1);
             }
+        } else {
+            DataProcess();
         }
     }
 
